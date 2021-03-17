@@ -1,0 +1,144 @@
+.full-view { /* For title landing page, easier to position elements. */
+  height:100%;
+  width:100%;  
+}
+
+@media print { /* use this for rn to prevent peaking, when more time load elements dynamically instead all on html */
+  * {
+    display: none !important;
+  }
+}
+
+
+/*.title {
+  margin: 5% !important;
+}*/
+
+.disable-selection { /* disable text selection (make site more app-like and less like a document) */
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Chrome, Edge, Opera and Firefox */
+}
+
+/*********************************************
+  Virus Sprite Animation
+ *********************************************/
+.spriteAnimation {
+  animation: MoveUpDown 10s linear infinite;
+  position: absolute;
+  width: 10%;
+  height: 10%;
+}
+
+@keyframes MoveUpDown {
+  0%, 100% {
+    left: 0%;
+  }
+  50% {
+    left: 50%;
+  }
+}
+
+/* Button Styling */
+.slide_left:hover {
+  box-shadow: inset 0 0 0 50px #ff5b77;
+}
+
+.button_slide {
+  color: black;
+  font-weight: bold;
+  background-color: rgb(173, 216, 230);
+  border-radius: 0px;
+  padding: 18px 36px;
+/*  display: inline-block;*/
+/*  font-family: "Lucida Console", Monaco, monospace;*/
+  font-size: 18px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  box-shadow: inset 0 0 0 0 #D80286;
+  -webkit-transition: ease-out 0.4s;
+  -moz-transition: ease-out 0.4s;
+  transition: ease-out 0.4s;
+}
+
+/* Button Positioning */
+.center-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.center-bottom-button {
+  position: absolute;
+  bottom: 10%;
+  left: 35%;
+  right: 35%;
+} 
+
+@media only screen and (max-width: 600px) {
+  .center-bottom-button {
+    bottom: 10%;
+    left: 20%;
+    right: 20%;
+  }
+}
+
+.center-bottom-button2 { /*CHANGE NAME LATER*/
+  position: absolute;
+  left: 35%;
+  right: 35%;
+  top: 130%;
+} 
+
+@media only screen and (max-width: 600px) {
+  .center-bottom-button2 { /*CHANGE NAME LATER*/
+    left: 20%;
+    right: 20%;
+    top: 100%;
+  }
+}
+
+
+/* Question Box Styling */
+.question {
+  padding-right: 15%;
+  padding-left: 15%;
+}
+
+@media only screen and (max-width: 600px) {
+  .question {
+    padding-right: 5%;
+    padding-left: 5%;
+    font-size: 24px;
+  }
+}
+
+div.question > h6 {
+  letter-spacing: 0.03em;
+  color: #f7ebc8; /* ask her for color values */
+}
+
+/* Answer Options Styling */
+.option-section {
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-content: space-evenly;
+}
+
+.option {
+  font-size: 18px;
+  cursor: pointer;
+  padding-top:1.5%;
+  transition: color 0.25s ease-out; /* when in hover state, change color easing out */
+  -webkit-transition: color 0.1s ease-out;
+}
+
+.option:hover { /* change color when hovered */
+  color: #90d4c6;
+}
+
+
