@@ -1,7 +1,7 @@
 Reveal.initialize({
 	controls: false,
 	hash: false,
-	progress: false, // add css directly to a selector on div or body
+	progress: false,
 	keyboard: false, 
 	touch: false,
 	autoSlideStoppable: false,
@@ -18,11 +18,7 @@ Reveal.initialize({
 	margin: 0.01,
 	minScale: 1, // change for scaling
 	maxScale: 1
-/*	preloadIframes: null,
-	autoAnimateEasing: 'ease',
-	autoAnimateDuration: 1.0,
-	autoAnimateUnmatched: true,
-*/
+
 	// plugins: [ ]
 });
 
@@ -39,11 +35,13 @@ increaseButton.addEventListener("click", () => {
 
 
 document.querySelectorAll(".nextPrompt").forEach(item => {
-	item.addEventListener("click", event => {
-		Reveal.next();
-		console.log("Reveal next, onto: " + Reveal.getSlidePastCount());
-	})
+	item.addEventListener("click", event => nextSlide());
 });
+
+function nextSlide() {
+	Reveal.next();
+	console.log("Reveal next, onto: " + Reveal.getSlidePastCount());
+}
 
 function goTo(x) {
 	Reveal.slide(x);
