@@ -9,7 +9,6 @@
   }
 }
 
-
 /*.title {
   margin: 5% !important;
 }*/
@@ -41,8 +40,19 @@
     left: 50%;
   }
 }
-/* Counters */
-#counters {
+
+/*********************************************
+  Navigation Bar
+ *********************************************/
+#navigation {
+  position: fixed;
+  z-index: 20;
+}
+
+/*********************************************
+  Counters
+ *********************************************/
+#counters { /* container for all counters */
   position: fixed;
   padding: 1em;
   color: #f7ebc8;
@@ -52,25 +62,25 @@
   margin-bottom: 0.85em;
 }
 
-.counter-icons {
-  height: 50px;
-  width: 50px;
-}
-
 .counter-title {
-  font-size: 1.6em;
+  font-size: 1.25em;
   letter-spacing: 0.05em;
   border-bottom: 2px dotted rgba(247, 235, 299, 0.5);
   margin-bottom: 0.2em;
 }
 
-.counter-container {
+.counter-container { /* individual container for icon + numbers */
   display: grid;
   grid-template-columns: auto auto;
   grid-template-rows: auto;
   align-items: center;
   justify-content: left;
-  gap: 0.25em;
+  gap: 0.4em;
+}
+
+.counter-icons {
+  height: 50px;
+  width: 50px;
 }
 
 .counter-data {
@@ -89,6 +99,104 @@
   font-weight: bold;
 }*/
 
+/* RESPONSIVE */
+@media only screen and (max-width: 1200px) {
+  .counter-title { 
+    font-size: 1em;
+    letter-spacing: 0.04em;
+  }
+
+  .counter-icons {
+    height: 40px;
+    width: 40px;
+  }
+
+  .counter-data {
+    font-size: 1.35em;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .counter-title { 
+    display: none;
+  }
+
+  .counter-icons {
+    height: 35px;
+    width: 35px;
+  }
+}
+
+@media only screen and (max-width: 360px) {
+  .counter-icons {
+    height: 28px;
+    width: 28px;
+  }
+
+  .counter-data {
+    font-size: 1.1em;
+  }
+
+  #counters > div { /* spacing btwn interior div containers*/
+    margin-bottom: 0.25em;
+  }
+}
+
+/*********************************************
+  Prompts & Answers
+ *********************************************/
+.prompt {
+  padding-right: 15%;
+  padding-left: 15%;
+}
+
+div.prompt > h6 { /* every prompt inside the .prompt div container */
+  letter-spacing: 0.03em;
+}
+
+.question { /* "what will you do" "how will you respond" etc */
+  margin-top: 2.5%;
+  margin-bottom: 2.5%;
+}
+
+/* Answer Options Styling */
+.option-section {
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-content: space-evenly;
+}
+
+.option {
+  font-size: 18px;
+  cursor: pointer;
+  padding-top:1.5%;
+  transition: color 0.25s ease-out; /* when in hover state, change color easing out */
+  -webkit-transition: color 0.1s ease-out;
+}
+
+.option:hover { /* change color when hovered */
+  color: #90d4c6;
+}
+
+/* RESPONSIVE */
+@media only screen and (max-width: 800px) {
+  .prompt {
+    padding-right: 2.5%;
+    padding-left: 2.5%;
+    font-size: 22px;
+  }
+
+  div.prompt > h6 { /* every prompt inside the .prompt div container */
+    letter-spacing: 0.01em;
+  }
+}
+
+
+
+
+
+
+
 /* Button Styling */
 .slide_left:hover {
   box-shadow: inset 0 0 0 50px #ff5b77;
@@ -101,7 +209,6 @@
   border-radius: 0px;
   padding: 18px 36px;
 /*  display: inline-block;*/
-/*  font-family: "Lucida Console", Monaco, monospace;*/
   font-size: 18px;
   letter-spacing: 1px;
   cursor: pointer;
@@ -150,41 +257,6 @@
 }
 
 
-/* Question Box Styling */
-.question {
-  padding-right: 15%;
-  padding-left: 15%;
-}
 
-@media only screen and (max-width: 600px) {
-  .question {
-    padding-right: 5%;
-    padding-left: 5%;
-    font-size: 24px;
-  }
-}
-
-div.question > h6 {
-  letter-spacing: 0.03em;
-}
-
-/* Answer Options Styling */
-.option-section {
-  display: grid;
-  grid-template-columns: auto auto;
-  justify-content: space-evenly;
-}
-
-.option {
-  font-size: 18px;
-  cursor: pointer;
-  padding-top:1.5%;
-  transition: color 0.25s ease-out; /* when in hover state, change color easing out */
-  -webkit-transition: color 0.1s ease-out;
-}
-
-.option:hover { /* change color when hovered */
-  color: #90d4c6;
-}
 
 
