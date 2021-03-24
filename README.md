@@ -11,3 +11,4 @@
 	- @media orientation check
 - darken red color/more bold as deaths/virus positivity increases
 - in the intro about page explain how it's teaching education related
+honey big brain
