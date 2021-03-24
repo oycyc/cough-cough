@@ -47,6 +47,32 @@
 #navigation {
   position: fixed;
   z-index: 20;
+  bottom: 0px;
+  width: 100%;
+  background-color: #fff; /*temp change to transparent later? look at pic example she sent*/
+  padding: 2% 0;
+  text-align: center;
+  font-family: 'Cochin', Georgia, serif;
+}
+
+#navigation nav {
+
+}
+
+#navigation a {
+  display: inline-block;
+  padding: 0 10px;
+  border-right: 2px solid #ccc;
+  text-decoration: none;
+  color: #df0d32;
+}
+
+#navigation a:last-child {
+  border-right: none;
+}
+
+#navigation a:hover {
+  text-decoration: underline;
 }
 
 /*********************************************
@@ -75,7 +101,14 @@
   grid-template-rows: auto;
   align-items: center;
   justify-content: left;
-  gap: 0.4em;
+}
+
+.counter-container-three { /* for percentage counter use */
+  grid-template-columns: auto auto auto;
+}
+
+.counter-container > img:nth-of-type(1) { /* spacing after icon */
+  padding-right: 0.4em;
 }
 
 .counter-icons {
@@ -89,15 +122,14 @@
   font-size: 1.5em;
 }
 
+.counter-percent {
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
 #deaths-counter {
   color: #fdaaaa;
 }
-
-/*#dollar-sign {
-  color: #8cc68c;
-  font-size: 1.75em;
-  font-weight: bold;
-}*/
 
 /* RESPONSIVE */
 @media only screen and (max-width: 1200px) {
@@ -112,6 +144,10 @@
   }
 
   .counter-data {
+    font-size: 1.35em;
+  }
+
+  .counter-percent {
     font-size: 1.35em;
   }
 }

@@ -22,15 +22,20 @@ Reveal.initialize({
 	// plugins: [ ]
 });
 
+function commaFormat(value) {
+  return value.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,'); // regex to put commas into numbers
+}
+
 /*https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/hidden hide money counters*/
 
 let moneyCounter = document.getElementById("money-counter");
 let increaseButton = document.getElementById("increase-test");
-let count = moneyCounter.innerHTML;
+let count = 1000000;
+moneyCounter.innerHTML = commaFormat(count);
 
 increaseButton.addEventListener("click", () => {
-  count++
-  moneyCounter.innerHTML = count;
+	count++
+	moneyCounter.innerHTML = commaFormat(count);
 });
 
 
