@@ -12,3 +12,4 @@
 - in the intro about page explain how it's teaching education related
 - animate number counter
 -cough cough logo taint or drip effect?
+asdf
