@@ -59,9 +59,9 @@ function consoleTest(x) {
 
 //gets user input name and inserts into span 
 function replaceNationName() {
-	let newNationName = document.getElementById("inputName").value;
+	let newNationName = document.getElementById("inputName").value; //gets value of inputName and assigns to newNationName
 	document.querySelectorAll(".nationName").forEach(item => {
-		item.innerHTML = newNationName;
+		item.innerText = newNationName;
 	});
 }
 

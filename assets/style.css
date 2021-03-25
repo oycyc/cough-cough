@@ -1,3 +1,5 @@
+
+
 .full-view { /* For title landing page, easier to position elements. */
   height:100%;
   width:100%;  
@@ -49,27 +51,25 @@
   z-index: 20;
   bottom: 0px;
   width: 100%;
-  background-color: #fff; /*temp change to transparent later? look at pic example she sent*/
-  padding: 2% 0;
+  padding: 2em 0;
   text-align: center;
   font-family: 'Cochin', Georgia, serif;
 }
 
-#navigation nav {
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
 }
 
 #navigation a {
-  display: inline-block;
+/*  display: inline-block;*/
   padding: 0 10px;
-  border-right: 2px solid #ccc;
   text-decoration: none;
-  color: #df0d32;
+  color: #fff;
 }
 
-#navigation a:last-child {
-  border-right: none;
-}
 
 #navigation a:hover {
   text-decoration: underline;
@@ -132,7 +132,7 @@
 }
 
 /* RESPONSIVE */
-@media only screen and (max-width: 1200px) {
+@media only screen and (max-width: 1400px) {
   .counter-title { 
     font-size: 1em;
     letter-spacing: 0.04em;
@@ -157,9 +157,21 @@
     display: none;
   }
 
+  #counters > div { /* spacing btwn interior div containers*/
+    margin-bottom: 0.25em;
+  }
+
   .counter-icons {
     height: 35px;
     width: 35px;
+  }
+
+  .counter-data {
+    font-size: 1.1em;
+  }
+
+  .counter-percent {
+    font-size: 1em;
   }
 }
 
@@ -170,11 +182,7 @@
   }
 
   .counter-data {
-    font-size: 1.1em;
-  }
-
-  #counters > div { /* spacing btwn interior div containers*/
-    margin-bottom: 0.25em;
+    font-size: 1em;
   }
 }
 
