@@ -56,3 +56,30 @@ function goTo(x) {
 function consoleTest(x) {
 	console.log("It worked! " + x);
 }
+
+//gets user input name and subs in into xyz 
+function replaceNationName() {
+	let newNationName = document.getElementById("inputName").value;
+	document.querySelectorAll(".nationName").forEach(item => {
+		item.innerHTML = newNationName;
+	});
+}
+
+function checkInput() {
+	let newNationName = document.getElementById("inputName").value;
+	const letters = /^[A-Za-z]+$/;
+	if (newNationName.length > 0 && newNationName.match(letters)) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+document.getElementById("submitName").addEventListener("click", function() {
+	if (checkInput()) {
+		nextSlide();
+		replaceNationName();
+	} else {
+		console.log("cici brainz"); //change later
+	}
+});
