@@ -23,8 +23,43 @@ Reveal.initialize({
 });
 
 function commaFormat(value) {
-  return value.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,'); // regex to put commas into numbers
+	return value.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,'); // regex to put commas into numbers
 }
+
+//checks if user put anything into text
+//edit to allow users to put in space as well/length
+function checkInput() {
+	let newNationName = document.getElementById("inputName").value;
+	const letters = /^[A-Za-z]+$/;
+	if (newNationName.length > 2 && newNationName.length < 15 && newNationName.match(letters)) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+//gets user input name and inserts into span 
+function replaceNationName() {
+	let newNationName = document.getElementById("inputName").value; //gets value of inputName and assigns to newNationName
+	document.querySelectorAll(".nationName").forEach(item => {
+		item.innerText = newNationName;
+	});
+}
+
+function nextSlide() {
+	Reveal.next();
+	console.log("Reveal next, onto: " + Reveal.getSlidePastCount());
+}
+
+function goTo(x) {
+	Reveal.slide(x);
+	console.log("Going to slide: " + x);
+}
+
+function consoleTest(x) {
+	console.log("It worked! " + x);
+}
+
 
 /*https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/hidden hide money counters*/
 
@@ -43,39 +78,6 @@ document.querySelectorAll(".nextPrompt").forEach(item => {
 	item.addEventListener("click", event => nextSlide());
 });
 
-function nextSlide() {
-	Reveal.next();
-	console.log("Reveal next, onto: " + Reveal.getSlidePastCount());
-}
-
-function goTo(x) {
-	Reveal.slide(x);
-	console.log("Going to slide: " + x);
-}
-
-function consoleTest(x) {
-	console.log("It worked! " + x);
-}
-
-//gets user input name and inserts into span 
-function replaceNationName() {
-	let newNationName = document.getElementById("inputName").value; //gets value of inputName and assigns to newNationName
-	document.querySelectorAll(".nationName").forEach(item => {
-		item.innerText = newNationName;
-	});
-}
-
-//checks if user put anything into text
-//edit to allow users to put in space as well/length
-function checkInput() {
-	let newNationName = document.getElementById("inputName").value;
-	const letters = /^[A-Za-z]+$/;
-	if (newNationName.length > 2 && newNationName.length < 15 && newNationName.match(letters)) {
-		return true;
-	} else {
-		return false;
-	}
-}
 
 //once the button is clicked, goes to next slide and replaces nation name
 document.getElementById("submitName").addEventListener("click", function() {
