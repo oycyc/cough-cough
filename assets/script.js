@@ -60,6 +60,33 @@ function consoleTest(x) {
 	console.log("It worked! " + x);
 }
 
+//constants for the functions about inserting new nation name
+const submitName = document.getElementById("submitName");
+const inputName = document.getElementById("inputName");
+const errorElement = document.getElementById("error");
+
+//gets user input name and inserts into span 
+function replaceNationName() {
+	let newNationName = inputName.value; //gets value of inputName and assigns to newNationName
+	document.querySelectorAll(".nationName").forEach(item => {
+		item.innerText = newNationName;
+	});
+};
+
+//checks if user put anything into text
+//edit to allow users to put in space as well/length
+function checkInput() {
+	let newNationName = inputName.value;
+	const letters = /^[A-Za-z]+$/;
+	//changing regex to allow for space + alphabet, but no numbers
+	const letterSpaceNoNumbers = /^[a-zA-Z][a-zA-Z\s]*$/;
+	if (newNationName.length > 2 && newNationName.length < 15 && newNationName.match(letterSpaceNoNumbers/*letters*/)) {
+		return true;
+	} else {
+		return false;
+	}
+};
+=======
 
 /*https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/hidden hide money counters*/
 
@@ -80,7 +107,7 @@ document.querySelectorAll(".nextPrompt").forEach(item => {
 
 
 //once the button is clicked, goes to next slide and replaces nation name
-document.getElementById("submitName").addEventListener("click", function() {
+submitName.addEventListener("click", function() {
 	if (checkInput()) {
 		nextSlide();
 		replaceNationName();
@@ -89,4 +116,17 @@ document.getElementById("submitName").addEventListener("click", function() {
 	}
 });
 
-//tells user if they haven't typed anything in
+//tells player that the country name must be between 3-15 chars
+submitName.addEventListener("click", (e) => {
+	let messages = [];
+	//makes general message
+	//problem: doesn't pass the user if they have space in beginning
+	if (checkInput() === false) {
+		messages.push("Nation name must be between 3 to 15 characters without numbers.")
+	}
+
+	if (messages.length > 0) {	
+		e.preventDefault();
+		errorElement.innerText = messages.join(", ");
+	}
+});

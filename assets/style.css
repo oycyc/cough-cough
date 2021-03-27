@@ -324,7 +324,9 @@ div.prompt > h6 { /* every prompt inside the .prompt div container */
   }
 }
 
-
-
-
-
+/*Style Error Message*/
+/* try to make the message somehow highlight again if user makes another mistake*/ 
+#error {
+  color: #ff6961;
+  font-size: 0.5em;
+}
