@@ -112,11 +112,11 @@ nav {
   justify-content: left;
 }
 
-.counter-container-three { /* for percentage counter use */
+.counter-container-three { /* for counter when there's a % sign (need 3) */
   grid-template-columns: auto auto auto;
 }
 
-.counter-container > img:nth-of-type(1) { /* spacing after first icon */
+.counter-container > img:nth-of-type(1) { /* spacing after icon */
   padding-right: 0.4em;
 }
 
@@ -194,6 +194,15 @@ nav {
     font-size: 1em;
   }
 }
+/*********************************************
+  Nation Input & Info Page
+ *********************************************/
+ /*Style Error Message*/
+ /* try to make the message somehow highlight again if user makes another mistake*/ 
+ #error {
+  color: #ff6961;
+  font-size: 0.5em;
+ } 
 
 /*********************************************
   Prompts & Answers
