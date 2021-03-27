@@ -51,37 +51,28 @@
   z-index: 20;
   bottom: 0px;
   width: 100%;
-  padding: 1em 0;
+  padding: 2em 0;
+  text-align: center;
   font-family: 'Cochin', Georgia, serif;
 }
 
 nav {
   display: flex;
   justify-content: center;
-  align-items: center; /*baseline or center ask her*/
+  align-items: center;
 
-}
-
-#navbar-title {
-  font-family: Chalkdust, Georgia, serif;
-  font-weight: bold;
-  font-size: 3em;
-  color: #00bc27; /*maybe change color later*/
-  margin: 0 0.5em;
 }
 
 #navigation a {
 /*  display: inline-block;*/
   padding: 0 10px;
   text-decoration: none;
-  color: #e0d6ff; /*ask her if she wants to change the color later*/
-  font-weight: bold;
-  transition: color 0.3s ease-out; /* when in hover state, change color easing out */
-  -webkit-transition: color 0.3s ease-out;
+  color: #fff;
 }
 
+
 #navigation a:hover {
-    color: #90d4c6;
+  text-decoration: underline;
 }
 
 /*********************************************
@@ -116,7 +107,7 @@ nav {
   grid-template-columns: auto auto auto;
 }
 
-.counter-container > img:nth-of-type(1) { /* spacing after first icon */
+.counter-container > img:nth-of-type(1) { /* spacing after icon */
   padding-right: 0.4em;
 }
 
@@ -223,8 +214,8 @@ div.prompt > h6 { /* every prompt inside the .prompt div container */
   font-size: 18px;
   cursor: pointer;
   padding-top:1.5%;
-  transition: color 0.3s ease-out; /* when in hover state, change color easing out */
-  -webkit-transition: color 0.3s ease-out;
+  transition: color 0.25s ease-out; /* when in hover state, change color easing out */
+  -webkit-transition: color 0.1s ease-out;
 }
 
 .option:hover { /* change color when hovered */
@@ -232,17 +223,6 @@ div.prompt > h6 { /* every prompt inside the .prompt div container */
 }
 
 /* RESPONSIVE */
-@media only screen and (max-width: 1400px) {
-  div.prompt > h6 { /* every prompt inside the .prompt div container */
-    letter-spacing: 0.02em;
-    font-size: 0.8em;
-  }
-
-  .question { /* "what will you do" "how will you respond" etc */
-    font-size: 0.8em;
-  }
-}
-
 @media only screen and (max-width: 800px) {
   .prompt {
     padding-right: 2.5%;
@@ -252,10 +232,6 @@ div.prompt > h6 { /* every prompt inside the .prompt div container */
 
   div.prompt > h6 { /* every prompt inside the .prompt div container */
     letter-spacing: 0.01em;
-  }
-
-  .question { /* "what will you do" "how will you respond" etc */
-    font-size: 0.5em;
   }
 }
 
@@ -324,7 +300,9 @@ div.prompt > h6 { /* every prompt inside the .prompt div container */
   }
 }
 
-
-
-
-
+/*Style Error Message*/
+/* try to make the message somehow highlight again if user makes another mistake*/ 
+#error {
+  color: #ff6961;
+  font-size: 0.5em;
+}

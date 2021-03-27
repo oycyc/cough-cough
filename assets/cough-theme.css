@@ -9,11 +9,6 @@
   src: url(fonts/cochin/Cochin-LT-Font.ttf) format('truetype');
 }
 
-@font-face {
-  font-family: Chalkdust;
-  src: url(fonts/chalkdust/Chalkdust.ttf) format('truetype');
-}
-
 /*********************************************
  * GLOBAL STYLES
  *********************************************/
