@@ -269,6 +269,13 @@ nav {
   font-size: 0.5em;
  } 
 
+#inputName {
+  font-size: 20px;
+  width: 180px;
+  height: 30px;
+  color: #333;
+  margin-bottom: 15px;
+}
 /*********************************************
   Prompts & Answers
  *********************************************/
@@ -358,6 +365,12 @@ div.prompt > h6 { /* every prompt inside the .prompt div container */
   -webkit-transition: ease-out 0.4s;
   -moz-transition: ease-out 0.4s;
   transition: ease-out 0.4s;
+}
+
+.next {
+  border: none;
+  outline: none;
+  margin: 10px;
 }
 
 /* Button Positioning */

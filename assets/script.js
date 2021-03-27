@@ -85,14 +85,13 @@ submitName.addEventListener("click", function() {
 submitName.addEventListener("click", (e) => {
 	let messages = [];
 	//makes general message
-	//problem: doesn't pass the user if they have space in beginning
 	if (checkInput() === false) {
 		messages.push("Nation name must be between 3 to 15 characters without numbers.")
 	}
 
 	if (messages.length > 0) {	
 		e.preventDefault();
-		errorElement.innerText = messages.join(", ");
+		errorElement.innerText = messages;
 	}
 }); 
 
@@ -107,10 +106,10 @@ function replaceNationName() {
 //checks if user put anything into text
 //edit to allow users to put in space as well/length
 function checkInput() {
-	let newNationName = inputName.value;
+	let newNationName = inputName.value.trim(); //removes whitespace on both ends
 	const letters = /^[A-Za-z]+$/;
 	//changing regex to allow for space + alphabet, but no numbers
-	const letterSpaceNoNumbers = /^[a-zA-Z][a-zA-Z\s]*$/;
+	const letterSpaceNoNumbers = /^[a-zA-Z][a-zA-Z\s]*$/; 
 	if (newNationName.length > 2 && newNationName.length < 15 && newNationName.match(letterSpaceNoNumbers/*letters*/)) {
 		return true;
 	} else {
