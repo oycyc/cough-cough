@@ -23,25 +23,28 @@ Reveal.initialize({
 });
 
 function commaFormat(value) {
-  return value.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,'); // regex to put commas into numbers
+	return value.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,'); // regex to put commas into numbers
 }
 
-/*https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/hidden hide money counters*/
+//checks if user put anything into text
+//edit to allow users to put in space as well/length
+function checkInput() {
+	let newNationName = document.getElementById("inputName").value;
+	const letters = /^[A-Za-z]+$/;
+	if (newNationName.length > 2 && newNationName.length < 15 && newNationName.match(letters)) {
+		return true;
+	} else {
+		return false;
+	}
+}
 
-let moneyCounter = document.getElementById("money-counter");
-let increaseButton = document.getElementById("increase-test");
-let count = 1000000;
-moneyCounter.innerHTML = commaFormat(count);
-
-increaseButton.addEventListener("click", () => {
-	count++
-	moneyCounter.innerHTML = commaFormat(count);
-});
-
-
-document.querySelectorAll(".nextPrompt").forEach(item => {
-	item.addEventListener("click", event => nextSlide());
-});
+//gets user input name and inserts into span 
+function replaceNationName() {
+	let newNationName = document.getElementById("inputName").value; //gets value of inputName and assigns to newNationName
+	document.querySelectorAll(".nationName").forEach(item => {
+		item.innerText = newNationName;
+	});
+}
 
 function nextSlide() {
 	Reveal.next();
@@ -83,6 +86,25 @@ function checkInput() {
 		return false;
 	}
 };
+=======
+
+/*https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/hidden hide money counters*/
+
+let moneyCounter = document.getElementById("money-counter");
+let increaseButton = document.getElementById("increase-test");
+let count = 1000000;
+moneyCounter.innerHTML = commaFormat(count);
+
+increaseButton.addEventListener("click", () => {
+	count++
+	moneyCounter.innerHTML = commaFormat(count);
+});
+
+
+document.querySelectorAll(".nextPrompt").forEach(item => {
+	item.addEventListener("click", event => nextSlide());
+});
+
 
 //once the button is clicked, goes to next slide and replaces nation name
 submitName.addEventListener("click", function() {
