@@ -23,4 +23,7 @@
 ## random ideas
 - shake images https://www.w3schools.com/howto/howto_css_shake_image.asp
 - reveal.js allows skipping forward, adding #/SLIDENUMBERHERE after the url, fix by using https://www.w3schools.com/howto/howto_js_get_url.asp
-- 
+
+
+
+- test 
