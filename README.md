@@ -11,3 +11,9 @@
 - animate number counter
 -cough cough logo taint or drip effect?
 - https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/hidden hide money counters
+- make about modal be able to scroll when it really condensed
+- new background animation pic ideas? :
+	- https://image.freepik.com/free-vector/virus-infection-bacteria-flu-background_1035-18704.jpg
+	- https://www.freepik.com/collection/coronavirus-background/691268
+	
+- first landing screen background idea? :https://www.vecteezy.com/vector-art/1822540-virus-theme-background-design
