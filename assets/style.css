@@ -61,7 +61,6 @@ nav {
   display: flex;
   justify-content: center;
   align-items: center; /*baseline or center ask her*/
-
 }
 
 #navbar-title {
@@ -80,6 +79,7 @@ nav {
   font-weight: bold;
   transition: color 0.3s ease-out; /* when in hover state, change color easing out */
   -webkit-transition: color 0.3s ease-out;
+  cursor: pointer;
 }
 
 #navigation a:hover {
@@ -129,41 +129,12 @@ nav {
   color: darkgreen;
 }
 
-.close-button {
-  cursor: pointer;
-  border: none;
-  outline: none;
-  background: none;
-  font-size: 1.25rem;
-  color: white;
-  background: rgba(0,0,0,0.3);
-  border-radius: 50%;
-}
-
 .modal-body {
   padding: 10px 15px;
   line-height: 1.4;
   opacity: 0.9;
   font-family: 'Lato', Georgia, sans-serif;
   font-weight: bold;
-}
-
-#overlay {
-  position: fixed;
-  transition: 200ms ease-in-out;
-  opacity: 0;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  pointer-events: none;
-}
-
-#overlay.active {
-  opacity: 0.1;
-  pointer-events: all;
-  z-index: 20;
 }
 
 .modal button {
@@ -190,6 +161,25 @@ nav {
 .modal button:active {
   opacity: 1;
 }
+
+#overlay {
+  position: fixed;
+  transition: 200ms ease-in-out;
+  opacity: 0;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+}
+
+#overlay.active {
+  opacity: 0.1;
+  pointer-events: all;
+  z-index: 20;
+}
+
 
 /* RESPONSIVE */
 @media only screen and (max-width: 1400px) {
@@ -362,12 +352,13 @@ div.prompt > h6 { /* every prompt inside the .prompt div container */
   font-size: 18px;
   cursor: pointer;
   padding-top:1.5%;
-  transition: color 0.3s ease-out; /* when in hover state, change color easing out */
-  -webkit-transition: color 0.3s ease-out;
+  transition: all 0.3s ease-out; /* when in hover state, change color easing out */
+  -webkit-transition: all 0.3s ease-out;
 }
 
 .option:hover { /* change color when hovered */
   color: #90d4c6;
+  transform: translate(5px, -5px);
 }
 
 /* RESPONSIVE */
