@@ -158,3 +158,15 @@ function closeModal(modal) {
 	modal.classList.remove("active");
 	overlay.classList.remove("active");
 };
+
+/*********************************************
+  Timeline
+ *********************************************/
+ 
+const startTimeline = document.getElementById("startTimeline");
+const month_1 = document.getElementById("month-1"); 
+
+//when player clicks "accept the challenge," adds a class of current to the first month
+startTimeline.addEventListener("click", () => {
+	month_1.classList.add("current");
+});

@@ -315,7 +315,7 @@ nav {
   }
 }
 /*********************************************
-  Nation Input & Info Page
+  Nation Input & Info Page 
  *********************************************/
  /*Style Error Message*/
  /* try to make the message somehow highlight again if user makes another mistake*/ 
@@ -467,7 +467,47 @@ div.prompt > h6 { /* every prompt inside the .prompt div container */
   }
 }
 
+/*********************************************
+  Timeline
+ *********************************************/
+.timeline {
+  display: flex;
+  flex-flow: column nowrap;
+  width: 5%;
+  height: 100%;
+  align-items: center;
+  justify-content: space-around;
+  position: fixed;
+  right: 0;
+  top: 0;
+}
 
+.month {
+  color: #608fad;
+  font-weight: 600;
+  font-size: 1.75em;
+}
 
+/*current month styling*/
+.current {
+  background: #f7ebc4;
+  border-radius: 50%;
+  height: 1.2em;
+  width: 1.2em;
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
+/*playing around with this*/
+@media only screen and (max-width: 800px) {
+  .current {
+    height: 1.1em;
+    width: 1.1em;
+  }
 
+  .month {
+    font-size: 1.1em;
+  }
+}
