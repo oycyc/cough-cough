@@ -1,6 +1,25 @@
-/* organization of file 
-responsive is built from a monitor screen going downwards
-has 3 responsive media queries, max 1400 for laptops/tablets, max 800 for smaller tablets & phones, max 360 for smaller phones
+/*
+====================================================
+
+  TABLE OF CONTENTS (do this at the end bc the positioning of code might change)
+
+  - General Styling
+  - Navigation Bar
+  - Modals
+
+  MEDIA QUERIES
+
+  Most of the styling is designed from desktop first then to mobile. 
+  Although this would make it load a bit slower on mobile devices, our website's performance is 
+  generally very fast and in addition, designing this from desktop down would be easier 
+  since there is a limited amount of time to develop this site. 
+
+  There is only three media queries as there is limited time for this project.
+  Max Width: 1400px -- Laptops/Tablets
+  Max Width: 800px -- Phones/Smaller Tablets;
+  Max Width: 360px -- Smaller Phones
+====================================================
+*/
 
 */
 
@@ -271,7 +290,7 @@ nav {
  *********************************************/
 #counters { /* container for all counters */
   position: fixed;
-  padding: 1em;
+  padding: 0.75em;
   color: #f7ebc8;
 }
 
@@ -348,6 +367,9 @@ nav {
 }
 
 @media only screen and (max-width: 800px) {
+  #counters {
+    padding: 0.5em;
+  }
   .counter-title { 
     display: none;
   }
@@ -479,6 +501,7 @@ div.prompt > h6 { /* every prompt inside the .prompt div container */
   justify-content: center;
   z-index: 20;
   text-align: center;
+  display: none;
 }
 
 .result-title {
@@ -498,6 +521,7 @@ div.prompt > h6 { /* every prompt inside the .prompt div container */
 
 .result-button {
   color: #131F33;
+  background-color: #89cff0;
   font-weight: normal;
   position: absolute;
   bottom: 10%;
@@ -527,17 +551,34 @@ div.prompt > h6 { /* every prompt inside the .prompt div container */
   .result-button {
     padding-left: 32px;
     padding-right: 32px;
-    bottom: 7.5%;
   }
 }
 
 @media only screen and (max-width: 800px) {
+  .result-circle {
+    width: 325px;
+    height: 325px;
+    grid-template-rows: 2.1em;
+  }
 
+  .result-title {
+    border-bottom: 6px dotted #cfd2d6;
+    font-size: 0.55em;
+    margin: 2.4em auto 0; 
+  }
+
+  .result-text {
+    font-size: 0.4em;
+    margin: 0 1.85em;
+  }
+
+  .result-button {
+    padding: 12px 20px;
+    font-size: 16px;
+    bottom: 7%;
+  }
 }
 
-@media only screen and (max-width: 360px) {
-
-}
 
 /*********************************************
   Timeline
