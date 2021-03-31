@@ -19,11 +19,15 @@
 	- https://www.freepik.com/collection/coronavirus-background/691268
 	
 - first landing screen background idea? :https://www.vecteezy.com/vector-art/1822540-virus-theme-background-design
+- https://www.vecteezy.com/vector-art/1975718-blue-virus-theme-background
 
 ## random ideas
 - shake images https://www.w3schools.com/howto/howto_css_shake_image.asp
 - reveal.js allows skipping forward, adding #/SLIDENUMBERHERE after the url, fix by using https://www.w3schools.com/howto/howto_js_get_url.asp
 
+## result circle
+- replaceChild() to change the div paragraph for individual results
 
 
-- test 
+
+- zoomin zoom out https://animate.style/ https://www.digitalocean.com/community/tutorials/css-animate-css https://github.com/animate-css/animate.css
