@@ -183,7 +183,7 @@ increaseButton.addEventListener("click", () => {
 
 function removeAddClass() {
 	let month_x = document.querySelector(".current");
-	let nextMonthNumber = parseInt(month_x.value) + 1;
+	let nextMonthNumber = parseInt(month_x.innerText) + 1;
 	let nextMonth = "month-" + nextMonthNumber;
 	let month_y = document.getElementById(nextMonth);
 
@@ -193,7 +193,9 @@ function removeAddClass() {
 };
 
 //change button later
-increaseButton.addEventListener("click", removeAddClass());
+increaseButton.addEventListener("click", () => {
+	removeAddClass()
+});
 
 /*********************************************
   Music
