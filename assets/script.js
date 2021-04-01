@@ -164,9 +164,44 @@ function closeModal(modal) {
  *********************************************/
  
 const startTimeline = document.getElementById("startTimeline");
-const month_1 = document.getElementById("month-1"); 
+const month_1 = document.getElementById("month-1");
+const month_meter = document.getElementById("month-meter");
+const num_month = document.getElementById("num-month");
+ 
 
 //when player clicks "accept the challenge," adds a class of current to the first month
 startTimeline.addEventListener("click", () => {
 	month_1.classList.add("current");
+});
+
+//replace increaseButton for another button that then changes the month number
+increaseButton.addEventListener("click", () => {
+	if (parseInt(num_month.innerText) < 12) {
+		num_month.innerText = parseInt(num_month.innerText) + 1;
+	}
+});
+
+function removeAddClass() {
+	let month_x = document.querySelector(".current");
+	let nextMonthNumber = parseInt(month_x.value) + 1;
+	let nextMonth = "month-" + nextMonthNumber;
+	let month_y = document.getElementById(nextMonth);
+
+	month_x.classList.remove("current");
+	month_x.classList.add("previous");
+	month_y.classList.add("current");
+};
+
+//change button later
+increaseButton.addEventListener("click", removeAddClass());
+
+/*********************************************
+  Music
+ *********************************************/
+//add music during first animation/introduction
+let audio = new Audio("assets/music/demised_to_shield_end_portion.mp3");
+
+//if the user clicks only once, the music still plays without going to next animation, so change submitName
+submitName.addEventListener("click", () => {
+	audio.play();
 });
