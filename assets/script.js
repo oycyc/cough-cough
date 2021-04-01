@@ -16,7 +16,7 @@ Reveal.initialize({
 	width: "85%",
 	height: "85%",
 	margin: 0.01,
-	minScale: 1, // change for scaling
+	minScale: 1, // no scale, hard code responsiveness
 	maxScale: 1
 
 	// plugins: [ ]

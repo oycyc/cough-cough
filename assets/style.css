@@ -151,13 +151,13 @@ nav {
 #navbar-title {
   font-family: Chalkdust, Georgia, serif;
   font-weight: bold;
-  font-size: 3em;
+  font-size: 3.75em;
   color: #00bc27; /*maybe change color later*/
   margin: 0 0.5em;
+  white-space: nowrap;
 }
 
 #navigation a {
-/*  display: inline-block;*/
   padding: 0 10px;
   text-decoration: none;
   color: #e0d6ff; /*ask her if she wants to change the color later*/
@@ -169,6 +169,30 @@ nav {
 
 #navigation a:hover {
   color: #90d4c6;
+}
+
+/* RESPONSIVE */
+@media only screen and (max-width: 1400px) {
+  #navbar-title {
+    font-size: 3em;
+    margin: 0 0.25em;
+  }
+
+  #navigation a {
+    padding: 0 7px;
+  }
+
+
+}
+
+@media only screen and (max-width: 800px) {
+  #navigation a {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 360px) {
+
 }
 
 /*********************************************
