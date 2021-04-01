@@ -625,7 +625,7 @@ div.prompt > h6 { /* every prompt inside the .prompt div container */
   font-size: 1.75em;
 }
 
-/*current month styling*/
+/*current month styling + animation*/
 .current {
   background: #f7ebc4;
   border-radius: 50%;
@@ -634,17 +634,120 @@ div.prompt > h6 { /* every prompt inside the .prompt div container */
   color: #333;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: center; 
+  animation: fadein 2.5s linear forwards;
 }
 
-/*playing around with this*/
+@keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/*previous month styling + animation*/
+.previous {
+  background: #f7ebc4;
+  border-radius: 50%;
+  height: 1.2em;
+  width: 1.2em;
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  animation: fadeout 1.4s linear forwards;
+}
+
+@keyframes fadeout {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    background: none;
+    color: #608fad;
+  }
+}
+
+.month-meter {
+  width: 8.5em;
+  height: 5em;
+  letter-spacing: 0.05em;
+  color: #cfecf7;
+  font-weight: 600;
+  position: fixed;
+  right: 4.5em;
+  top: .8em;
+  text-align: right;
+}
+
+#month-title {
+  font-size: 1.4em;
+}
+
+#num-month {
+  font-size: 2.6em;
+}
+
+.total-month {
+  display: none;
+}
+
+/*RESPONSIVE*/
 @media only screen and (max-width: 800px) {
-  .current {
-    height: 1.1em;
-    width: 1.1em;
+  .timeline {
+    display: none;
   }
 
-  .month {
-    font-size: 1.1em;
+  #month-title {
+    display: none;
+  }
+
+  #num-month {
+    display: inline-block;
+  }
+
+  .total-month {
+    display: inline-block;
+    color: #4a95ad;
+  }
+
+  .month-meter {
+    right: 0;
+    top: 0;
+    padding: 1em;
+  }
+}
+
+/*********************************************
+  Clue
+ *********************************************/
+.clue {
+  display: flex;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 1em;
+  justify-content: space-around;
+  flex-flow: column wrap;
+} /*still need to change the positioning of individual items*/
+
+.get-clue {
+  font-size: 1.25em;
+  color: #f7ebc8;
+}
+
+/*RESPONSIVE*/
+@media only screen and (max-width: 1400px) {
+  .get-clue {
+    font-size: 1em;
+    letter-spacing: 0.04em;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .get-clue {
+    display: none;
   }
 }
