@@ -28,14 +28,34 @@
 	<body>
 		<!-- Navigation Bar -->
 		<div id="navigation">
-		  <nav>
+		  <nav id="navbar">
 		    <a data-modal-target="#about">About</a>
 		    <a data-modal-target="#directions">How to Play</a>
-		    <div class="disable-selection" id="navbar-title">Cough Cough</div>
+		    <div class="disable-selection title-shadow" id="navbar-title">Cough Cough</div>
 		    <a href="#">Sources</a>
 		    <a href="#">Contact</a>
 		  </nav>
 		</div>
+
+		<nav id="mobile-nav">
+			<div class="hamburger-menu"> <!-- move this to first navigation -->
+				<div class="lines"></div>
+				<div class="lines"></div>
+				<div class="lines"></div>
+			</div>
+
+			<ul class="mobile-nav-items">
+				<div class="disable-selection title-shadow" id="mobile-navbar-title">Cough Cough</div>
+				<li><a href="#">jiaqi</a></li>
+				<li><a href="#">is da</a></li>
+				<li><a href="#">cutest person</a></li>
+				<li><a href="#">everrrr</a></li>
+				<li><a href="#">GIVE UP</a></li>
+			</ul>
+		</nav>
+
+
+
 
 		<!-- About Modal -->
 		<div class="modal" id="about">

@@ -11,16 +11,14 @@
 
   Most of the styling is designed from desktop first then to mobile. 
   Although this would make it load a bit slower on mobile devices, our website's performance is 
-  generally very fast and in addition, designing this from desktop down would be easier 
-  since there is a limited amount of time to develop this site. 
+  generally very fast and since there is a limited amount of time to develop this, 
+  designing this from desktop down would be easier overall.
 
   There is only three media queries as there is limited time for this project.
   Max Width: 1400px -- Laptops/Tablets
-  Max Width: 800px -- Phones/Smaller Tablets;
+  Max Width: 800px -- Phones/Smaller Tablets
   Max Width: 360px -- Smaller Phones
 ====================================================
-*/
-
 */
 
 * {
@@ -133,6 +131,11 @@
 /*********************************************
   Navigation Bar
  *********************************************/
+.title-shadow {
+  /*text-shadow: 0px 3px 0px #7ac68a, 0px 14px 10px rgb(0 0 0 / 15%), 0px 24px 2px rgb(0 0 0 / 10%), 0px 34px 30px rgb(0 0 0 / 10%);*/  
+  /*text-shadow: 2px 7px 5px rgb(0 0 0 / 30%), 0px -4px 10px rgb(255 255 255 / 30%);*/
+  text-shadow: 0px -4px 10px rgb(255 255 255 / 30%), 0px 3px 0px #7ac68a, 0px 14px 10px rgb(0 0 0 / 15%), 0px 24px 2px rgb(0 0 0 / 10%), 0px 34px 30px rgb(0 0 0 / 10%);
+}
 #navigation {
   position: fixed;
   z-index: 20;
@@ -142,7 +145,7 @@
   font-family: 'Cochin', Georgia, serif;
 }
 
-nav {
+#navbar {
   display: flex;
   justify-content: center;
   align-items: center; /*baseline or center ask her*/
@@ -181,19 +184,143 @@ nav {
   #navigation a {
     padding: 0 7px;
   }
-
-
 }
 
-@media only screen and (max-width: 800px) {
+/*** Mobile Navigation Menu ***/
+/* Since the "Cough Cough" logo text is part of the first <nav>, it would require
+   extra steps to create a hamburger menu. The logo itself is an item in the flex 
+   box and the same <div> containing all the anchors so that would mess up the  
+   mobile menu. This section is the styling just for the mobile menu. */
+
+#mobile-nav { /* default doesn't display bc laptop screen*/
+  display: none;
+}
+
+@media screen and (max-width: 800px) {
+  #mobile-nav { /* now display it, < 800px is mobile/smaller screens */
+    display: block;
+  }
+
+  .hamburger-menu {
+    position: fixed;
+    cursor: pointer;
+    right: 1%;
+    bottom: 1%;
+/*    transform: translate(-5%, -50%);*/ /* line it with with logo*/
+    z-index: 25;
+  }
+
+  .lines {
+    width: 25px;
+    height: 3px;
+    background: white;
+    margin: 5px;
+  }
+
+  .mobile-nav-items {
+    pointer-events: none;
+    z-index: 20;
+    /* flex */
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    /* positioning */
+    position: fixed;
+    margin-left: auto;
+    height: 100vh;
+    width: 100%;
+    bottom: 0;
+    /* styling */
+    list-style: none;
+    background: #425d78;
+    /* animation
+    using clippath to start a 100px circle from outside the view,
+    then transition the circle becoming bigger to 1000px */
+    clip-path: circle(100px at 150% 150%);
+    -webkit-clip-path: circle(100px at 150% 150%);
+    transition: all 1s ease-out;
+  }
+
+  #mobile-navbar-title {
+    font-family: Chalkdust, Georgia, serif;
+    font-weight: bold;
+    font-size: 2.1em;
+    color: #00bc27; /*maybe change color later*/
+/*    margin: 0 0.5em;*/
+    white-space: nowrap;
+    margin-bottom: 0.5em;
+    letter-spacing: 0.075em;
+  }
+
+  .mobile-nav-items.open {
+    clip-path: circle(1500px at 150% 150%);
+    -webkit-clip-path: circle(1500px at 150% 150%);
+    pointer-events: all;
+  }
+
+  .mobile-nav-items li {
+    opacity: 0;
+  }
+
+  .mobile-nav-items li a {
+    color: #f7ebc8;
+    text-decoration: none;
+    border-bottom: 2px dotted;
+    font-size: 1.2em;
+    font-weight: bold;
+    font-family: 'Cochin', Georgia, serif;
+    transition: color 0.8s ease-out; /* when in hover state, change color easing out */
+    -webkit-transition: color 0.8s ease-out;
+  }
+
+  .mobile-nav-items li a:hover {
+    color: #90d4c6;
+  }
+
+
+  .mobile-nav-items li:nth-child(1) {
+    transition: all 0.5s ease 0.1s;
+  }
+
+  .mobile-nav-items li:nth-child(2) {
+    transition: all 0.5s ease 0.3s;
+  }
+
+  .mobile-nav-items li:nth-child(3) {
+    transition: all 0.5s ease 0.5s;
+  }
+
+  .mobile-nav-items li:nth-child(4) {
+    transition: all 0.5s ease 0.7s;
+  }
+
+  .mobile-nav-items li:nth-child(5) {
+    transition: all 0.5s ease 0.9s;
+  }
+
+  .mobile-nav-items li:nth-child(6) {
+    transition: all 0.5s ease 1.1s;
+  }
+
+  li.fade {
+    opacity: 1;
+  }
+
+  /* make logo & div smaller*/
+  #navigation {
+    padding: 0.75em 0;
+  }
+
+  #navbar-title {
+    font-size: 1.5em;
+  }
+
   #navigation a {
     display: none;
   }
 }
 
-@media only screen and (max-width: 360px) {
-
-}
 
 /*********************************************
   Modals
@@ -540,7 +667,7 @@ div.prompt > h6 { /* every prompt inside the .prompt div container */
   color: #667D7A;
   font-size: 0.5em;
   margin: 0 3em;
-  line-height: 1.1em;
+  line-height: 1.5em;
 }
 
 .result-button {
@@ -573,8 +700,7 @@ div.prompt > h6 { /* every prompt inside the .prompt div container */
   }
 
   .result-button {
-    padding-left: 32px;
-    padding-right: 32px;
+    padding: 15px 28px;
   }
 }
 
@@ -586,20 +712,35 @@ div.prompt > h6 { /* every prompt inside the .prompt div container */
   }
 
   .result-title {
-    border-bottom: 6px dotted #cfd2d6;
     font-size: 0.55em;
     margin: 2.4em auto 0; 
   }
 
   .result-text {
     font-size: 0.4em;
-    margin: 0 1.85em;
+    margin: 0 1em;
+    line-height: 1.13em;
   }
 
   .result-button {
     padding: 12px 20px;
     font-size: 16px;
     bottom: 7%;
+  }
+}
+
+@media only screen and (max-width: 360px) {
+  .result-circle {
+    grid-template-rows: 2em;
+  }
+
+  .result-title {
+    margin: 2.1em auto 0; 
+  }
+
+  .result-button {
+    padding: 12px 16px;
+    font-size: 16px;
   }
 }
 

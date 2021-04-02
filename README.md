@@ -10,8 +10,8 @@
 - animate number counter
 - cough cough logo taint or drip effect?
 - https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/hidden hide money counters
-- make about modal be able to scroll when it really condensed
 - hints, search up css tooltop for examples
+- fade in elements like counter & navbar after intro animation
 
 ## images 
 - new background animation pic ideas? :
@@ -31,3 +31,4 @@
 
 
 - zoomin zoom out https://animate.style/ https://www.digitalocean.com/community/tutorials/css-animate-css https://github.com/animate-css/animate.css
+- https://www.canva.com/colors/color-palettes/summer-splash/

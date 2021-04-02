@@ -118,6 +118,19 @@ function checkInput() {
 };
 
 
+/*********************************************
+  MOBILE HAMBURGER MENU
+ *********************************************/
+const hamburger = document.querySelector(".hamburger-menu");
+const navLinks = document.querySelector(".mobile-nav-items");
+const links = document.querySelectorAll(".mobile-nav-items li");
+
+hamburger.addEventListener("click", () => {
+  navLinks.classList.toggle("open");
+  links.forEach(link => {
+    link.classList.toggle("fade");
+  });
+});
 
 /*********************************************
   MODALS
@@ -207,3 +220,5 @@ let audio = new Audio("assets/music/demised_to_shield_end_portion.mp3");
 submitName.addEventListener("click", () => {
 	audio.play();
 });
+
+
