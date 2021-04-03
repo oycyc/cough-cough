@@ -56,6 +56,31 @@
 
 
 
+		<!-- About Modal -->
+		<div class="modal" id="about">
+			<div class="modal-header">
+				<div class="modal-title">ABOUT</div>
+			</div>
+			<div class="modal-body">
+				Around the world, countries have adapted health policies of different magnitudes ever since their exposure to SARS-CoV-2, the virus that causes COVID-19. Cough Cough is an interactive game in which players can learn and discover the varied mitigation policies undertaken by different nations during the COVID-19 pandemic while making decisions as a health director of their fictional nation.
+
+			</div>
+			<button data-close-button>Close</button>
+		</div>
+
+		<!-- How to Play Modal -->
+		<div class="modal" id="directions">
+			<div class="modal-header">
+				<div class="modal-title">How to Play (maybe add a lil icon here)</div>
+			</div>
+			<div class="modal-body">
+				Imagine you are the health director of a fictional nation and you have just received classified news of the pandemic. You will be given a number of decisions to make that will affect your nation’s virus statistics. If the death count reaches above 25% of the population (250,000), the hospital capacity overfills, or the virus positivity rate surpasses 50% (meaning that 1 in 2 people has the virus), the pandemic is out of control and you lose. Survive the pandemic by maintaining the health of your nation for 12 months. 
+			</div>
+			<button data-close-button>Close</button>
+		</div>
+
+		<div id="overlay"></div>
+
 		<!-- Counters -->
 		<div id="counters">
 			<div>
@@ -94,6 +119,13 @@
 
 		</div>
 
+
+		<!-- Clue -->
+		<div class="clue">
+			<p class="show-clue"></p>
+			<img class="counter-icons clue-icon" src="assets/icons/clue.svg" alt="Clue Icon"/>
+ 			<p class="help-text">NEED HELP?</p>
+		</div>
 
 		<!-- Timeline -->
 		<div class="timeline">
@@ -197,49 +229,11 @@
 				
 		</div>
 		
-
-
-		<!-- About Modal -->
-		<div class="modal" id="about">
-			<div class="modal-header">
-				<div class="modal-title">ABOUT</div>
-			</div>
-			<div class="modal-body">
-				Around the world, countries have adapted health policies of different magnitudes ever since their exposure to SARS-CoV-2, the virus that causes COVID-19. Cough Cough is an interactive game in which players can learn and discover the varied mitigation policies undertaken by different nations during the COVID-19 pandemic while making decisions as a health director of their fictional nation.
-
-			</div>
-			<button data-close-button>Close</button>
-		</div>
-
-		<!-- How to Play Modal -->
-		<div class="modal" id="directions">
-			<div class="modal-header">
-				<div class="modal-title">How to Play (maybe add a lil icon here)</div>
-			</div>
-			<div class="modal-body">
-				Imagine you are the health director of a fictional nation and you have just received classified news of the pandemic. You will be given a number of decisions to make that will affect your nation’s virus statistics. If the death count reaches above 25% of the population (250,000), the hospital capacity overfills, or the virus positivity rate surpasses 50% (meaning that 1 in 2 people has the virus), the pandemic is out of control and you lose. Survive the pandemic by maintaining the health of your nation for 12 months. 
-			</div>
-			<button data-close-button>Close</button>
-		</div>
-
-		<div id="overlay"></div>
-
-
-
 		<!-- Result Popup Circle -->
 		<div class="result-circle">
 			<span class="result-title">Result of Your Decision</span>
 			<span class="result-text">Your citizens might think you're being overly cautious, but over time, they will be glad you took the measures early. According to the data, countries who blocked travel earlier did better with virus control than countries who did it later/looser. Jiaqi is the sweetest person everrrr! ❤</span>
 			<div class="button-slide button-sliding-animation result-button">Continue</div>
-		</div>
-
-
-
-		<!-- Clue -->
-		<div class="clue">
-			<p class="show-clue"></p>
-			<img class="counter-icons clue-icon" src="assets/icons/clue.svg" alt="Clue Icon"/>
- 			<p class="help-text">NEED HELP?</p>
 		</div>
 
 
