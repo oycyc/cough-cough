@@ -124,7 +124,8 @@ function checkInput() {
 const hamburger = document.querySelector(".hamburger-menu");
 const navLinks = document.querySelector(".mobile-nav-items");
 const links = document.querySelectorAll(".mobile-nav-items li");
-
+/* when hamburger button clicked, toggle the .open class
+   when hamburger menu opened, each link will toggle .fade class which adds the ease in animation*/
 hamburger.addEventListener("click", () => {
   navLinks.classList.toggle("open");
   links.forEach(link => {
@@ -220,5 +221,3 @@ let audio = new Audio("assets/music/demised_to_shield_end_portion.mp3");
 submitName.addEventListener("click", () => {
 	audio.play();
 });
-
-

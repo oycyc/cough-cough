@@ -12,6 +12,7 @@
 - https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/hidden hide money counters
 - hints, search up css tooltop for examples
 - fade in elements like counter & navbar after intro animation
+- logo too much boing boing change a little
 
 ## images 
 - new background animation pic ideas? :
@@ -24,6 +25,7 @@
 ## random ideas
 - shake images https://www.w3schools.com/howto/howto_css_shake_image.asp
 - reveal.js allows skipping forward, adding #/SLIDENUMBERHERE after the url, fix by using https://www.w3schools.com/howto/howto_js_get_url.asp
+- text animation to show up the text in the first intro animations?
 
 ## result circle
 - replaceChild() to change the div paragraph for individual results
