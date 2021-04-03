@@ -614,7 +614,7 @@
 
 /*********************************************
   Prompts & Answers
- ********************************************
+ *********************************************/
 .prompt {
   padding-right: 15%;
   padding-left: 15%;
@@ -646,7 +646,7 @@ div.prompt > h6 { /* every prompt inside the .prompt div container */
 
 .option:hover { /* change color when hovered */
   color: #90d4c6;
-  transform: translate(5px, -5px);
+  transform: translate(1px, -2px);
 }
 
 /* RESPONSIVE */
