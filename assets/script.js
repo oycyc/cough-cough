@@ -69,13 +69,41 @@ document.querySelectorAll(".nextPrompt").forEach(item => {
 const submitName = document.getElementById("submitName");
 const inputName = document.getElementById("inputName");
 const errorElement = document.getElementById("error");
+const audio = new Audio("assets/music/demised_to_shield_end_portion.mp3");
+audio.volume = 0.5;
+const mute = document.getElementById("mute");
+
+function mutePlay() {
+	audio.play();
+	mute.addEventListener("click", () => {
+		if (audio.muted) {
+			audio.muted = false;
+			console.log("cici cute");
+			mute.style.background = "url('assets/icons/speaker.svg') no-repeat";
+		} else {
+			audio.muted = true;
+			console.log("cici cutest");
+			mute.style.background = "url('assets/icons/mute.svg') no-repeat";
+		}
+	});
+};
+
+function displayMuteButton(displayValue) {
+	if (displayValue) {
+		mute.style.display = "block";
+	} else {
+		mute.style.display = "none";
+	}
+}
 
 
-//once the button is clicked, goes to next slide and replaces nation name
+//once the button is clicked, goes to next slide, replaces nation name, plays audio
 submitName.addEventListener("click", function() {
 	if (checkInput()) {
 		nextSlide();
 		replaceNationName();
+		mutePlay();
+		displayMuteButton(true);
 	} else {
 		console.log("cici brainz"); //change later
 	}
@@ -183,9 +211,10 @@ const month_meter = document.getElementById("month-meter");
 const num_month = document.getElementById("num-month");
  
 
-//when player clicks "accept the challenge," adds a class of current to the first month
+//when player clicks "accept the challenge," adds a class of current to the first month and hide mute button
 startTimeline.addEventListener("click", () => {
 	month_1.classList.add("current");
+	displayMuteButton(false);
 });
 
 //replace increaseButton for another button that then changes the month number
@@ -212,12 +241,52 @@ increaseButton.addEventListener("click", () => {
 });
 
 /*********************************************
-  Music
+  Clue
  *********************************************/
-//add music during first animation/introduction
-let audio = new Audio("assets/music/demised_to_shield_end_portion.mp3");
+let showClue = document.querySelector(".show-clue");
+let getClue = document.querySelector(".clue");
+const clues = [
+	["This is for month 1", "This is for month 1 too"],
+	["This is for month 3", "This is for month 3 too and cici is the cutest of all <3"],
+ 	["Month 6", "3*2=6"]
+];
 
-//if the user clicks only once, the music still plays without going to next animation, so change submitName
-submitName.addEventListener("click", () => {
-	audio.play();
+function displayHintOption(displayValue) {
+	if (displayValue) {
+		getClue.style.display = "grid"
+	} else {
+		getClue.style.display = "none"
+	}
+};
+
+startTimeline.addEventListener("click", () => {
+	displayHintOption(true);
 });
+
+function displayHint(displayValue) {
+	if (displayValue) {
+		showClue.style.display = "grid"
+	} else {
+		showClue.style.display = "none"
+	}
+};
+
+
+getClue.addEventListener("click", () => {
+	//declaring variables
+	let currentMonth = document.querySelector(".current");
+	let currentMonthNumber = parseInt(currentMonth.innerText);
+	//find number month 
+ 	showClue.innerText = clues[currentMonthNumber - 1][1];
+ 	displayHint(true);
+ 	console.log("ouch!");
+
+/* 	if (showClue.style.display = "none") {
+ 		showClue.style.display = "block";
+ 		console.log("hidden");
+ 	} 
+ 	if (showClue.style.display = "block") {
+ 		showClue.style.display = "none";
+ 		console.log("hey");
+ 	}*/
+ });
