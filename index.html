@@ -43,7 +43,8 @@
 				<div class="modal-title">ABOUT</div>
 			</div>
 			<div class="modal-body">
-				Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulpu adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, BEEEEEP BOOP JIAQI IS BEAUTIFUL
+				Around the world, countries have adapted health policies of different magnitudes ever since their exposure to SARS-CoV-2, the virus that causes COVID-19. Cough Cough is an interactive game in which players can learn and discover the varied mitigation policies undertaken by different nations during the COVID-19 pandemic while making decisions as a health director of their fictional nation.
+
 			</div>
 			<button data-close-button>Close</button>
 		</div>
@@ -54,7 +55,7 @@
 				<div class="modal-title">How to Play (maybe add a lil icon here)</div>
 			</div>
 			<div class="modal-body">
-				Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulpu adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, BEEEEEP BOOP JIAQI IS BEAUTIFUL
+				Imagine you are the health director of a fictional nation and you have just received classified news of the pandemic. You will be given a number of decisions to make that will affect your nation’s virus statistics. If the death count reaches above 25% of the population (250,000), the hospital capacity overfills, or the virus positivity rate surpasses 50% (meaning that 1 in 2 people has the virus), the pandemic is out of control and you lose. Survive the pandemic by maintaining the health of your nation for 12 months. 
 			</div>
 			<button data-close-button>Close</button>
 		</div>
@@ -102,8 +103,9 @@
 
 		<!-- Clue -->
 		<div class="clue">
-			<p class="get-clue">NEED HELP?</p>
-			<img class="counter-icons" src="assets/icons/clue.svg" alt="Clue Icon"/>
+			<p class="show-clue"></p>
+			<img class="counter-icons clue-icon" src="assets/icons/clue.svg" alt="Clue Icon"/>
+ 			<p class="help-text">NEED HELP?</p>
 		</div>
 
 		<!-- Timeline -->
@@ -129,6 +131,9 @@
 			<div class="total-month">/12</div>
 		</div>
 
+		<!-- Mute -->
+		<div id="mute"></div>
+
 
 		<div class="reveal">
 
@@ -148,8 +153,8 @@
 
 
 				<section class="center" data-transition="fade">
-					<h5>(more info in this section too maybe?)
-					<br>Choose nation name</h5>
+					<h5 class="nation-info">Imagine that you are the health director of a fictional nation and you have just received classified news of the pandemic. Your goal is to prevent the death count from reaching 250,000, hospitals from overfilling, and virus positivity rate from surpassing 50%.
+					<br><span class="pick-name">Choose nation name</span></h5>
 					<input id="inputName" placeholder="Nation" type="text"><br>
 					<button class="button-slide button-sliding-animation next" id="submitName">Next</button><br>
 					<div id="error"></div>

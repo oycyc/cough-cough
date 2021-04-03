@@ -429,23 +429,64 @@ nav {
 /*********************************************
   Nation Input & Info Page 
  *********************************************/
- /*Style Error Message*/
- /* try to make the message somehow highlight again if user makes another mistake*/ 
+ /*Style Error Message*/ 
  #error {
   color: #ff6961;
-  font-size: 0.5em;
+  font-size: 0.6em;
  } 
 
+/*styling input where user inserts name*/
 #inputName {
-  font-size: 20px;
-  width: 180px;
-  height: 30px;
+  font-size: 0.5em;
+  width: 10em;
+  height: 2em;
   color: #333;
   margin-bottom: 15px;
 }
+
+/*sets font size of nation info to 0.8em*/
+.nation-info {
+  font-size: 0.8em;
+}
+
+/*changes color of text "choose nation name" to #e3e37c*/
+.pick-name {
+  color: #e3e37c;
+}
+
+/*styling mute option */
+#mute {
+  background: url("icons/speaker.svg") no-repeat;
+  height: 3em;
+  width: 3em;
+  cursor: pointer;
+  top: 2em;
+  right: 2em;
+  position: absolute;
+  z-index: 30;
+  display: none;
+}
+
+/*RESPONSIVE*/
+@media only screen and (max-width: 800px) {
+  #error {
+    font-size: 0.4em;
+  }
+
+  .nation-info {
+    font-size: 0.5em;
+  }
+
+  #inputName {
+    font-size: 0.4em;
+    width: 9em;
+    height: 1.4em;
+  }
+}
+
 /*********************************************
   Prompts & Answers
- *********************************************/
+ ********************************************
 .prompt {
   padding-right: 15%;
   padding-left: 15%;
@@ -660,6 +701,7 @@ div.prompt > h6 { /* every prompt inside the .prompt div container */
   animation: fadeout 1.4s linear forwards;
 }
 
+/*returns the month styling back to normal*/
 @keyframes fadeout {
   0% {
     opacity: 1;
@@ -724,30 +766,55 @@ div.prompt > h6 { /* every prompt inside the .prompt div container */
   Clue
  *********************************************/
 .clue {
-  display: flex;
+  display: grid;
+  grid-template-areas: 
+    "header header header"
+    "main . ."
+    "footer footer footer";
   position: absolute;
+  grid-row-gap: 0.5em;
   bottom: 0;
   left: 0;
   padding: 1em;
-  justify-content: space-around;
-  flex-flow: column wrap;
-} /*still need to change the positioning of individual items*/
+  z-index: 25;
+  display: none;
+} 
 
-.get-clue {
-  font-size: 1.25em;
+.show-clue {
+  grid-area: header;
+  background-color: lightgray;
+  color: #333;
+  height: 7em;
+  width: 14em;
+  padding: 1em 1em;
+  border-radius: 5px;
+  display: none;
+}
+
+.clue-icon {
+  grid-area: main;
+}
+
+.help-text {
+  font-size: 1.1em;
   color: #f7ebc8;
+  grid-area: footer;
 }
 
 /*RESPONSIVE*/
 @media only screen and (max-width: 1400px) {
-  .get-clue {
+  .clue {
     font-size: 1em;
     letter-spacing: 0.04em;
   }
 }
 
 @media only screen and (max-width: 800px) {
-  .get-clue {
+  .help-text {
     display: none;
+  }
+
+  .clue {
+    grid-row-gap: none;
   }
 }
