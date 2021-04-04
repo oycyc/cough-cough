@@ -253,7 +253,7 @@ const clues = [
 
 function displayHintOption(displayValue) {
 	if (displayValue) {
-		getClue.style.display = "grid"
+		getClue.style.display = "block"
 	} else {
 		getClue.style.display = "none"
 	}
@@ -265,7 +265,7 @@ startTimeline.addEventListener("click", () => {
 
 function displayHint(displayValue) {
 	if (displayValue) {
-		showClue.style.display = "grid"
+		showClue.style.display = "block"
 	} else {
 		showClue.style.display = "none"
 	}
