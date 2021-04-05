@@ -59,15 +59,33 @@ document.querySelectorAll(".nextPrompt").forEach(item => {
 	item.addEventListener("click", event => nextSlide());
 });
 
+/*********************************************
+  General Utility Functions
+ *********************************************/
+function toggleVisibility(element) {
+	if (element.className === "temp-no-display") {
+		element.classList.remove("temp-no-display");
+	} else {
+		element.classList.add("temp-no-display");
+	}
+}
+
+function removeAllNoDisplay() { // we can use this for testing, call function in console
+	const hiddenElements = document.getElementsByClassName("temp-no-display");
+	while (hiddenElements.length)  // list api method is live and changes are reflected automatically
+		hiddenElements[0].classList.remove("temp-no-display");
+}
+
+/*********************************************
+  Counters
+ *********************************************/
+const counterParentDiv = document.getElementById("counters");
 
 
 
 /*********************************************
   Loading Prompts
  *********************************************/
-
-
-
 function insertNewPrompt(promptNumber) { // promptNumber corresponds to the element index of the promptData array
 	const newPromptInfo = promptData[promptNumber];
 
@@ -108,6 +126,10 @@ function insertNewPrompt(promptNumber) { // promptNumber corresponds to the elem
     Reveal.getSlidesElement().append(newSection);
     Reveal.sync();
 };
+
+/*********************************************
+  Result Circle
+ *********************************************/
 
 
 
@@ -251,6 +273,34 @@ function closeModal(modal) {
 };
 
 /*********************************************
+  Number Animation Counting
+ *********************************************/
+const animationDuration = 2000;
+const frameDuration = 1000 / 60;
+const totalFrames = Math.round(animationDuration / frameDuration);
+
+const easeOutQuad = t => t * (2 - t);
+const animateCountUp = el => {
+	let frame = 0;
+	/*const countTo = parseInt(el.innerHTML, 10);*/
+	const countTo = 1000000
+
+	const counter = setInterval( () => {
+		frame++;
+		const progress = easeOutQuad(frame / totalFrames);
+		const currentCount = Math.round(countTo * progress);
+
+		if (parseInt(el.innerHTML, 10) !== currentCount) {
+			el.innerHTML = currentCount;
+		}
+
+		if (frame === totalFrames) {
+			clearInterval(counter);
+		}
+	}, frameDuration);
+};
+
+/*********************************************
   Timeline
  *********************************************/
  
@@ -264,6 +314,7 @@ const num_month = document.getElementById("num-month");
 startTimeline.addEventListener("click", () => {
 	month_1.classList.add("current");
 	displayMuteButton(false);
+	removeAllNoDisplay(); // show everything hidden (counter, month, nav)
 });
 
 //replace increaseButton for another button that then changes the month number

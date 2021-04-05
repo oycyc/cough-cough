@@ -40,6 +40,10 @@
   margin: 5% !important;
 }*/
 
+.temp-no-display {
+  display: none !important;
+}
+
 .disable-selection { /* disable text selection (make site more app-like and less like a document) */
   -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */

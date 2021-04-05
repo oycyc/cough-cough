@@ -21,6 +21,11 @@ const resultCircleData = [
 
 ];
 
+const clueData = [ // data correspond to question index, if no clue, have empty string
+	"test",
+	"test"
+]
+
 const questionsPerMonth = {
 	"January": 3,
 	"February": 2,

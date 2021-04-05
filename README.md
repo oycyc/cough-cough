@@ -9,7 +9,6 @@
 - darken red color/more bold as deaths/virus positivity increases
 - in the intro about page explain how it's teaching education related
 - animate number counter
-- cough cough logo taint or drip effect?
 - https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/hidden hide money counters
 - hints, search up css tooltop for examples
 - fade in elements like counter & navbar after intro animation
