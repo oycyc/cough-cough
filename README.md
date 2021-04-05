@@ -1,6 +1,7 @@
 # beep boop
 ## to dos
 - navbar
+	- info about covid?
 	- give up
 - change population symbol in counter to red if virus spread
 - play in "portrait mode" not landscape mode popup if on mobile
@@ -24,7 +25,7 @@
 
 ## random ideas
 - shake images https://www.w3schools.com/howto/howto_css_shake_image.asp
-- reveal.js allows skipping forward, adding #/SLIDENUMBERHERE after the url, fix by using https://www.w3schools.com/howto/howto_js_get_url.asp
+- reveal.js allows skipping forward, adding #/SLIDENUMBERHERE after the url, fix by using https://www.w3schools.com/howto/howto_js_get_url.asp https://www.w3schools.com/jsref/prop_doc_url.asp
 - text animation to show up the text in the first intro animations?
 
 ## result circle

@@ -90,6 +90,10 @@
   box-shadow: inset 0 0 0 50px #ff5b77;
 }
 
+.button-sliding-animation:active {
+  box-shadow: inset 0 0 0 50px #ff5b77;
+}
+
 .next {
   border: none;
   outline: none;
@@ -207,7 +211,7 @@
     right: 1%;
     bottom: 1%;
 /*    transform: translate(-5%, -50%);*/ /* line it with with logo*/
-    z-index: 25;
+    z-index: 31;
   }
 
   .lines {
@@ -219,7 +223,7 @@
 
   .mobile-nav-items {
     pointer-events: none;
-    z-index: 20;
+    z-index: 30;
     /* flex */
     display: flex;
     justify-content: space-evenly;
@@ -636,6 +640,10 @@ div.prompt > h6 { /* every prompt inside the .prompt div container */
   justify-content: space-evenly;
 }
 
+.three-option-section {
+  grid-template-columns: auto;
+}
+
 .option {
   font-size: 18px;
   cursor: pointer;
@@ -644,9 +652,16 @@ div.prompt > h6 { /* every prompt inside the .prompt div container */
   -webkit-transition: all 0.3s ease-out;
 }
 
+.three-option {
+  display: grid;
+  grid-template-columns: 250px 250px;
+  gap: 250px;
+  justify-content: center;
+}
+
 .option:hover { /* change color when hovered */
   color: #90d4c6;
-  transform: translate(1px, -2px);
+  transform: translate(1px, -1px);
 }
 
 /* RESPONSIVE */
@@ -706,14 +721,14 @@ div.prompt > h6 { /* every prompt inside the .prompt div container */
 }
 
 .result-text {
-  color: #667D7A;
+  color: rgb(52 58 63);
   font-size: 0.5em;
-  margin: 0 3em;
-  line-height: 1.5em;
+  margin: 0 1.5em;
+  line-height: 1.35em;
 }
 
 .result-button {
-  color: #131F33;
+  color: #3a484e;
   background-color: #89cff0;
   font-weight: normal;
   position: absolute;
@@ -722,6 +737,7 @@ div.prompt > h6 { /* every prompt inside the .prompt div container */
   border-radius: 10px;
   letter-spacing: 0;
   justify-self: center;
+  z-index: 30;
 }
 
 /* RESPONSIVE */
@@ -743,25 +759,26 @@ div.prompt > h6 { /* every prompt inside the .prompt div container */
 
   .result-button {
     padding: 15px 28px;
+    bottom: 8%;
   }
 }
 
 @media only screen and (max-width: 800px) {
   .result-circle {
-    width: 325px;
-    height: 325px;
-    grid-template-rows: 2.1em;
+    width: 350px;
+    height: 350px;
+    grid-template-rows: 2em;
   }
 
   .result-title {
     font-size: 0.55em;
-    margin: 2.4em auto 0; 
+    margin: 2.1em auto 0; 
   }
 
   .result-text {
-    font-size: 0.4em;
-    margin: 0 1em;
-    line-height: 1.13em;
+    font-size: 0.39em;
+    margin: 0 1.7em;
+    line-height: 1.2em;
   }
 
   .result-button {
@@ -773,11 +790,15 @@ div.prompt > h6 { /* every prompt inside the .prompt div container */
 
 @media only screen and (max-width: 360px) {
   .result-circle {
-    grid-template-rows: 2em;
+    width: 325px;
+    height: 325px;
+    grid-template-rows: 1.9em;
   }
 
-  .result-title {
-    margin: 2.1em auto 0; 
+  .result-text {
+    font-size: 0.385em;
+    margin: 0 1em;
+    line-height: 1.15em;
   }
 
   .result-button {

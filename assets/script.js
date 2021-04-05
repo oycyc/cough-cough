@@ -62,6 +62,93 @@ document.querySelectorAll(".nextPrompt").forEach(item => {
 });
 
 
+
+
+/*********************************************
+  Loading Prompts
+ *********************************************/
+
+ // KEEP THIS HERE FOR NOW, LATER WHEN FUNCTIONAL PUT IN ANOTHER JS FILE AND IMPORT IT..
+const promptData = [
+	{"prompt": "The Affordable Care Act requires you get health insurance. The good news? Your child is covered by the state. The bad? You aren’t. Jiaqi is beautiful! She's my forever love! ❤",
+	"question": "Who does cici love forever?", 
+	"optionChoices": {"Jiaqi": {"deathChange": 0, "hospitalChange": 0, "positivityRateChange": 0},
+	                  "Shao": {"deathChange": 0, "hospitalChange": 0, "positivityRateChange": 0}}
+	}, // prompt 0
+
+	{"prompt": "Prompt 2",
+	"question": "Who does cici love forever?", 
+	"optionChoices": {"Jiaqi": {"deathChange": 0, "hospitalChange": 0, "positivityRateChange": 0},
+	                  "Shao": {"deathChange": 0, "hospitalChange": 0, "positivityRateChange": 0}}
+	},
+];
+ // KEEP THIS HERE FOR NOW, LATER WHEN FUNCTIONAL PUT IN ANOTHER JS FILE AND IMPORT IT..
+const resultCircleData = [
+	{"answerChoice1": "Loosening restrictions while there is no major immunity and the virus is still prominent is certainly not a good idea. In the United States, the CDC recommended families not travel for Thanksgiving & the December holiday season, yet still, for Thanksgiving alone, there were 10 million people that traveled by air. In just two weeks following, cases and hospitalizations increased by about 20%, and the deaths jumped 39%.",
+	 "answerChoice2": "Loosening restrictions while there is no major immunity and the virus is still prominent is certainly not a good idea. In the United States, the CDC recommended families not travel for Thanksgiving & the December holiday season, yet still, for Thanksgiving alone, there were 10 million people that traveled by air. In just two weeks following, cases and hospitalizations increased by about 20%, and the deaths jumped 39%.",
+	}, // prompt 0
+
+]
+ // KEEP THIS HERE FOR NOW, LATER WHEN FUNCTIONAL PUT IN ANOTHER JS FILE AND IMPORT IT..
+const questionsPerMonth = {
+	"January": 3,
+	"February": 2,
+	"March": 2,
+	"April": 2,
+	"May": 2,
+	"June": 2,
+	"July": 2,
+	"August": 2,
+	"September": 2,
+	"October": 2,
+	"November": 2,
+	"December": 3
+}
+
+
+function insertNewPrompt(promptNumber) { // promptNumber corresponds to the element index of the promptData array
+	const newPromptInfo = promptData[promptNumber];
+
+    const newSection = document.createElement("section"); // create entire new section for new screen
+    newSection.classList.add("center", "future");
+
+    const promptDiv = document.createElement("div"); // div for the actual prompt & add the question from array
+    promptDiv.classList.add("prompt");
+    promptDiv.innerHTML = "<h6>" + newPromptInfo["prompt"] +"</h6>";
+    
+    const questionDiv = document.createElement("div"); // div for the question below prompt
+    questionDiv.classList.add("question");
+    questionDiv.appendChild(document.createTextNode(newPromptInfo["question"]));
+    
+    const optionDiv = document.createElement("div"); // div for the option section
+    optionDiv.classList.add("option-section", "disable-selection");
+
+
+	console.log("option count: " + Object.keys(newPromptInfo["optionChoices"]).length);
+
+   	let optionsList = []; // loop through all option choices and add corresponding values
+   	Object.keys(newPromptInfo["optionChoices"]).forEach(option => {
+   		let optionIndex = optionsList.push(document.createElement("div")) - 1;
+   		optionsList[optionIndex].classList.add("option");
+   		optionsList[optionIndex].title = option;
+   		optionsList[optionIndex].appendChild(document.createTextNode(option));
+   	});
+
+   	optionsList.forEach(innerOptionDiv => { // append every option created above to the parent optionDiv
+   		optionDiv.appendChild(innerOptionDiv);
+   	});   	
+
+    newSection.appendChild(promptDiv);
+    newSection.appendChild(questionDiv);
+    newSection.append(optionDiv);
+
+    
+    Reveal.getSlidesElement().append(newSection);
+    Reveal.sync();
+};
+
+
+
 /*********************************************
   Nation Input & More Info Screen
  *********************************************/
