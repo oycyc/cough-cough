@@ -883,16 +883,16 @@ div.prompt > h6 { /* every prompt inside the .prompt div container */
   font-weight: 600;
   position: fixed;
   right: 4.5em;
-  top: .8em;
+  top: 1.2em;
   text-align: right;
 }
 
 #month-title {
-  font-size: 1.4em;
+  font-size: 2em;
 }
 
 #num-month {
-  font-size: 2.6em;
+  display: none;
 }
 
 .total-month {
@@ -911,6 +911,7 @@ div.prompt > h6 { /* every prompt inside the .prompt div container */
 
   #num-month {
     display: inline-block;
+    font-size: 2.6em;
   }
 
   .total-month {
@@ -929,13 +930,8 @@ div.prompt > h6 { /* every prompt inside the .prompt div container */
   Clue
  *********************************************/
 .clue {
-  display: grid;
-  grid-template-areas: 
-    "header header header"
-    "main . ."
-    "footer footer footer";
+  display: block;
   position: absolute;
-  grid-row-gap: 0.5em;
   bottom: 0;
   left: 0;
   padding: 1em;
@@ -944,7 +940,6 @@ div.prompt > h6 { /* every prompt inside the .prompt div container */
 } 
 
 .show-clue {
-  grid-area: header;
   background-color: lightgray;
   color: #333;
   height: 7em;
@@ -952,16 +947,37 @@ div.prompt > h6 { /* every prompt inside the .prompt div container */
   padding: 1em 1em;
   border-radius: 5px;
   display: none;
+  margin-bottom: 1em;
 }
 
-.clue-icon {
-  grid-area: main;
+.tooltip-container {
+  position: relative;
+  height: 50px;
+  width: 50px;
 }
 
-.help-text {
-  font-size: 1.1em;
-  color: #f7ebc8;
-  grid-area: footer;
+/*positions the tooltip above the clue icon*/
+.tooltip-getClue {
+  display: block;
+  position: absolute;
+  padding: 1em;
+  border-radius: 4px;
+  background-color: #adb5b5;
+  color: #333;
+  bottom: 0;
+  left: 50%;
+  white-space: nowrap;
+  margin-bottom: 0.5em;
+  transform: scale(0); /*makes it invisible*/
+  transition: 
+    transform ease-out 150ms,
+    bottom ease-out 150ms;
+}
+
+/*when hovered over the img, style of tooltip-getClue shows*/
+.tooltip-container:hover .tooltip-getClue { 
+  transform: scale(1);
+  bottom: 100%;
 }
 
 /*RESPONSIVE*/
@@ -970,14 +986,23 @@ div.prompt > h6 { /* every prompt inside the .prompt div container */
     font-size: 1em;
     letter-spacing: 0.04em;
   }
+
+  .tooltip-container {
+    height: 40px;
+    width: 40px;
+  }
 }
 
 @media only screen and (max-width: 800px) {
-  .help-text {
-    display: none;
+  .tooltip-container {
+    height: 35px;
+    width: 35px;
   }
+}
 
-  .clue {
-    grid-row-gap: none;
+@media only screen and (max-width: 360px) {
+  .tooltip-container {
+    height: 28px;
+    width: 28px;
   }
 }
