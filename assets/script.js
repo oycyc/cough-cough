@@ -7,7 +7,7 @@ Reveal.initialize({
 	autoSlideStoppable: false,
 	postMessage: false,
 	hideInactiveCursor: false,
-	// transitions
+	// transitions btwn sections
 	transition: 'none',
 	backgroundTransition: 'none',
 	transitionSpeed: 'slow',
@@ -18,8 +18,6 @@ Reveal.initialize({
 	margin: 0.01,
 	minScale: 1, // no scale, hard code responsiveness
 	maxScale: 1
-
-	// plugins: [ ]
 });
 
 
@@ -139,6 +137,7 @@ function insertNewPrompt(promptNumber) { // promptNumber corresponds to the elem
 
 	console.log("option count: " + Object.keys(newPromptInfo["optionChoices"]).length);
 
+// TO DO IF THERE'S MORE THAN 3 OPTIONS ADD margin-top-more to classList
    	let optionsList = []; // loop through all option choices and add corresponding values
    	Object.keys(newPromptInfo["optionChoices"]).forEach(option => {
    		let optionIndex = optionsList.push(document.createElement("div")) - 1;
@@ -385,7 +384,7 @@ getClue.addEventListener("click", () => {
 	//find number month 
  	showClue.innerText = clues[currentMonthNumber - 1][1];
  	displayHint(true);
- 	console.log("ouch!");
+ 	console.log("ouch!"); // u cute <3
 
 /* 	if (showClue.style.display = "none") {
  		showClue.style.display = "block";

@@ -40,8 +40,11 @@
   margin: 5% !important;
 }*/
 
-.temp-no-display {
-  display: none !important;
+.temp-no-display {display: none !important;}
+
+@media only screen and (max-width: 600px) {
+  .margin-top {margin-top: 3.5%;}
+  .margin-top-more {margin-top: 10%;}
 }
 
 .disable-selection { /* disable text selection (make site more app-like and less like a document) */
@@ -528,7 +531,7 @@
 
 @media only screen and (max-width: 800px) {
   #counters {
-    padding: 0.5em;
+    padding: 0.15em 0.5em;
   }
   .counter-title { 
     display: none;
@@ -633,34 +636,58 @@ div.prompt > h6 { /* every prompt inside the .prompt div container */
 }
 
 .question { /* "what will you do" "how will you respond" etc */
-  margin-top: 2.5%;
-  margin-bottom: 2.5%;
+  margin: 1.75% 0;
+  font-family: 'Chalkdust';
+  color: #e0e0e0;
 }
 
 /* Answer Options Styling */
-.option-section {
+.two-option-section {
+  padding: 0 22.5%; 
   display: grid;
   grid-template-columns: auto auto;
   justify-content: space-evenly;
+  gap: 1em;
 }
 
 .three-option-section {
+  padding: 0 22.5%; 
+  display: grid;
+  row-gap: 0.65em;
+}
+
+.four-option-section {row-gap: 0.65em;}
+
+.three-option-row1 {
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-content: space-evenly;
+  gap: 1em;
+}
+
+.three-option-row2 {
+  display: grid;
   grid-template-columns: auto;
+  margin: 0 27.5%;
 }
 
 .option {
-  font-size: 18px;
+  font-size: 22px;
   cursor: pointer;
-  padding-top:1.5%;
   transition: all 0.3s ease-out; /* when in hover state, change color easing out */
   -webkit-transition: all 0.3s ease-out;
+  color: #d7e1f7;
+  letter-spacing: -1px;
 }
 
 .three-option {
-  display: grid;
-  grid-template-columns: 250px 250px;
-  gap: 250px;
-  justify-content: center;
+  font-size: 20px;
+  line-height: 1.2em;
+}
+
+.four-option {
+  font-size: 21px;
+  line-height: 1.2em;
 }
 
 .option:hover { /* change color when hovered */
@@ -678,21 +705,96 @@ div.prompt > h6 { /* every prompt inside the .prompt div container */
   .question { /* "what will you do" "how will you respond" etc */
     font-size: 0.8em;
   }
+
+  .two-option-section {
+    padding: 0 17.5%; 
+  }
+
+  .three-option-section {
+    padding: 0 17.5%;
+  }
+
+  .three-option {
+    line-height: 1em;
+  }
+
+  .four-option {
+    line-height: 1em;
+  }
 }
 
 @media only screen and (max-width: 800px) {
   .prompt {
-    padding-right: 2.5%;
-    padding-left: 2.5%;
-    font-size: 22px;
+    padding: 0;
   }
 
   div.prompt > h6 { /* every prompt inside the .prompt div container */
     letter-spacing: 0.01em;
+    font-size: 0.55em;
   }
 
   .question { /* "what will you do" "how will you respond" etc */
-    font-size: 0.5em;
+    font-size: 0.6em;
+    margin: 3.5% 0;
+  }
+
+  .two-option-section {padding: 0;}
+
+  .three-option-section {
+    padding: 0;
+    row-gap: 0.3em;
+  }
+
+  .four-option-section {gap: 0.25em;}
+
+  .three-option-row1 {gap: 0.3em;}
+
+  .option {
+    letter-spacing: 0.01em;
+    line-height: 1.25em;
+    font-size: 18px;
+  }
+
+  .three-option {
+    font-size: 16px;
+    line-height: 0.9em;
+  }
+
+  .four-option {
+    font-size: 16px;
+    line-height: 0.9em;
+  }
+}
+
+@media only screen and (max-width: 360px) {
+  div.prompt > h6 { /* every prompt inside the .prompt div container */
+    font-size: 0.47em;
+  }
+
+  .two-option-section {gap: 0.5em;}
+
+  .three-option-section {row-gap: 0.25em;}
+
+  .four-option-section {gap: 0.225em;}
+
+  .three-option-row1 {gap: 0.275em;}
+
+  .option {
+    letter-spacing: normal;
+    line-height: 0.95em;
+    font-size: 17px;
+  }
+
+  .three-option {
+    font-size: 15px;
+    letter-spacing: -0.25px;
+    line-height: 0.85;
+  }
+
+  .four-option {
+    font-size: 15px;
+    letter-spacing: -0.25px;
+    line-height: 0.85;
   }
 }
 /*********************************************
