@@ -31,9 +31,6 @@ moneyCounter.innerHTML = commaFormat(count);
 /*********************************************
   testing stuff
  *********************************************/
-function commaFormat(value) {
-	return value.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,'); // regex to put commas into numbers
-}
 
 function nextSlide() {
 	Reveal.next();
@@ -60,22 +57,58 @@ document.querySelectorAll(".nextPrompt").forEach(item => {
 });
 
 /*********************************************
-  General Utility Functions
+  General Utility
  *********************************************/
-function toggleVisibility(element) {
-	if (element.className === "temp-no-display") {
-		element.classList.remove("temp-no-display");
-	} else {
-		element.classList.add("temp-no-display");
-	}
-}
+function commaFormat(value) {
+	return value.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,'); // regex to put commas into numbers
+};
+
+function intFormat(value) {
+	return parseInt(value.replace(/,/g, ""), 10);
+};
+
+function toggleVisibility(element) { element.classList.toggle("temp-no-display") };
 
 function removeAllNoDisplay() { // we can use this for testing, call function in console
 	const hiddenElements = document.getElementsByClassName("temp-no-display");
 	while (hiddenElements.length)  // list api method is live and changes are reflected automatically
 		hiddenElements[0].classList.remove("temp-no-display");
-}
+};
 
+ // implement the method used here when there's extra time
+ // https://jshakespeare.com/simple-count-up-number-animation-javascript-react/
+ // which adds acceleration to the ending 
+function countingAnimation(element, start, end, duration) {
+    const range = end - start;
+    // calc step time to show all interediate values
+    let stepTime = Math.abs(Math.floor(duration / range));
+    // never go below 50ms
+    stepTime = Math.max(stepTime, 50);
+    
+    // get current time and calculate desired end time
+    const startTime = new Date().getTime();
+    const endTime = startTime + duration;
+    let timer;
+  
+    function run() {
+        const now = new Date().getTime();
+        const remaining = Math.max((endTime - now) / duration, 0);
+        const value = Math.round(end - (remaining * range));
+        element.innerHTML = commaFormat(value);
+        if (value == end) {
+            clearInterval(timer);
+        };
+    };
+    
+    timer = setInterval(run, stepTime);
+    run();
+};
+
+let gameData = { // just to make sure option choices doesn't repeat?
+	"lockdown": false,
+	"travel restrictions": false,
+	"testing": true
+};
 /*********************************************
   Counters
  *********************************************/
@@ -272,33 +305,6 @@ function closeModal(modal) {
 	overlay.classList.remove("active");
 };
 
-/*********************************************
-  Number Animation Counting
- *********************************************/
-const animationDuration = 2000;
-const frameDuration = 1000 / 60;
-const totalFrames = Math.round(animationDuration / frameDuration);
-
-const easeOutQuad = t => t * (2 - t);
-const animateCountUp = el => {
-	let frame = 0;
-	/*const countTo = parseInt(el.innerHTML, 10);*/
-	const countTo = 1000000
-
-	const counter = setInterval( () => {
-		frame++;
-		const progress = easeOutQuad(frame / totalFrames);
-		const currentCount = Math.round(countTo * progress);
-
-		if (parseInt(el.innerHTML, 10) !== currentCount) {
-			el.innerHTML = currentCount;
-		}
-
-		if (frame === totalFrames) {
-			clearInterval(counter);
-		}
-	}, frameDuration);
-};
 
 /*********************************************
   Timeline
