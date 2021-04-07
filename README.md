@@ -18,6 +18,7 @@
 	
 - first landing screen background idea? :https://www.vecteezy.com/vector-art/1822540-virus-theme-background-design
 - https://www.vecteezy.com/vector-art/1975718-blue-virus-theme-background
+- #00bc27 #113254
 
 ## random ideas
 - shake images https://www.w3schools.com/howto/howto_css_shake_image.asp
