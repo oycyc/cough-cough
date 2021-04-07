@@ -42,6 +42,8 @@
 
 .temp-no-display {display: none !important;}
 
+.no-display {display: none !important;}
+
 @media only screen and (max-width: 600px) {
   .margin-top {margin-top: 3.5%;}
   .margin-top-more {margin-top: 10%;}
@@ -815,7 +817,6 @@ div.prompt > h6 { /* every prompt inside the .prompt div container */
   justify-content: center;
   z-index: 20;
   text-align: center;
-  display: none;
 }
 
 .result-title {
@@ -1111,4 +1112,77 @@ div.prompt > h6 { /* every prompt inside the .prompt div container */
     height: 28px;
     width: 28px;
   }
+}
+
+
+
+
+
+/*********************************************
+  ANIMATIONS
+ *********************************************/
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -100%, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes fadeOutDown {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    transform: translate3d(0, 100%, 0);
+  }
+}
+
+
+.prompt-load-animation {
+  animation-name: fadeInDown;
+  animation-duration: 1s;
+}
+
+.prompt-exit-animation {
+  animation-name: fadeOutDown;
+  animation-duration: 1s;
+  opacity: 0;
+}
+
+.result-load-animation {
+  animation-name: fadeIn;
+  animation-duration: 1s;
+}
+
+.result-exit-animation {
+  animation-name: fadeOut;
+  animation-duration: 1s;
+  opacity: 0;
 }

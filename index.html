@@ -87,7 +87,7 @@
 				<p class="counter-title">POPULATION</p>
 				<div class="counter-container">
 					<img class="counter-icons" src="assets/icons/population.svg" alt="Population Globe Icon"/>
-					<span class="counter-data" id="money-counter"></span>
+					<span class="counter-data" id="population-counter"></span>
 				</div>
 			</div>
 
@@ -95,7 +95,7 @@
 				<p class="counter-title">DEATHS</p>
 				<div class="counter-container">
 					<img class="counter-icons" src="assets/icons/gravestone.svg" alt="Deaths Grave Icon"/>
-					<span class="counter-data" id="deaths-counter">96</span>
+					<span class="counter-data" id="deaths-counter"></span>
 				</div>
 			</div>
 
@@ -103,7 +103,7 @@
 				<p class="counter-title">HOSPITAL<br>CAPACITY</p>
 				<div class="counter-container counter-container-three">
 					<img class="counter-icons" src="assets/icons/hospital.svg" alt="Hospital Capacity Icon"/>
-					<span class="counter-data">0</span>
+					<span class="counter-data" id="hospital-capacity"></span>
 					<span class="counter-percent">%</span>
 				</div>
 			</div>
@@ -112,7 +112,7 @@
 				<p class="counter-title">VIRUS<br>POSITIVITY</p>
 				<div class="counter-container counter-container-three">
 					<img class="counter-icons" src="assets/icons/covid.svg" alt="Virus Sprite Icon"/>
-					<span class="counter-data">0</span>
+					<span class="counter-data" id="virus-positivity">0</span>
 					<span class="counter-percent">%</span>
 				</div>
 			</div>
@@ -211,15 +211,17 @@
 
 				<!-- Initial Prompt -->
 				<section class="center" >
-					<div class="prompt margin-top">
-						<h6>The Affordable Care Act requires you get health insurance. The good news? Your child is covered by the state. The bad? You aren’t. This section has two options.</h6>
-					</div>
+					<div id="initial-prompt">
+						<div class="prompt margin-top">
+							<h6>The Affordable Care Act requires you get health insurance. The good news? Your child is covered by the state. The bad? You aren’t. This section has two options.</h6>
+						</div>
 
-					<div class="question">What will you do?</div>
+						<div class="question">What will you do?</div>
 
- 					<div class="two-option-section disable-selection">
-						<div class="option" id="increase-test" title="Answer Choice 1">Allow citizens to travel internationally if their virus test is negative.</div>
-						<div class="option" title="Answer Choice 2"onclick="consoleTest(2)">Keep borders shut and limit as much travel as possible.</div>
+	 					<div class="two-option-section disable-selection">
+							<div class="option" id="increase-test" title="Answer Choice 1">Allow citizens to travel internationally if their virus test is negative.</div>
+							<div class="option" title="Answer Choice 2"onclick="consoleTest(2)">Keep borders shut and limit as much travel as possible.</div>
+						</div>
 					</div>
 				</section>
 
@@ -264,7 +266,7 @@
 		</div>
 		
 		<!-- Result Popup Circle -->
-		<div class="result-circle">
+		<div class="result-circle no-display" id="result">
 			<span class="result-title">Result of Your Decision</span>
 			<span class="result-text">Loosening restrictions while there is no major immunity and the virus is still prominent is certainly not a good idea. In the United States, the CDC recommended families not travel for Thanksgiving & the December holiday season, yet still, for Thanksgiving alone, there were 10 million people that traveled by air. In just two weeks following, cases and hospitalizations increased by about 20%, and the deaths jumped 39%.</span>
 			<div class="button-slide button-sliding-animation result-button">Continue</div>
@@ -273,7 +275,7 @@
 
 		<!-- Script -->
 		<script src="revealjs/dist/reveal.js"></script>
-		<script src="assets/prompts.js"></script>
+		<script src="assets/promptData.js"></script>
 		<script src="assets/script.js"></script>
 
 	</body>

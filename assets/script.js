@@ -21,15 +21,66 @@ Reveal.initialize({
 });
 
 
-let moneyCounter = document.getElementById("money-counter");
-let increaseButton = document.getElementById("increase-test");
-let count = 1000000;
-moneyCounter.innerHTML = commaFormat(count);
+/*********************************************
+  MOBILE HAMBURGER MENU
+ *********************************************/
+const hamburger = document.querySelector(".hamburger-menu");
+const navLinks = document.querySelector(".mobile-nav-items");
+const links = document.querySelectorAll(".mobile-nav-items li");
+/* when hamburger button clicked, toggle the .open class
+   when hamburger menu opened, each link will toggle .fade class which adds the ease in animation*/
+hamburger.addEventListener("click", () => {
+  navLinks.classList.toggle("open");
+  links.forEach(link => {
+    link.classList.toggle("fade");
+  });
+});
+
+/*********************************************
+  MODALS
+ *********************************************/
+const openModalButtons = document.querySelectorAll("[data-modal-target]");
+const closeModalButtons = document.querySelectorAll("[data-close-button]");
+const overlay = document.getElementById("overlay");
+
+openModalButtons.forEach(item => {
+	item.addEventListener("click", () => {
+		const modal = document.querySelector(item.dataset.modalTarget);
+		openModal(modal);
+	})
+});
+
+closeModalButtons.forEach(item => {
+	item.addEventListener("click", () => {
+		const modal = item.closest(".modal");
+		closeModal(modal);
+	})
+});
+
+overlay.addEventListener("click", () => {
+	const modals = document.querySelectorAll(".modal.active");
+	modals.forEach(modal => {
+		closeModal(modal);
+	})
+});
+
+function openModal(modal) {
+	if (modal == null) return;
+	modal.classList.add("active");
+	overlay.classList.add("active");
+};
+
+function closeModal(modal) {
+	if (modal == null) return;
+	modal.classList.remove("active");
+	overlay.classList.remove("active");
+};
+
 
 /*********************************************
   testing stuff
  *********************************************/
-
+let increaseButton = document.getElementById("increase-test");
 function nextSlide() {
 	Reveal.next();
 	console.log("Reveal next, onto: " + Reveal.getSlidePastCount());
@@ -107,16 +158,40 @@ let gameData = { // just to make sure option choices doesn't repeat?
 	"travel restrictions": false,
 	"testing": true
 };
+
+
 /*********************************************
   Counters
  *********************************************/
 const counterParentDiv = document.getElementById("counters");
+const populationCounter = document.getElementById("population-counter");
+const deathsCounter = document.getElementById("deaths-counter");
+const hospitalCounter = document.getElementById("hospital-capacity");
+const virusCounter = document.getElementById("virus-positivity");
 
+let population = 1000000;
+let deaths = "?"; // stat not unlocked in the beginning of the game
+let hospital = 8;
+let virus = "?"; // stat not unlocked in the beginning of the game
+
+populationCounter.innerText = commaFormat(population); // in case animation doesn't run
+deathsCounter.innerText = deaths;
+hospitalCounter.innerText = hospital;
+virusCounter.innerText = virus;
+
+function newMonth() { // simluate real world, natural data movement
+
+}
 
 
 /*********************************************
   Loading Prompts
  *********************************************/
+const initialPrompt = document.getElementById("initial-prompt");
+
+const loadInPrompt = element => element.classList.add("prompt-load-animation");
+const loadOutPrompt = element => element.classList.add("prompt-exit-animation");
+
 function insertNewPrompt(promptNumber) { // promptNumber corresponds to the element index of the promptData array
 	const newPromptInfo = promptData[promptNumber];
 
@@ -162,8 +237,25 @@ function insertNewPrompt(promptNumber) { // promptNumber corresponds to the elem
 /*********************************************
   Result Circle
  *********************************************/
+const resultCircle = document.getElementById("result");
 
-
+const loadInResult = () => {
+	resultCircle.classList.remove("no-display");
+	resultCircle.classList.add("result-load-animation");
+};
+const exitOutResult = () => {
+	resultCircle.classList.add("result-exit-animation");
+	resultCircle.addEventListener("animationend", resultDisplayNone);
+	resultCircle.addEventListener("webkitAnimationEnd", resultDisplayNone);
+};
+const resultDisplayNone = () => {
+	resultCircle.classList.add("no-display");
+	removeResultEvent();
+};
+const removeResultEvent = () => {
+	resultCircle.removeEventListener("animationend", resultDisplayNone);
+	resultCircle.removeEventListener("webkitAnimationEnd", resultDisplayNone);
+};
 
 /*********************************************
   Nation Input & More Info Screen
@@ -248,63 +340,6 @@ function checkInput() {
 	}
 };
 
-
-/*********************************************
-  MOBILE HAMBURGER MENU
- *********************************************/
-const hamburger = document.querySelector(".hamburger-menu");
-const navLinks = document.querySelector(".mobile-nav-items");
-const links = document.querySelectorAll(".mobile-nav-items li");
-/* when hamburger button clicked, toggle the .open class
-   when hamburger menu opened, each link will toggle .fade class which adds the ease in animation*/
-hamburger.addEventListener("click", () => {
-  navLinks.classList.toggle("open");
-  links.forEach(link => {
-    link.classList.toggle("fade");
-  });
-});
-
-/*********************************************
-  MODALS
- *********************************************/
-const openModalButtons = document.querySelectorAll("[data-modal-target]");
-const closeModalButtons = document.querySelectorAll("[data-close-button]");
-const overlay = document.getElementById("overlay");
-
-openModalButtons.forEach(item => {
-	item.addEventListener("click", () => {
-		const modal = document.querySelector(item.dataset.modalTarget);
-		openModal(modal);
-	})
-});
-
-closeModalButtons.forEach(item => {
-	item.addEventListener("click", () => {
-		const modal = item.closest(".modal");
-		closeModal(modal);
-	})
-});
-
-overlay.addEventListener("click", () => {
-	const modals = document.querySelectorAll(".modal.active");
-	modals.forEach(modal => {
-		closeModal(modal);
-	})
-});
-
-function openModal(modal) {
-	if (modal == null) return;
-	modal.classList.add("active");
-	overlay.classList.add("active");
-};
-
-function closeModal(modal) {
-	if (modal == null) return;
-	modal.classList.remove("active");
-	overlay.classList.remove("active");
-};
-
-
 /*********************************************
   Timeline
  *********************************************/
@@ -320,6 +355,9 @@ startTimeline.addEventListener("click", () => {
 	month_1.classList.add("current");
 	displayMuteButton(false);
 	removeAllNoDisplay(); // show everything hidden (counter, month, nav)
+	countingAnimation(populationCounter, 0, 1000000, 1000);
+	countingAnimation(hospitalCounter, 0, 8, 750);
+	loadInPrompt(initialPrompt);
 });
 
 //replace increaseButton for another button that then changes the month number
