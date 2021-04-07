@@ -198,6 +198,13 @@ function insertNewPrompt(promptNumber) { // promptNumber corresponds to the elem
     const newSection = document.createElement("section"); // create entire new section for new screen
     newSection.classList.add("center", "future");
 
+    const newDiv = document.createElement("div"); // container for everything on the new screen
+    if (Object.keys(newPromptInfo["optionChoices"]).length >= 3) {
+    	newDiv.classList.add("margin-top-more"); // extra spacing so it doesn't hit counters for mobile
+    } else {
+    	newDiv.classList.add("margin-top");
+    }
+
     const promptDiv = document.createElement("div"); // div for the actual prompt & add the question from array
     promptDiv.classList.add("prompt");
     promptDiv.innerHTML = "<h6>" + newPromptInfo["prompt"] +"</h6>";
@@ -206,32 +213,83 @@ function insertNewPrompt(promptNumber) { // promptNumber corresponds to the elem
     questionDiv.classList.add("question");
     questionDiv.appendChild(document.createTextNode(newPromptInfo["question"]));
     
-    const optionDiv = document.createElement("div"); // div for the option section
-    optionDiv.classList.add("option-section", "disable-selection");
+    const optionDiv = createOptions(newPromptInfo["optionChoices"]);
 
+    newDiv.appendChild(promptDiv);
+    newDiv.appendChild(questionDiv);
+    newDiv.append(optionDiv);
+    newSection.appendChild(newDiv);
 
-	console.log("option count: " + Object.keys(newPromptInfo["optionChoices"]).length);
-
-// TO DO IF THERE'S MORE THAN 3 OPTIONS ADD margin-top-more to classList
-   	let optionsList = []; // loop through all option choices and add corresponding values
-   	Object.keys(newPromptInfo["optionChoices"]).forEach(option => {
-   		let optionIndex = optionsList.push(document.createElement("div")) - 1;
-   		optionsList[optionIndex].classList.add("option");
-   		optionsList[optionIndex].title = option;
-   		optionsList[optionIndex].appendChild(document.createTextNode(option));
-   	});
-
-   	optionsList.forEach(innerOptionDiv => { // append every option created above to the parent optionDiv
-   		optionDiv.appendChild(innerOptionDiv);
-   	});   	
-
-    newSection.appendChild(promptDiv);
-    newSection.appendChild(questionDiv);
-    newSection.append(optionDiv);
-
-    
     Reveal.getSlidesElement().append(newSection);
     Reveal.sync();
+};
+
+function createOptions(optionsInfo) {
+	const optionCount = Object.keys(optionsInfo).length;
+	let optionClassNames;
+
+	console.log("option count: " + optionCount);
+
+	// parent option div
+	const parentOption = document.createElement("div"); 
+	// add the right class for # amount option choices
+	switch(optionCount) {
+		case 2:
+			parentOption.classList.add("two-option-section", "disable-selection");
+			optionClassNames = ["option"];
+			twoOrFourOptions();
+			console.log("TWOOOO");
+			break;
+		case 3:
+			parentOption.classList.add("three-option-section", "disable-selection");
+			optionClassNames = ["option", "three-option"];
+			threeOptions();
+			console.log("THREEEE");
+			break;
+		case 4:
+			parentOption.classList.add("two-option-section", "four-option-section", "disable-selection");
+			optionClassNames = ["option", "four-option"];
+			twoOrFourOptions();
+			console.log("FOURRRRRRR");
+			break;
+		default:
+			console.log("!!! Option amount is not btwn. 2-4 !!!");
+	};
+
+	function twoOrFourOptions() {
+		let optionsList = [];
+		Object.keys(optionsInfo).forEach(option => { // loop through to add values
+			let optionIndex = optionsList.push(document.createElement("div")) - 1; // push to the list, which returns count of list, index will be -1
+			optionClassNames.forEach(className => {optionsList[optionIndex].classList.add(className)}); // loops thru all classes needed & add
+			optionsList[optionIndex].title = option;
+			optionsList[optionIndex].appendChild(document.createTextNode(option)); // insert the actual text
+		});
+
+		optionsList.forEach(innerOptionDiv => {parentOption.appendChild(innerOptionDiv)}); // append every option created above to parent div
+	};
+
+	function threeOptions() { // need another function bc element styling different
+		let optionsList = [];
+		Object.keys(optionsInfo).forEach(option => { // loop through to add values
+			let optionIndex = optionsList.push(document.createElement("div")) - 1; // push to the list, which returns count of list, index will be -1
+			optionClassNames.forEach(className => {optionsList[optionIndex].classList.add(className)}); // loops thru all classes needed & add
+			optionsList[optionIndex].title = option;
+			optionsList[optionIndex].appendChild(document.createTextNode(option)); // insert the actual text
+		});
+		// instead of .forEach loop, manually add them in bc it needs to be in different row divs
+		const row1 = document.createElement("div");
+		row1.classList.add("three-option-row1");
+		row1.appendChild(optionsList[0]);
+		row1.appendChild(optionsList[1]);
+
+		const row2 = document.createElement("div");
+		row2.classList.add("three-option-row2");
+		row2.appendChild(optionsList[2]);
+
+		parentOption.appendChild(row1);
+		parentOption.appendChild(row2);
+	};
+   	return parentOption;
 };
 
 /*********************************************
