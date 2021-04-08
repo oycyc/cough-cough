@@ -11,8 +11,8 @@
 
   Most of the styling is designed from desktop first then to mobile. 
   Although this would make it load a bit slower on mobile devices, our website's performance is 
-  generally very fast and since there is a limited amount of time to develop this, 
-  designing this from desktop down would be easier overall.
+  generally very fast and our main target device would be a computer screen. Since there is a 
+  limited amount of time to develop this, designing this from desktop down would be easier overall.
 
   There is only three media queries as there is limited time for this project.
   Max Width: 1400px -- Laptops/Tablets
@@ -790,7 +790,10 @@ div.prompt > h6 { /* every prompt inside the .prompt div container */
 
   .three-option-section {row-gap: 0.25em;}
 
-  .four-option-section {gap: 0.225em;}
+  .four-option-section {
+    column-gap: 0.225em;
+    row-gap: 0.3em;
+  }
 
   .three-option-row1 {gap: 0.275em;}
 
@@ -927,7 +930,48 @@ div.prompt > h6 { /* every prompt inside the .prompt div container */
   }
 }
 
+/*********************************************
+  New Month Screen
+*********************************************/
+.new-month-title {
+  font-family: 'Chalkdust', Georgia, serif !important; /* to override themesheet*/
+}
 
+.new-month-button {
+  font-weight: normal;
+  margin: 0 35%;
+  border-radius: 10px;
+  letter-spacing: 0;
+}
+
+.new-month-text {
+  line-height: 1;
+  margin: 2% 25%;
+  font-size: 0.7em;
+}
+@media only screen and (max-width: 800px) {
+  .new-month-text {
+    margin: 2% 20%;
+  }
+}
+@media only screen and (max-width: 600px) {
+  h3 {
+    font-size: 1.2em !important;
+    margin-bottom: 10px !important;
+  }
+  h6 {
+    font-size: 0.8em !important;
+    margin-bottom: 10px!important;
+  }
+  .new-month-button {
+    margin: 0 20%;
+  }
+  .new-month-text {
+    margin: 2% 5%;
+    font-size: 0.55em;
+  }
+
+}
 /*********************************************
   Timeline
  *********************************************/

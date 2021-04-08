@@ -206,12 +206,12 @@ function checkLosing() {
 /*********************************************
   Loading Prompts
  *********************************************/
+ let monthQuestionAnswered = 0;
+ let totalQuestionAnswered = 0;
 /*
   if (question's hint) {
  	display and set value
  } */
-
-const initialPrompt = document.getElementById("initial-prompt");
 
 const loadInPrompt = element => element.classList.add("prompt-load-animation");
 const loadOutPrompt = element => {
@@ -283,7 +283,7 @@ function createOptions(optionsInfo) {
 			console.log("!!! Option amount is not btwn. 2-4 !!!");
 	};
 
-	function twoOrFourOptions() {
+	function twoOrFourOptions() { // NEED MORE SPACING ON ROW S
 		let optionsList = loopAllOptions();
 		optionsList.forEach(innerOptionDiv => {parentOption.appendChild(innerOptionDiv)}); // append every option created above to parent div
 	};
@@ -323,6 +323,8 @@ function createOptions(optionsInfo) {
 				changeCounters(optionsInfo[option]["deathChange"], optionsInfo[option]["hospitalChange"], optionsInfo[option]["positivityRateChange"]);
 				setResultBody(resultData[optionsInfo[option]["resultID"]]);
 				loadInResult();
+				monthQuestionAnswered++;
+				totalQuestionAnswered++;
 				allOptions[optionIndex].removeEventListener("click", optionClicked);
 			});
 		});
@@ -513,23 +515,63 @@ function removeAddClass() {
 /*********************************************
   Monthing 
  *********************************************/
- const allMonthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+const allMonthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
  // let currentMonthName = allMonthsNames[parseInt(document.querySelector(".current").innerText, 10) - 1];
- let currentMonthName;
+let currentMonthName;
 
- function startGame() { // loads January prompts
- 	insertNewPrompt(0);
+function startGame() { // loads January prompts
+	insertNewPrompt(0);
  	insertNewPrompt(1);
  	insertNewPrompt(2);
  	Reveal.next();
+};
 
- };
-
- function newMonth(monthName) { // creates new prompt for the month
+function newMonth(monthName) { // creates new prompt for the month
  	let indexesOfPrompts = monthlyQuestions[monthName]["questions"];
  	if (monthlyQuestions[monthName]["randomizable"]) indexesOfPrompts.sort(randomizeList); // randomize prompts for certain months
  	indexesOfPrompts.forEach(index => insertNewPrompt(index));
- }
+ 	questionsAnswered = 0;
+};
+
+function newMonthScreen(monthName) {
+	const newSection = document.createElement("section");
+	newSection.classList.add("center", "future");
+
+	const h3Title = document.createElement("h3");
+	h3Title.classList.add("new-month-title");
+	h3Title.textContent = "New Month";
+
+	const h6Announcement = document.createElement("h6");
+	h6Announcement.textContent = "You made it to " + monthName + "!";
+
+	const pText = document.createElement("p");
+	pText.classList.add("new-month-text");
+	pText.textContent = "So far, you have made " + totalQuestionAnswered + " decisions, and the health of your country is " + countryHealthStatus();
+
+	const newMonthContinue = document.createElement("div");
+	newMonthContinue.classList.add("button-slide", "button-sliding-animation", "new-month-button");
+	newMonthContinue.textContent = "Continue";
+
+	newSection.appendChild(h3Title);
+	newSection.appendChild(h6Announcement);
+	newSection.appendChild(pText);
+	newSection.appendChild(newMonthContinue);
+
+	Reveal.getSlidesElement().append(newSection);
+	Reveal.sync();
+};
+
+function countryHealthStatus() {
+	if (virusData <= 15) {
+		return "looking phenomenal!";
+	} else if (virusData <= 35) {
+		return "looking adequate.";
+	} else {
+		return "not doing so well..."
+	}
+}
+
+
 
 /*********************************************
   Clue
@@ -550,9 +592,10 @@ function displayHintOption(displayValue) {
 	}
 };
 
-startTimeline.addEventListener("click", () => {
-	displayHintOption(true);
-});
+// don't show for now
+// startTimeline.addEventListener("click", () => {
+// 	displayHintOption(true);
+// });
 
 function displayHint(displayValue) {
 	if (displayValue) {
