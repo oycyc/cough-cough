@@ -177,16 +177,16 @@ function newMonthCounters() { // simluate real world, natural data movement
 function changeCounters(death, hospital, positive) {
 	if (deathData === "?" || virusData === "?") { 
 		// deaths & virus positivity rate not unlocked yet, so don't change
-		countingAnimation(hospitalCounter, hospitalData, hospitalData + hospital, 1250);
+		countingAnimation(hospitalCounter, hospitalData, hospitalData + hospital, 2000);
 		hospitalData += hospital;
 	} else {
-		countingAnimation(populationCounter, populationData, populationData - death, 1250);
+		countingAnimation(populationCounter, populationData, populationData - death, 2000);
 		populationData -= death; 
-		countingAnimation(deathsCounter, deathData, deathData + death, 1250);
+		countingAnimation(deathsCounter, deathData, deathData + death, 2000);
 		deathData += death;
-		countingAnimation(hospitalCounter, hospitalData, hospitalData + hospital, 1250);
+		countingAnimation(hospitalCounter, hospitalData, hospitalData + hospital, 2000);
 		hospitalData += hospital;
-		countingAnimation(virusCounter, virusData, virusData + positive, 1250);
+		countingAnimation(virusCounter, virusData, virusData + positive, 2000);
 		virusData += positive;
 	};
 	checkLosing();
@@ -250,6 +250,7 @@ function insertNewPrompt(promptNumber) { // promptNumber corresponds to the elem
 
     Reveal.getSlidesElement().append(newSection);
     Reveal.sync();
+
 };
 
 function createOptions(optionsInfo) {
@@ -331,7 +332,13 @@ function createOptions(optionsInfo) {
    	return parentOption;
 };
 
-
+function startLoadingEventListeners() {
+	Reveal.on("slidechanged", event => {
+		console.log("New section detected");
+		let promptToBeLoaded = document.querySelector("div.slides > section.center.present > div"); // selects the present loading animation div
+		loadInPrompt(promptToBeLoaded);
+	});
+};
 
 /*********************************************
   Result Circle
@@ -341,9 +348,12 @@ const resultBody = document.querySelector("#result > span.result-text");
 const resultContinue = document.querySelector("#result > div");
 
 const loadInResult = () => {
-	getClue.classList.add("temp-no-display");
+	let clueButton = document.querySelector(".clue");
+	clueButton.classList.add("temp-no-display");
 	resultCircle.classList.remove("no-display");
+	resultCircle.classList.remove("result-exit-animation");
 	resultCircle.classList.add("result-load-animation");
+	resultContinue.addEventListener("click", continueAfterResult);
 };
 const exitOutResult = () => {
 	resultCircle.classList.add("result-exit-animation");
@@ -359,11 +369,17 @@ const removeResultEvent = () => {
 	resultCircle.removeEventListener("webkitAnimationEnd", resultDisplayNone);
 };
 
+const setResultBody = info => {resultBody.textContent = info};
+
 function continueAfterResult() {
 	exitOutResult();
+	resultCircle.classList.remove("result-load-animation");
+	// check if lost code here
+	// or win or last slide etc or last prompt in month or last month
+	Reveal.next(); // has to LOAD in a new prompt with delay maybe
+	resultContinue.removeEventListener("click", continueAfterResult);
 };
 
-const setResultBody = info => {resultBody.textContent = info};
 
 
 /*********************************************
@@ -465,16 +481,18 @@ startTimeline.addEventListener("click", () => {
 	removeAllNoDisplay(); // show everything hidden (counter, month, nav)
 	countingAnimation(populationCounter, 0, 1000000, 1000);
 	countingAnimation(hospitalCounter, 0, 8, 750);
-	loadInPrompt(initialPrompt);
+	startLoadingEventListeners();
 	startGame(); // organize and make all of this into one single function later?
+
 });
 
+// align w option choices
 //replace increaseButton for another button that then changes the month number
-increaseButton.addEventListener("click", () => {
-	if (parseInt(num_month.innerText) < 12) {
-		num_month.innerText = parseInt(num_month.innerText) + 1;
-	}
-});
+// increaseButton.addEventListener("click", () => {
+// 	if (parseInt(num_month.innerText) < 12) {
+// 		num_month.innerText = parseInt(num_month.innerText) + 1;
+// 	}
+// });
 
 function removeAddClass() {
 	let month_x = document.querySelector(".current");
@@ -488,9 +506,9 @@ function removeAddClass() {
 };
 
 //change button later
-increaseButton.addEventListener("click", () => {
-	removeAddClass()
-});
+// increaseButton.addEventListener("click", () => {
+// 	removeAddClass()
+// });
 
 /*********************************************
   Monthing 
@@ -500,10 +518,11 @@ increaseButton.addEventListener("click", () => {
  let currentMonthName;
 
  function startGame() { // loads January prompts
- 	currentMonthName = "January";
  	insertNewPrompt(0);
  	insertNewPrompt(1);
  	insertNewPrompt(2);
+ 	Reveal.next();
+
  };
 
  function newMonth(monthName) { // creates new prompt for the month
