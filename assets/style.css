@@ -58,8 +58,8 @@
 .no-display {display: none !important;}
 
 @media only screen and (max-width: 600px) {
-  .margin-top {margin-top: 3.5%;}
-  .margin-top-more {margin-top: 15%;}
+  .margin-top {margin-top: 7.5%;}
+  .margin-top-more {margin-top: 10%;}
 }
 
 .disable-selection { /* disable text selection (make site more app-like and less like a document) */
