@@ -378,6 +378,7 @@ function continueAfterResult() {
 	resultCircle.classList.remove("result-load-animation");
 	// check if lost code here
 	// or win or last slide etc or last prompt in month or last month
+	// if (lost) xyz
 	if (lastPromptOfMonth()) newMonthScreen(currentMonthName);
 	Reveal.next(); 
 	resultContinue.removeEventListener("click", continueAfterResult);
@@ -535,31 +536,45 @@ function newMonth(monthName) { // creates new prompt for the month
 };
 
 function newMonthScreen(monthName) {
-	const newSection = document.createElement("section");
-	newSection.classList.add("center", "future");
+	if (monthName === "December") { 
+	// if it's december, no more months left, they didn't lose, so end game screen
+	} else {
+		let nextMonthName = allMonthNames[parseInt(document.querySelector(".current").textContent, 10)];
+		// add code here to change the month timeline and meter 
+		const newSection = document.createElement("section");
+		newSection.classList.add("center", "future", "month-screen");
 
-	const h3Title = document.createElement("h3");
-	h3Title.classList.add("new-month-title");
-	h3Title.textContent = "New Month";
+		const h3Title = document.createElement("h3");
+		h3Title.classList.add("new-month-title");
+		h3Title.textContent = "New Month";
 
-	const h6Announcement = document.createElement("h6");
-	h6Announcement.textContent = "You made it to " + monthName + "!";
+		const h6Announcement = document.createElement("h6");
+		h6Announcement.textContent = "You made it through " + monthName + "!";
 
-	const pText = document.createElement("p");
-	pText.classList.add("new-month-text");
-	pText.textContent = "So far, you have made " + totalQuestionAnswered + " decisions, and the health of your country is " + countryHealthStatus();
+		const pText = document.createElement("p");
+		pText.classList.add("new-month-text");
+		pText.textContent = "So far, you have made " + totalQuestionAnswered + " decisions, and the health of your country is " + countryHealthStatus();
 
-	const newMonthContinue = document.createElement("div");
-	newMonthContinue.classList.add("button-slide", "button-sliding-animation", "new-month-button", "no-animations");
-	newMonthContinue.textContent = "Continue";
+		const newMonthContinue = document.createElement("div");
+		newMonthContinue.classList.add("button-slide", "button-sliding-animation", "new-month-button", "no-animations");
+		newMonthContinue.textContent = "Continue";
+		newMonthContinue.addEventListener("click", function createNextMonthPrompts() {
+			monthlyQuestions[nextMonthName]["questions"].forEach(questionIndex => { // returns index of questions
+				insertNewPrompt(questionIndex);
+			});
+			newMonthContinue.removeEventListener("click", createNextMonthPrompts);
+			console.log("new prompts created for month of " + nextMonthName);
+			Reveal.next();
+		});
 
-	newSection.appendChild(h3Title);
-	newSection.appendChild(h6Announcement);
-	newSection.appendChild(pText);
-	newSection.appendChild(newMonthContinue);
+		newSection.appendChild(h3Title);
+		newSection.appendChild(h6Announcement);
+		newSection.appendChild(pText);
+		newSection.appendChild(newMonthContinue);
 
-	Reveal.getSlidesElement().append(newSection);
-	Reveal.sync();
+		Reveal.getSlidesElement().append(newSection);
+		Reveal.sync();
+	};
 };
 
 function countryHealthStatus() {
@@ -568,9 +583,10 @@ function countryHealthStatus() {
 	} else if (virusData <= 35) {
 		return "looking adequate.";
 	} else {
-		return "not doing so well..."
+		return "not doing so well...";
 	}
 }
+
 
 
 
