@@ -319,12 +319,12 @@ function createOptions(optionsInfo) {
 			// allOptions[optionIndex].dataset.positivityChange = optionsInfo[option]["positivityRateChange"];
 			// add event listeners
 			allOptions[optionIndex].addEventListener("click", function optionClicked() {
+				monthQuestionAnswered++;
+				totalQuestionAnswered++;
 				loadOutPrompt(divLoadOut);
 				changeCounters(optionsInfo[option]["deathChange"], optionsInfo[option]["hospitalChange"], optionsInfo[option]["positivityRateChange"]);
 				setResultBody(resultData[optionsInfo[option]["resultID"]]);
 				loadInResult();
-				monthQuestionAnswered++;
-				totalQuestionAnswered++;
 				allOptions[optionIndex].removeEventListener("click", optionClicked);
 			});
 		});
@@ -378,11 +378,12 @@ function continueAfterResult() {
 	resultCircle.classList.remove("result-load-animation");
 	// check if lost code here
 	// or win or last slide etc or last prompt in month or last month
-	Reveal.next(); // has to LOAD in a new prompt with delay maybe
+	if (lastPromptOfMonth()) newMonthScreen(currentMonthName);
+	Reveal.next(); 
 	resultContinue.removeEventListener("click", continueAfterResult);
 };
 
-
+const lastPromptOfMonth = () => monthQuestionAnswered >= monthlyQuestions[currentMonthName]["questions"].length;
 
 /*********************************************
   Nation Input & More Info Screen
@@ -392,7 +393,7 @@ const submitName = document.getElementById("submitName");
 const inputName = document.getElementById("inputName");
 const errorElement = document.getElementById("error");
 const audio = new Audio("assets/music/demised_to_shield_end_portion.mp3");
-audio.volume = 0.5;
+audio.volume = 0.05; // lower volume to 0.05 from 0.5
 const mute = document.getElementById("mute");
 
 function mutePlay() {
@@ -517,7 +518,7 @@ function removeAddClass() {
  *********************************************/
 const allMonthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
  // let currentMonthName = allMonthsNames[parseInt(document.querySelector(".current").innerText, 10) - 1];
-let currentMonthName;
+let currentMonthName = "January";
 
 function startGame() { // loads January prompts
 	insertNewPrompt(0);
@@ -549,7 +550,7 @@ function newMonthScreen(monthName) {
 	pText.textContent = "So far, you have made " + totalQuestionAnswered + " decisions, and the health of your country is " + countryHealthStatus();
 
 	const newMonthContinue = document.createElement("div");
-	newMonthContinue.classList.add("button-slide", "button-sliding-animation", "new-month-button");
+	newMonthContinue.classList.add("button-slide", "button-sliding-animation", "new-month-button", "no-animations");
 	newMonthContinue.textContent = "Continue";
 
 	newSection.appendChild(h3Title);

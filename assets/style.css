@@ -71,6 +71,11 @@
             user-select: none; /* Chrome, Edge, Opera and Firefox */
 }
 
+.no-animations {
+  animation: none !important;
+  -webkit-animation: none !important;
+}
+
 /*********************************************
   Virus Sprite Animation
  *********************************************/

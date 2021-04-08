@@ -26,3 +26,5 @@
 
 - zoomin zoom out https://animate.style/ https://www.digitalocean.com/community/tutorials/css-animate-css https://github.com/animate-css/animate.css
 - https://www.canva.com/colors/color-palettes/summer-splash/
+
+- bug when prompt slides out and result circle shows, can still hover over other options that wasn't chosen
