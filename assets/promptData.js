@@ -3,7 +3,8 @@ const promptData = [
 	{"prompt": "The Affordable Care Act requires you get health insurance. The good news? Your child is covered by the state. The bad? You aren’t. Jiaqi is beautiful! She's my forever love! ❤",
 	"question": "Who does cici love forever?", 
 	"optionChoices": {"Jiaqi": {"resultID": 0, "deathChange": 0, "hospitalChange": 0, "positivityRateChange": 0},
-	                  "Shao": {"resultID": 0, "deathChange": 0, "hospitalChange": 0, "positivityRateChange": 0}}
+	                  "Shao": {"resultID": 0, "deathChange": 0, "hospitalChange": 0, "positivityRateChange": 0}},
+    "hint": false
 	}, // prompt 0
 
 	{"prompt": "The Affordable Care Act requires you get health insurance. The good news? Your child is covered by the state. The bad? You aren’t. Jiaqi is beautiful! She's my forever love! ❤",
@@ -32,17 +33,25 @@ const resultCircleData = [
 ];
 
 
-const monthlyQuestions = {
-	"January": {"questions": 3, "randomizable": false},
-	"February": {"questions": 3, "randomizable": false},
-	"March": {"questions": 3, "randomizable": false},
-	"April": {"questions": 3, "randomizable": false},
-	"May": {"questions": 3, "randomizable": false},
-	"June": {"questions": 3, "randomizable": false},
-	"July": {"questions": 3, "randomizable": false},
-	"August": {"questions": 3, "randomizable": false},
-	"September": {"questions": 3, "randomizable": false},
-	"October": {"questions": 3, "randomizable": false},
-	"November": {"questions": 3, "randomizable": false},
-	"December": {"questions": 3, "randomizable": false}
+const monthlyQuestions = { // "questions" array is the indexes of the question
+	"January": {"questions": [0, 1, 2], "randomizable": false},
+	"February": {"questions": [0, 1, 2], "randomizable": false},
+	"March": {"questions": [0, 1, 2], "randomizable": false},
+	"April": {"questions": [0, 1, 2], "randomizable": true},
+	"May": {"questions": [0, 1, 2], "randomizable": false},
+	"June": {"questions": [0, 1, 2], "randomizable": false},
+	"July": {"questions": [0, 1, 2], "randomizable": false},
+	"August": {"questions": [0, 1, 2], "randomizable": false},
+	"September": {"questions": [0, 1, 2], "randomizable": false},
+	"October": {"questions": [0, 1, 2], "randomizable": false},
+	"November": {"questions": [0, 1, 2], "randomizable": false},
+	"December": {"questions": [0, 1, 2], "randomizable": false}
 };
+
+let gameData = { // just to make sure option choices doesn't repeat?
+	"lockdown": false,
+	"travel restrictions": false,
+	"testing": true
+};
+
+let criticalDecisions = [];

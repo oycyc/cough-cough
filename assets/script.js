@@ -124,6 +124,8 @@ function removeAllNoDisplay() { // we can use this for testing, call function in
 		hiddenElements[0].classList.remove("temp-no-display");
 };
 
+const randomizeList = (a, b) => 0.5 - Math.random(); // use in array.sort(randomizeList);
+
  // implement the method used here when there's extra time
  // https://jshakespeare.com/simple-count-up-number-animation-javascript-react/
  // which adds acceleration to the ending 
@@ -153,13 +155,6 @@ function countingAnimation(element, start, end, duration) {
     run();
 };
 
-let gameData = { // just to make sure option choices doesn't repeat?
-	"lockdown": false,
-	"travel restrictions": false,
-	"testing": true
-};
-
-
 /*********************************************
   Counters
  *********************************************/
@@ -169,24 +164,47 @@ const deathsCounter = document.getElementById("deaths-counter");
 const hospitalCounter = document.getElementById("hospital-capacity");
 const virusCounter = document.getElementById("virus-positivity");
 
-let population = 1000000;
-let deaths = "?"; // stat not unlocked in the beginning of the game
-let hospital = 8;
-let virus = "?"; // stat not unlocked in the beginning of the game
+let populationData = 1000000;
+let deathData = "?"; // stat not unlocked in the beginning of the game
+let hospitalData = 8;
+let virusData = "?"; // stat not unlocked in the beginning of the game
 
-populationCounter.innerText = commaFormat(population); // in case animation doesn't run
-deathsCounter.innerText = deaths;
-hospitalCounter.innerText = hospital;
-virusCounter.innerText = virus;
+populationCounter.textContent = commaFormat(populationData); // in case animation doesn't run
+deathsCounter.textContent = deathData;
+hospitalCounter.textContent = hospitalData;
+virusCounter.textContent = virusData;
 
-function newMonth() { // simluate real world, natural data movement
+function newMonthCounters() { // simluate real world, natural data movement
 
+}
+
+function changeCounters(death, hospital, positive) {
+	if (deathData === "?" || virusData === "?") { 
+		// deaths & virus positivity rate not unlocked yet, so don't change
+		countingAnimation(hospitalCounter, hospitalData, hospitalData + hospital, 1250);
+		hospitalData += hospital;
+	} else {
+		countingAnimation(populationCounter, populationData, populationData - death, 1250);
+		populationData -= death; 
+		countingAnimation(deathsCounter, deathData, deathData + death, 1250);
+		deathData += death;
+		countingAnimation(hospitalCounter, hospitalData, hospitalData + hospital, 1250);
+		hospitalData += hospital;
+		countingAnimation(virusCounter, virusData, virusData + positive, 1250);
+		virusData += positive;
+	};
+ 
 }
 
 
 /*********************************************
   Loading Prompts
  *********************************************/
+/*
+  if (question's hint) {
+ 	display and set value
+ } */
+
 const initialPrompt = document.getElementById("initial-prompt");
 
 const loadInPrompt = element => element.classList.add("prompt-load-animation");
@@ -228,8 +246,6 @@ function createOptions(optionsInfo) {
 	const optionCount = Object.keys(optionsInfo).length;
 	let optionClassNames;
 
-	console.log("option count: " + optionCount);
-
 	// parent option div
 	const parentOption = document.createElement("div"); 
 	// add the right class for # amount option choices
@@ -257,25 +273,12 @@ function createOptions(optionsInfo) {
 	};
 
 	function twoOrFourOptions() {
-		let optionsList = [];
-		Object.keys(optionsInfo).forEach(option => { // loop through to add values
-			let optionIndex = optionsList.push(document.createElement("div")) - 1; // push to the list, which returns count of list, index will be -1
-			optionClassNames.forEach(className => {optionsList[optionIndex].classList.add(className)}); // loops thru all classes needed & add
-			optionsList[optionIndex].title = option;
-			optionsList[optionIndex].appendChild(document.createTextNode(option)); // insert the actual text
-		});
-
+		let optionsList = loopAllOptions();
 		optionsList.forEach(innerOptionDiv => {parentOption.appendChild(innerOptionDiv)}); // append every option created above to parent div
 	};
 
 	function threeOptions() { // need another function bc element styling different
-		let optionsList = [];
-		Object.keys(optionsInfo).forEach(option => { // loop through to add values
-			let optionIndex = optionsList.push(document.createElement("div")) - 1; // push to the list, which returns count of list, index will be -1
-			optionClassNames.forEach(className => {optionsList[optionIndex].classList.add(className)}); // loops thru all classes needed & add
-			optionsList[optionIndex].title = option;
-			optionsList[optionIndex].appendChild(document.createTextNode(option)); // insert the actual text
-		});
+		let optionsList = loopAllOptions();
 		// instead of .forEach loop, manually add them in bc it needs to be in different row divs
 		const row1 = document.createElement("div");
 		row1.classList.add("three-option-row1");
@@ -289,6 +292,24 @@ function createOptions(optionsInfo) {
 		parentOption.appendChild(row1);
 		parentOption.appendChild(row2);
 	};
+
+   	function loopAllOptions() {
+   		let allOptions = []
+		Object.keys(optionsInfo).forEach(option => { // loop through to add values
+			let optionIndex = allOptions.push(document.createElement("div")) - 1; // push to the list, which returns count of list, index will be -1
+			optionClassNames.forEach(className => {allOptions[optionIndex].classList.add(className)}); // loops thru all classes needed & add
+			allOptions[optionIndex].title = option;
+			allOptions[optionIndex].appendChild(document.createTextNode(option)); // insert the actual text
+			// add the data attributes so changes can be reflected
+			allOptions[optionIndex].dataset.resultID = optionsInfo[option]["resultID"];
+			allOptions[optionIndex].dataset.deathChange = optionsInfo[option]["deathChange"];
+			allOptions[optionIndex].dataset.hospitalChange = optionsInfo[option]["hospitalChange"];
+			allOptions[optionIndex].dataset.positivityChange = optionsInfo[option]["positivityRateChange"];
+			// add event listeners
+		});
+		return allOptions;
+   	}
+
    	return parentOption;
 };
 
@@ -298,6 +319,7 @@ function createOptions(optionsInfo) {
 const resultCircle = document.getElementById("result");
 
 const loadInResult = () => {
+	getClue.classList.add("temp-no-display");
 	resultCircle.classList.remove("no-display");
 	resultCircle.classList.add("result-load-animation");
 };
@@ -315,6 +337,10 @@ const removeResultEvent = () => {
 	resultCircle.removeEventListener("webkitAnimationEnd", resultDisplayNone);
 };
 
+
+function continueAfterResult() {
+	exitOutResult();
+}
 /*********************************************
   Nation Input & More Info Screen
  *********************************************/
@@ -401,7 +427,6 @@ function checkInput() {
 /*********************************************
   Timeline
  *********************************************/
- 
 const startTimeline = document.getElementById("startTimeline");
 const month_1 = document.getElementById("month-1");
 const month_meter = document.getElementById("month-meter");
@@ -416,6 +441,7 @@ startTimeline.addEventListener("click", () => {
 	countingAnimation(populationCounter, 0, 1000000, 1000);
 	countingAnimation(hospitalCounter, 0, 8, 750);
 	loadInPrompt(initialPrompt);
+	startGame(); // organize and make all of this into one single function later?
 });
 
 //replace increaseButton for another button that then changes the month number
@@ -440,6 +466,25 @@ function removeAddClass() {
 increaseButton.addEventListener("click", () => {
 	removeAddClass()
 });
+
+/*********************************************
+  Monthing 
+ *********************************************/
+ const allMonthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+ // let currentMonthName = allMonthsNames[parseInt(document.querySelector(".current").innerText, 10) - 1];
+ let currentMonthName;
+
+ function startGame() { // inital prompt is manually loaded in HTML, load rest of questions for January
+ 	currentMonthName = "January";
+ 	insertNewPrompt(1);
+ 	insertNewPrompt(2);
+ };
+
+ function newMonth(monthName) { // creates new prompt for the month
+ 	let indexesOfPrompts = monthlyQuestions[monthName]["questions"];
+ 	if (monthlyQuestions[monthName]["randomizable"]) indexesOfPrompts.sort(randomizeList); // randomize prompts for certain months
+ 	indexesOfPrompts.forEach(index => insertNewPrompt(index));
+ }
 
 /*********************************************
   Clue
@@ -471,6 +516,7 @@ function displayHint(displayValue) {
 		showClue.style.display = "none"
 	}
 };
+
 
 
 getClue.addEventListener("click", () => {
