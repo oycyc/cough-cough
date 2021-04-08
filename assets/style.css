@@ -59,7 +59,7 @@
 
 @media only screen and (max-width: 600px) {
   .margin-top {margin-top: 3.5%;}
-  .margin-top-more {margin-top: 10%;}
+  .margin-top-more {margin-top: 15%;}
 }
 
 .disable-selection { /* disable text selection (make site more app-like and less like a document) */
