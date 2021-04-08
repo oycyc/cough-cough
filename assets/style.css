@@ -1185,17 +1185,17 @@ div.prompt > h6 { /* every prompt inside the .prompt div container */
 
 .prompt-exit-animation {
   animation-name: fadeOutDown;
-  animation-duration: 1s;
+  animation-duration: 2s;
   opacity: 0;
 }
 
 .result-load-animation {
   animation-name: fadeIn;
-  animation-duration: 1s;
+  animation-duration: 2.25s;
 }
 
 .result-exit-animation {
   animation-name: fadeOut;
-  animation-duration: 1s;
+  animation-duration: 1.5s;
   opacity: 0;
 }

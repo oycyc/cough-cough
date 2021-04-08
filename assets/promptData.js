@@ -17,7 +17,7 @@ const promptData = [
 
 	{"prompt": "The Affordable Care Act requires you get health insurance. The good news? Your child is covered by the state. The bad? You aren’t. Jiaqi is beautiful! She's my forever love! ❤",
 	"question": "Who does cici love forever?", 
-	"optionChoices": {"Allow citizens to travel internationally if their virus test is negative.": {"resultID": 0, "deathChange": 0, "hospitalChange": 0, "positivityRateChange": 0}, 
+	"optionChoices": {"Allow citizens to travel internationally if their virus test is negative.": {"resultID": 0, "deathChange": 55, "hospitalChange": 55, "positivityRateChange": 550}, 
 					  "Allow citizens to travel internationally if their virus teasdst is negative.": {"resultID": 0, "deathChange": 0, "hospitalChange": 0, "positivityRateChange": 0},
 					  "Allow citizens to travel internationally if thedir virus teasdst is negative.": {"resultID": 0, "deathChange": 0, "hospitalChange": 0, "positivityRateChange": 0}}
 	},
@@ -25,7 +25,7 @@ const promptData = [
 
 // result of player's choices' information
 // index corresponds with resultID key value from promptData
-const resultCircleData = [
+const resultData = [
 	// resultID 0
 	"Loosening restrictions while there is no major immunity and the virus is still prominent is certainly not a good idea. In the United States, the CDC recommended families not travel for Thanksgiving & the December holiday season, yet still, for Thanksgiving alone, there were 10 million people that traveled by air. In just two weeks following, cases and hospitalizations increased by about 20%, and the deaths jumped 39%.",
 	// resultID 1

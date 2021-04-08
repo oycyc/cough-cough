@@ -95,10 +95,6 @@ function consoleTest(x) {
 	console.log("It worked! " + x);
 }
 
-increaseButton.addEventListener("click", () => {
-	count++
-	moneyCounter.innerHTML = commaFormat(count);
-});
 
 
 document.querySelectorAll(".nextPrompt").forEach(item => {
@@ -193,7 +189,17 @@ function changeCounters(death, hospital, positive) {
 		countingAnimation(virusCounter, virusData, virusData + positive, 1250);
 		virusData += positive;
 	};
- 
+	checkLosing();
+};
+
+function checkLosing() {
+	if (deathData <= 100000) {
+		// losing due to death
+	} else if (hospitalData >= 100) {
+		// losing due to hospital overfill
+	} else if (virusData >= 50) {
+		// losing due one in two people has virus likely
+	}
 }
 
 
@@ -208,7 +214,10 @@ function changeCounters(death, hospital, positive) {
 const initialPrompt = document.getElementById("initial-prompt");
 
 const loadInPrompt = element => element.classList.add("prompt-load-animation");
-const loadOutPrompt = element => element.classList.add("prompt-exit-animation");
+const loadOutPrompt = element => {
+	element.classList.add("prompt-exit-animation");
+	// add later to change cursor to default bc hover still can see cursor
+};
 
 function insertNewPrompt(promptNumber) { // promptNumber corresponds to the element index of the promptData array
 	const newPromptInfo = promptData[promptNumber];
@@ -216,12 +225,13 @@ function insertNewPrompt(promptNumber) { // promptNumber corresponds to the elem
     const newSection = document.createElement("section"); // create entire new section for new screen
     newSection.classList.add("center", "future");
 
-    const newDiv = document.createElement("div"); // container for everything on the new screen
+    this.newDiv = document.createElement("div"); // container for everything on the new screen
     if (Object.keys(newPromptInfo["optionChoices"]).length >= 3) {
     	newDiv.classList.add("margin-top-more"); // extra spacing so it doesn't hit counters for mobile
     } else {
     	newDiv.classList.add("margin-top");
     }
+    newDiv.dataset.promptNum = promptNumber;
 
     const promptDiv = document.createElement("div"); // div for the actual prompt & add the question from array
     promptDiv.classList.add("prompt");
@@ -295,17 +305,25 @@ function createOptions(optionsInfo) {
 
    	function loopAllOptions() {
    		let allOptions = []
+   		const divLoadOut = this.newDiv;
 		Object.keys(optionsInfo).forEach(option => { // loop through to add values
 			let optionIndex = allOptions.push(document.createElement("div")) - 1; // push to the list, which returns count of list, index will be -1
 			optionClassNames.forEach(className => {allOptions[optionIndex].classList.add(className)}); // loops thru all classes needed & add
 			allOptions[optionIndex].title = option;
 			allOptions[optionIndex].appendChild(document.createTextNode(option)); // insert the actual text
 			// add the data attributes so changes can be reflected
-			allOptions[optionIndex].dataset.resultID = optionsInfo[option]["resultID"];
-			allOptions[optionIndex].dataset.deathChange = optionsInfo[option]["deathChange"];
-			allOptions[optionIndex].dataset.hospitalChange = optionsInfo[option]["hospitalChange"];
-			allOptions[optionIndex].dataset.positivityChange = optionsInfo[option]["positivityRateChange"];
+			// allOptions[optionIndex].dataset.resultID = optionsInfo[option]["resultID"];
+			// allOptions[optionIndex].dataset.deathChange = optionsInfo[option]["deathChange"];
+			// allOptions[optionIndex].dataset.hospitalChange = optionsInfo[option]["hospitalChange"];
+			// allOptions[optionIndex].dataset.positivityChange = optionsInfo[option]["positivityRateChange"];
 			// add event listeners
+			allOptions[optionIndex].addEventListener("click", function optionClicked() {
+				loadOutPrompt(divLoadOut);
+				changeCounters(optionsInfo[option]["deathChange"], optionsInfo[option]["hospitalChange"], optionsInfo[option]["positivityRateChange"]);
+				setResultBody(resultData[optionsInfo[option]["resultID"]]);
+				loadInResult();
+				allOptions[optionIndex].removeEventListener("click", optionClicked);
+			});
 		});
 		return allOptions;
    	}
@@ -313,10 +331,14 @@ function createOptions(optionsInfo) {
    	return parentOption;
 };
 
+
+
 /*********************************************
   Result Circle
  *********************************************/
 const resultCircle = document.getElementById("result");
+const resultBody = document.querySelector("#result > span.result-text");
+const resultContinue = document.querySelector("#result > div");
 
 const loadInResult = () => {
 	getClue.classList.add("temp-no-display");
@@ -337,10 +359,13 @@ const removeResultEvent = () => {
 	resultCircle.removeEventListener("webkitAnimationEnd", resultDisplayNone);
 };
 
-
 function continueAfterResult() {
 	exitOutResult();
-}
+};
+
+const setResultBody = info => {resultBody.textContent = info};
+
+
 /*********************************************
   Nation Input & More Info Screen
  *********************************************/
@@ -474,8 +499,9 @@ increaseButton.addEventListener("click", () => {
  // let currentMonthName = allMonthsNames[parseInt(document.querySelector(".current").innerText, 10) - 1];
  let currentMonthName;
 
- function startGame() { // inital prompt is manually loaded in HTML, load rest of questions for January
+ function startGame() { // loads January prompts
  	currentMonthName = "January";
+ 	insertNewPrompt(0);
  	insertNewPrompt(1);
  	insertNewPrompt(2);
  };
