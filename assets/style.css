@@ -1225,6 +1225,29 @@ div.prompt > h6 { /* every prompt inside the .prompt div container */
     transform: translate3d(0, 100%, 0);
   }
 }
+ 
+@keyframes rotateIn {
+  from {
+    transform: rotate3d(0, 0, 1, -200deg);
+    opacity: 0;
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes rotateOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    transform: rotate3d(0, 0, 1, 200deg);
+    opacity: 0;
+  }
+}
 
 
 .prompt-load-animation {
@@ -1245,6 +1268,19 @@ div.prompt > h6 { /* every prompt inside the .prompt div container */
 
 .result-exit-animation {
   animation-name: fadeOut;
-  animation-duration: 1.5s;
+  animation-duration: 2s;
+  opacity: 0;
+}
+
+.rotateIn {
+  animation-name: rotateIn;
+  transform-origin: center;
+  animation-duration: 1.25s;
+}
+
+.rotateOut {
+  animation-name: rotateOut;
+  transform-origin: center;
+  animation-duration: 1s;
   opacity: 0;
 }

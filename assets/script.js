@@ -192,15 +192,20 @@ function changeCounters(death, hospital, positive) {
 	checkLosing();
 };
 
-function checkLosing() {
-	if (deathData <= 100000) {
-		// losing due to death
-	} else if (hospitalData >= 100) {
-		// losing due to hospital overfill
-	} else if (virusData >= 50) {
-		// losing due one in two people has virus likely
-	}
-}
+const checkLosing = () => {
+	if (deathData <= 10000 || hospitalData >= 100 || virusData >= 50) return true;
+} 
+
+
+// function checkLosing() {
+// 	if (deathData <= 10000) {
+// 		// losing due to death
+// 	} else if (hospitalData >= 100) {
+// 		// losing due to hospital overfill
+// 	} else if (virusData >= 50) {
+// 		// losing due one in two people has virus likely
+// 	}
+// }
 
 
 /*********************************************
@@ -379,7 +384,12 @@ function continueAfterResult() {
 	// check if lost code here
 	// or win or last slide etc or last prompt in month or last month
 	// if (lost) xyz
-	if (lastPromptOfMonth()) newMonthScreen(currentMonthName);
+	let monthScreenElements;
+	if (lastPromptOfMonth()) {
+		monthScreenElements = newMonthScreen(currentMonthName);
+		monthScreenElements[3].classList.remove("no-animations");
+		monthScreenElements.forEach(element => element.classList.add("rotateIn"));
+	}
 	Reveal.next(); 
 	resultContinue.removeEventListener("click", continueAfterResult);
 };
@@ -564,7 +574,11 @@ function newMonthScreen(monthName) {
 			});
 			newMonthContinue.removeEventListener("click", createNextMonthPrompts);
 			console.log("new prompts created for month of " + nextMonthName);
-			Reveal.next();
+			[h3Title, h6Announcement, pText, newMonthContinue].forEach(element => {
+				element.classList.add("rotateOut");
+			});
+			h3Title.addEventListener("animationend", () => Reveal.next());
+			h3Title.addEventListener("webkitAnimationEnd", () => Reveal.next());
 		});
 
 		newSection.appendChild(h3Title);
@@ -574,6 +588,7 @@ function newMonthScreen(monthName) {
 
 		Reveal.getSlidesElement().append(newSection);
 		Reveal.sync();
+		return newSection.children; // return all elements for load in animation
 	};
 };
 
@@ -587,8 +602,12 @@ function countryHealthStatus() {
 	}
 }
 
+/*********************************************
+  Losing
+ *********************************************/
+function createLosingScreen(reason) {
 
-
+}
 
 /*********************************************
   Clue

@@ -9,6 +9,7 @@
 - darken red color/more bold as deaths/virus positivity increases
 - in the intro about page explain how it's teaching education related
 - logo too much boing boing change a little
+- add sliding down animation to the new month stat
 
 ## images 
 - new background animation pic ideas? :
