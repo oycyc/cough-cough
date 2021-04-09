@@ -106,22 +106,22 @@ virusCounter.textContent = virusData;
 function changeCounters(death, hospital, positive) {
 	if (deathData === "?" || virusData === "?") { 
 		// deaths & virus positivity rate not unlocked yet, so don't change
-		countingAnimation(hospitalCounter, hospitalData, hospitalData + hospital, 2000);
+		countingAnimation(hospitalCounter, hospitalData, hospitalData + hospital, 2250);
 		hospitalData += hospital;
 	} else {
-		countingAnimation(populationCounter, populationData, populationData - death, 2000);
+		countingAnimation(populationCounter, populationData, populationData - death, 2250);
 		populationData -= death; 
-		countingAnimation(deathsCounter, deathData, deathData + death, 2000);
+		countingAnimation(deathsCounter, deathData, deathData + death, 2250);
 		deathData += death;
-		countingAnimation(hospitalCounter, hospitalData, hospitalData + hospital, 2000);
+		countingAnimation(hospitalCounter, hospitalData, hospitalData + hospital, 2250);
 		hospitalData += hospital;
-		countingAnimation(virusCounter, virusData, virusData + positive, 2000);
+		countingAnimation(virusCounter, virusData, virusData + positive, 2250);
 		virusData += positive;
 	};
 };
 
 function checkLosing() {
-	if (deathData <= 10000) {
+	if (deathData >= 10000) {
 		losingScreen("death");
 		return true;
 	} else if (hospitalData >= 100) {
@@ -297,7 +297,9 @@ function createOptions(optionsInfo) {
 function isTestingKitPrompt(promptNumber) {
 	if (promptNumber === 1) {
 		countingAnimation(deathsCounter, 1, 16, 1000);
+		deathData = 16;
 		countingAnimation(virusCounter, 1, 8, 1000); 
+		virusData = 8;
 		// function isn't needed after this runs, the 'Deaths' & 'Virus' counters are unlocked and can't be unlocked again
 		// but the function will keep getting called so garbage collection can't be used, hence redefine function to do nothing
 		isTestingKitPrompt = function() {};

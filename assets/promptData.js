@@ -189,7 +189,7 @@ const resultData = [
 	// resultID 1
 	"Like the flu, a key step in preventing the transmission of the new virus is to create a barrier between your mouth and nose and those around you. Requiring your citizens to wear a mask in all public settings can prevent others from unknowingly spreading the disease to each other, which was an effective step Hong Kong took as a mitigation policy.",
 	// resultID 2
-	"As long as your country has the capacity to test everyone who wants to get tested, the source doesn't matter greatly. Some countries like Germany and South Korea manufactured their own tests while others purchased testing kits from other countries like South Korea in the beginning then created their own tests in their homeland labs later. Now you can also see deaths due to the virus & the positivity rate.",
+	"As long as your country has the capacity to test everyone who wants to get tested, the source doesn't matter greatly. Some countries like Germany and South Korea manufactured their own tests while others purchased testing kits from other countries like South Korea in the beginning then created their own tests in their homeland labs later. Now you can also see deaths from the virus & the positivity rate.",
 	//3
 	"Quarantining is key in slowing the spread of a virus. If an infected person isolates, then they wouldn't spread the virus to others. While most states in America don't have direct mandates for self-isolating after positive testing, other countries like South Korea make it required to quarantine and even give people free necessity care packages (in some cases financial aid too)."
 	//4

@@ -19,6 +19,8 @@
 -https://www.videezy.com/backgrounds/50703-virus-cells-flowing-viral-disease-outbreak-concept
 - more row gap space for mobile options
 - check to make sure no eventlistener that is not needed is not removed to reduce memory
+- make it change counter after 'Continue' button of result bc both things changing lots of action brain can't focus
+- countryHealthStatus() more conditions
 
 ## images 
 - new background animation pic ideas? :
