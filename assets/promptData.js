@@ -14,11 +14,11 @@ const promptData = [
 	"question": "How will you get testing kits?", 
 	"optionChoices":  // no deaths & virus change bc not unlocked yet
 		{"Have your nation's scientists develop a plan for testing for the disease": 
-			{"resultID": 2, "deathChange": 0, "hospitalChange": -2, "positivityRateChange": 0}, 
+			{"resultID": 2, "deathChange": 0, "hospitalChange": -2, "positivityRateChange": 2}, 
 		 "Request testing kits from neighboring countries": 
-		 	{"resultID": 2, "deathChange": 0, "hospitalChange": -2, "positivityRateChange": 0},
+		 	{"resultID": 2, "deathChange": 0, "hospitalChange": -2, "positivityRateChange": 2},
 		 "Request testing kits from an international health organization": 
-		 	{"resultID": 2, "deathChange": 0, "hospitalChange": -2, "positivityRateChange": 0}
+		 	{"resultID": 2, "deathChange": 0, "hospitalChange": -2, "positivityRateChange": 2}
 		}
 	},
 
@@ -26,7 +26,7 @@ const promptData = [
 	"question": "Should the quarantine be mandatory?", 
 	"optionChoices": 
 		{"Make self-isolating quarantine mandatory": 
-			{"resultID": 3, "deathChange": 50, "hospitalChange": 5, "positivityRateChange": 0}, 
+			{"resultID": 3, "deathChange": 50, "hospitalChange": 5, "positivityRateChange": 2}, 
 		 "Only ask and recommend people to quarantine": 
 		 	{"resultID": 3, "deathChange": 100, "hospitalChange": 25, "positivityRateChange": 10}
 		}
@@ -70,7 +70,7 @@ const promptData = [
 	"question": "Will you launch public awareness campaigns?", 
 	"optionChoices": 
 		{"Launch public awareness campaigns": 
-			{"resultID": 7, "deathChange": 100, "hospitalChange": -5, "positivityRateChange": -5},
+			{"resultID": 7, "deathChange": 100, "hospitalChange": -5, "positivityRateChange": -1},
 		 "Don't launch public awareness campaigns":
 		 	{"resultID": 7, "deathChange": 700, "hospitalChange": 3, "positivityRateChange": 3}
 		}
@@ -114,7 +114,7 @@ const promptData = [
 		{"Keep them completely open": 
 			{"resultID": 11, "deathChange": 4620, "hospitalChange": 40, "positivityRateChange": 30},
 	     	 "Shut them down": 
-	     		{"resultID": 11, "deathChange": 50, "hospitalChange": -8, "positivityRateChange": -7},
+	     		{"resultID": 11, "deathChange": 50, "hospitalChange": -8, "positivityRateChange": -3},
 	   	 "Allow them to open with some restrictions": 
 	   	 	{"resultID": 11, "deathChange": 3254, "hospitalChange": 15, "positivityRateChange": 6}
 	   	}
@@ -138,7 +138,7 @@ const promptData = [
 		 "Enact a mandatory quarantine of 14 days for all visitors": 
 			{"resultID": 13, "deathChange": 3584, "hospitalChange": 10, "positivityRateChange": 4},
 	    	 "Keep the borders shut": 
-	     		{"resultID": 13, "deathChange": 123, "hospitalChange": -5, "positivityRateChange": -9}
+	     		{"resultID": 13, "deathChange": 123, "hospitalChange": -5, "positivityRateChange": -3}
 	    }
 	}, //12 august
 
@@ -156,9 +156,9 @@ const promptData = [
 	"question": "How will you find out more about the variant?", 
 	"optionChoices": 
 		{"Keep track of developments in the new variant": 
-			{"resultID": 15, "deathChange": 400, "hospitalChange": 15, "positivityRateChange": 6},
+			{"resultID": 15, "deathChange": 400, "hospitalChange": 15, "positivityRateChange": 5},
 		 "Obtain current scientific findings on the new variant from other countries": 
-		 	{"resultID": 15, "deathChange": 400, "hospitalChange": 15, "positivityRateChange": 6}
+		 	{"resultID": 15, "deathChange": 400, "hospitalChange": 15, "positivityRateChange": 5}
 		}
 	},
 
