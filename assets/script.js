@@ -211,6 +211,7 @@ const loadOutPrompt = element => {
 };
 
 function insertNewPrompt(promptNumber) { // promptNumber corresponds to the element index of the promptData array
+	this.promptNumber = promptNumber;
 	const newPromptInfo = promptData[promptNumber];
 
     const newSection = document.createElement("section"); // create entire new section for new screen
@@ -296,6 +297,7 @@ function createOptions(optionsInfo) {
 	};
 
    	function loopAllOptions() {
+   		const inputPromptNumber = this.promptNumber;
    		let allOptions = []
    		const divLoadOut = this.newDiv;
 		Object.keys(optionsInfo).forEach(option => { // loop through to add values
@@ -303,11 +305,6 @@ function createOptions(optionsInfo) {
 			optionClassNames.forEach(className => {allOptions[optionIndex].classList.add(className)}); // loops thru all classes needed & add
 			allOptions[optionIndex].title = option;
 			allOptions[optionIndex].appendChild(document.createTextNode(option)); // insert the actual text
-			// add the data attributes so changes can be reflected
-			// allOptions[optionIndex].dataset.resultID = optionsInfo[option]["resultID"];
-			// allOptions[optionIndex].dataset.deathChange = optionsInfo[option]["deathChange"];
-			// allOptions[optionIndex].dataset.hospitalChange = optionsInfo[option]["hospitalChange"];
-			// allOptions[optionIndex].dataset.positivityChange = optionsInfo[option]["positivityRateChange"];
 			// add event listeners
 			allOptions[optionIndex].addEventListener("click", function optionClicked() {
 				monthQuestionAnswered++;
@@ -317,6 +314,7 @@ function createOptions(optionsInfo) {
 				setResultBody(resultData[optionsInfo[option]["resultID"]]);
 				loadInResult();
 				allOptions[optionIndex].removeEventListener("click", optionClicked);
+				isTestingKitPrompt(inputPromptNumber);
 			});
 		});
 		return allOptions;
@@ -324,6 +322,14 @@ function createOptions(optionsInfo) {
 
    	return parentOption;
 };
+
+function isTestingKitPrompt(promptNumber) {
+	if (promptNumber === 1) {
+		countingAnimation(deathsCounter, 1, 16, 1000);
+		countingAnimation(virusCounter, 1, 8, 1000); 
+		isTestingKitPrompt = function() {}; // remove processes bc not needed anymore but can't use garbage collection bc function still being called
+	}
+}
 
 function startLoadingEventListeners() {
 	Reveal.on("slidechanged", loadAnimations);
@@ -489,7 +495,7 @@ startTimeline.addEventListener("click", () => {
 	countingAnimation(hospitalCounter, 0, 8, 750);
 	startLoadingEventListeners();
 	startGame(); // organize and make all of this into one single function later?
-
+// remove event listener after 
 });
 
 // align w option choices
@@ -532,6 +538,7 @@ let currentMonthName = "January";
 function startGame() { // loads January prompts
 	insertNewPrompt(0);
  	insertNewPrompt(1);
+
  	insertNewPrompt(2);
  	Reveal.next();
 };

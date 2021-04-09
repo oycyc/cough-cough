@@ -2,23 +2,23 @@
 const promptData = [
 	{"prompt": "Your citizens are unsure of what the news regarding the transmission of the virus entails.",
 	"question": "How will you keep your citizens safe from the virus?", 
-	"optionChoices": 
+	"optionChoices": // no death & virus change bc not unlocked yet
 		{"Advise citizens to avoid gathering with others and stay safe": 
-			{"resultID": 0, "deathChange": 5, "hospitalChange": 9, "positivityRateChange": 5},
+			{"resultID": 0, "deathChange": 0, "hospitalChange": 9, "positivityRateChange": 0},
 	   "Require citizens to wear masks in all public places": 
-	    {"resultID": 1, "deathChange": 0, "hospitalChange": 5, "positivityRateChange": 2}
-	    	},
+	    	{"resultID": 1, "deathChange": 0, "hospitalChange": 5, "positivityRateChange": 0}
+	    },
 	}, // prompt 0
 
 	{"prompt": "Currently, your country doesn't have a steady supply of virus testing, which is crucial for keeping a outbreak under control. As the virus circulate increasingly, more and more citizens are curious of whether or not they have contracted the disease and want to get tested.",
 	"question": "How will you get testing kits?", 
-	"optionChoices": 
+	"optionChoices":  // no deaths & virus change bc not unlocked yet
 		{"Have your nation's scientists develop a plan for testing for the disease": 
-			{"resultID": 2, "deathChange": 15, "hospitalChange": -2, "positivityRateChange": 5}, 
+			{"resultID": 2, "deathChange": 0, "hospitalChange": -2, "positivityRateChange": 0}, 
 		 "Request testing kits from neighboring countries": 
-		 	{"resultID": 2, "deathChange": 15, "hospitalChange": -2, "positivityRateChange": 5},
+		 	{"resultID": 2, "deathChange": 0, "hospitalChange": -2, "positivityRateChange": 0},
 		 "Request testing kits from an international health organization": 
-		 	{"resultID": 2, "deathChange": 15, "hospitalChange": -2, "positivityRateChange": 5}
+		 	{"resultID": 2, "deathChange": 0, "hospitalChange": -2, "positivityRateChange": 0}
 		}
 	},
 
@@ -189,7 +189,7 @@ const resultData = [
 	// resultID 1
 	"Like the flu, a key step in preventing the transmission of the new virus is to create a barrier between your mouth and nose and those around you. Requiring your citizens to wear a mask in all public settings can prevent others from unknowingly spreading the disease to each other, which was an effective step Hong Kong took as a mitigation policy.",
 	// resultID 2
-	"As long as your country has the capacity to test everyone who wants to get tested, the source doesn't matter greatly. Some countries like Germany and South Korea manufactured their own tests while others purchased testing kits from other countries like South Korea in the beginning then created their own tests in their homeland labs later.",
+	"As long as your country has the capacity to test everyone who wants to get tested, the source doesn't matter greatly. Some countries like Germany and South Korea manufactured their own tests while others purchased testing kits from other countries like South Korea in the beginning then created their own tests in their homeland labs later. Now you can also see deaths due to the virus & the positivity rate.",
 	//3
 	"Quarantining is key in slowing the spread of a virus. If an infected person isolates, then they wouldn't spread the virus to others. While most states in America don't have direct mandates for self-isolating after positive testing, other countries like South Korea make it required to quarantine and even give people free necessity care packages (in some cases financial aid too)."
 	//4
@@ -238,12 +238,6 @@ const monthlyQuestions = { // "questions" array is the indexes of the question
 	"October": {"questions": [0, 1, 2], "randomizable": false},
 	"November": {"questions": [0, 1, 2], "randomizable": false},
 	"December": {"questions": [0, 1, 2], "randomizable": false}
-};
-
-let gameData = { // just to make sure option choices doesn't repeat?
-	"lockdown": false,
-	"travel restrictions": false,
-	"testing": true
 };
 
 let criticalDecisions = [];
