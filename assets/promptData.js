@@ -5,10 +5,9 @@ const promptData = [
 	"optionChoices": 
 		{"Advise citizens to avoid gathering with others and stay safe": 
 			{"resultID": 0, "deathChange": 5, "hospitalChange": 9, "positivityRateChange": 5},
-	         "Require citizens to wear masks in all public places": 
-	     		{"resultID": 1, "deathChange": 0, "hospitalChange": 5, "positivityRateChange": 2}
+	   "Require citizens to wear masks in all public places": 
+	    {"resultID": 1, "deathChange": 0, "hospitalChange": 5, "positivityRateChange": 2}
 	    	},
-   	"hint": false
 	}, // prompt 0
 
 	{"prompt": "Currently, your country doesn't have a steady supply of virus testing, which is crucial for keeping a outbreak under control. As the virus circulate increasingly, more and more citizens are curious of whether or not they have contracted the disease and want to get tested.",

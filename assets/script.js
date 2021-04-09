@@ -86,17 +86,6 @@ function nextSlide() {
 	console.log("Reveal next, onto: " + Reveal.getSlidePastCount());
 }
 
-function goTo(x) {
-	Reveal.slide(x);
-	console.log("Going to slide: " + x);
-}
-
-function consoleTest(x) {
-	console.log("It worked! " + x);
-}
-
-
-
 document.querySelectorAll(".nextPrompt").forEach(item => {
 	item.addEventListener("click", event => nextSlide());
 });
@@ -189,23 +178,25 @@ function changeCounters(death, hospital, positive) {
 		countingAnimation(virusCounter, virusData, virusData + positive, 2000);
 		virusData += positive;
 	};
-	checkLosing();
 };
 
-const checkLosing = () => {
-	if (deathData <= 10000 || hospitalData >= 100 || virusData >= 50) return true;
-} 
+// const checkLosing = () => {
+// 	if (deathData <= 10000 || hospitalData >= 100 || virusData >= 50) return true;
+// } 
 
+function checkLosing() {
+	if (deathData <= 10000) {
+		losingScreen("death");
+		return true;
+	} else if (hospitalData >= 100) {
+		losingScreen("hospital");
+		return true;
+	} else if (virusData >= 50) {
+		losingScreen("virus");
+		return true;
+	}
+};
 
-// function checkLosing() {
-// 	if (deathData <= 10000) {
-// 		// losing due to death
-// 	} else if (hospitalData >= 100) {
-// 		// losing due to hospital overfill
-// 	} else if (virusData >= 50) {
-// 		// losing due one in two people has virus likely
-// 	}
-// }
 
 
 /*********************************************
@@ -213,15 +204,10 @@ const checkLosing = () => {
  *********************************************/
  let monthQuestionAnswered = 0;
  let totalQuestionAnswered = 0;
-/*
-  if (question's hint) {
- 	display and set value
- } */
 
 const loadInPrompt = element => element.classList.add("prompt-load-animation");
 const loadOutPrompt = element => {
 	element.classList.add("prompt-exit-animation");
-	// add later to change cursor to default bc hover still can see cursor
 };
 
 function insertNewPrompt(promptNumber) { // promptNumber corresponds to the element index of the promptData array
@@ -270,19 +256,19 @@ function createOptions(optionsInfo) {
 			parentOption.classList.add("two-option-section", "disable-selection");
 			optionClassNames = ["option"];
 			twoOrFourOptions();
-			console.log("TWOOOO");
+			console.log("TWOOOO options");
 			break;
 		case 3:
 			parentOption.classList.add("three-option-section", "disable-selection");
 			optionClassNames = ["option", "three-option"];
 			threeOptions();
-			console.log("THREEEE");
+			console.log("THREEEE options");
 			break;
 		case 4:
 			parentOption.classList.add("two-option-section", "four-option-section", "disable-selection");
 			optionClassNames = ["option", "four-option"];
 			twoOrFourOptions();
-			console.log("FOURRRRRRR");
+			console.log("FOURRRRRRR options");
 			break;
 		default:
 			console.log("!!! Option amount is not btwn. 2-4 !!!");
@@ -340,11 +326,13 @@ function createOptions(optionsInfo) {
 };
 
 function startLoadingEventListeners() {
-	Reveal.on("slidechanged", event => {
-		console.log("New section detected");
-		let promptToBeLoaded = document.querySelector("div.slides > section.center.present > div"); // selects the present loading animation div
-		loadInPrompt(promptToBeLoaded);
-	});
+	Reveal.on("slidechanged", loadAnimations);
+};
+
+function loadAnimations() {
+	console.log("new section");
+	let promptToBeLoaded = document.querySelector("div.slides > section.center.present > div"); // selects the present loading animation div
+	loadInPrompt(promptToBeLoaded);
 };
 
 /*********************************************
@@ -355,8 +343,8 @@ const resultBody = document.querySelector("#result > span.result-text");
 const resultContinue = document.querySelector("#result > div");
 
 const loadInResult = () => {
-	let clueButton = document.querySelector(".clue");
-	clueButton.classList.add("temp-no-display");
+	// let clueButton = document.querySelector(".clue");
+	// clueButton.classList.add("temp-no-display");
 	resultCircle.classList.remove("no-display");
 	resultCircle.classList.remove("result-exit-animation");
 	resultCircle.classList.add("result-load-animation");
@@ -380,15 +368,15 @@ const setResultBody = info => {resultBody.textContent = info};
 
 function continueAfterResult() {
 	exitOutResult();
+	if (checkLosing()) return;
 	resultCircle.classList.remove("result-load-animation");
-	// check if lost code here
-	// or win or last slide etc or last prompt in month or last month
-	// if (lost) xyz
+	// check if last prompt of month bc then u win
 	let monthScreenElements;
 	if (lastPromptOfMonth()) {
 		monthScreenElements = newMonthScreen(currentMonthName);
 		monthScreenElements[3].classList.remove("no-animations");
 		monthScreenElements.forEach(element => element.classList.add("rotateIn"));
+		changeData();
 	}
 	Reveal.next(); 
 	resultContinue.removeEventListener("click", continueAfterResult);
@@ -396,6 +384,10 @@ function continueAfterResult() {
 
 const lastPromptOfMonth = () => monthQuestionAnswered >= monthlyQuestions[currentMonthName]["questions"].length;
 
+function changeData() {
+	monthQuestionAnswered = 0;
+	currentMonthName = allMonthNames[parseInt(document.querySelector(".current").innerText, 10)];
+}
 /*********************************************
   Nation Input & More Info Screen
  *********************************************/
@@ -404,7 +396,7 @@ const submitName = document.getElementById("submitName");
 const inputName = document.getElementById("inputName");
 const errorElement = document.getElementById("error");
 const audio = new Audio("assets/music/demised_to_shield_end_portion.mp3");
-audio.volume = 0.05; // lower volume to 0.05 from 0.5
+audio.volume = 0.1; // lower volume to 0.1 from 0.5
 const mute = document.getElementById("mute");
 
 function mutePlay() {
@@ -507,6 +499,12 @@ startTimeline.addEventListener("click", () => {
 // 		num_month.innerText = parseInt(num_month.innerText) + 1;
 // 	}
 // });
+// taken from above ^^
+function changeMonthText() {
+	if (parseInt(num_month.innerText) < 12) {
+		num_month.innerText = parseInt(num_month.innerText) + 1;
+ 	}
+}
 
 function removeAddClass() {
 	let month_x = document.querySelector(".current");
@@ -538,12 +536,12 @@ function startGame() { // loads January prompts
  	Reveal.next();
 };
 
-function newMonth(monthName) { // creates new prompt for the month
- 	let indexesOfPrompts = monthlyQuestions[monthName]["questions"];
- 	if (monthlyQuestions[monthName]["randomizable"]) indexesOfPrompts.sort(randomizeList); // randomize prompts for certain months
- 	indexesOfPrompts.forEach(index => insertNewPrompt(index));
- 	questionsAnswered = 0;
-};
+// function newMonth(monthName) { // creates new prompt for the month
+//  	let indexesOfPrompts = monthlyQuestions[monthName]["questions"];
+//  	if (monthlyQuestions[monthName]["randomizable"]) indexesOfPrompts.sort(randomizeList); // randomize prompts for certain months
+//  	indexesOfPrompts.forEach(index => insertNewPrompt(index));
+//  	questionsAnswered = 0;
+// };
 
 function newMonthScreen(monthName) {
 	if (monthName === "December") { 
@@ -551,6 +549,8 @@ function newMonthScreen(monthName) {
 	} else {
 		let nextMonthName = allMonthNames[parseInt(document.querySelector(".current").textContent, 10)];
 		// add code here to change the month timeline and meter 
+
+
 		const newSection = document.createElement("section");
 		newSection.classList.add("center", "future", "month-screen");
 
@@ -569,6 +569,8 @@ function newMonthScreen(monthName) {
 		newMonthContinue.classList.add("button-slide", "button-sliding-animation", "new-month-button", "no-animations");
 		newMonthContinue.textContent = "Continue";
 		newMonthContinue.addEventListener("click", function createNextMonthPrompts() {
+			changeMonthText();
+			removeAddClass();
 			monthlyQuestions[nextMonthName]["questions"].forEach(questionIndex => { // returns index of questions
 				insertNewPrompt(questionIndex);
 			});
@@ -605,59 +607,26 @@ function countryHealthStatus() {
 /*********************************************
   Losing
  *********************************************/
-function createLosingScreen(reason) {
-
-}
-
-/*********************************************
-  Clue
- *********************************************/
-let showClue = document.querySelector(".show-clue");
-let getClue = document.querySelector(".clue");
-const clues = [
-	["This is for month 1", "This is for month 1 too"],
-	["This is for month 3", "This is for month 3 too and cici is the cutest of all <3"],
- 	["Month 6", "3*2=6"]
-];
-
-function displayHintOption(displayValue) {
-	if (displayValue) {
-		getClue.style.display = "block"
-	} else {
-		getClue.style.display = "none"
-	}
+function losingScreen(reason) {
+	const lostReasonTitle = document.getElementById("reason-lost");
+	const lostReasonText = document.getElementById("reason");
+	switch(reason) {
+		case "death":
+			lostReasonTitle.textContent = "Your death count exceeded 10,000";
+			lostReasonText.textContent = "That's one in every hundred people of your population dying!";
+			break;
+		case "hospital":
+			lostReasonTitle.textContent = "Your hospital capacity exceeded 100%";
+			lostReasonText.textContent = "Your hospitals are overfilled, meaning that the sickest patients who are about to die has nowhere to go";
+			break;
+		case "virus":
+			lostReasonTitle.textContent = "The virus positivity rate exceeded 50%";
+			lostReasonText.textContent = "That's one in two people of your population contracting the virus!";
+			break;
+	};
+	Reveal.removeEventListener("slidechanged", loadAnimations);
+	Reveal.slide(10);
+	document.getElementById("losing-screen").classList.add("heartBeatAnimation");
+	
 };
 
-// don't show for now
-// startTimeline.addEventListener("click", () => {
-// 	displayHintOption(true);
-// });
-
-function displayHint(displayValue) {
-	if (displayValue) {
-		showClue.style.display = "block"
-	} else {
-		showClue.style.display = "none"
-	}
-};
-
-
-
-getClue.addEventListener("click", () => {
-	//declaring variables
-	let currentMonth = document.querySelector(".current");
-	let currentMonthNumber = parseInt(currentMonth.innerText);
-	//find number month 
- 	showClue.innerText = clues[currentMonthNumber - 1][1];
- 	displayHint(true);
- 	console.log("ouch!"); // u cute <3
-
-/* 	if (showClue.style.display = "none") {
- 		showClue.style.display = "block";
- 		console.log("hidden");
- 	} 
- 	if (showClue.style.display = "block") {
- 		showClue.style.display = "none";
- 		console.log("hey");
- 	}*/
- });

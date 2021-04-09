@@ -46,7 +46,7 @@
 				<li><a data-modal-target="#directions">How to Play</a></li>
 				<li><a href="#">Sources</a></li>
 				<li><a href="#">Contact</a></li>
-				<li><a href="#">Give Up😢</a></li>
+<!-- 				<li><a href="#">Give Up😢</a></li> -->
 			</ul>
 		</nav>
 
@@ -115,16 +115,6 @@
 
 		</div>
 
-
-		<!-- Clue -->
-		<div class="clue">
-			<p class="show-clue"></p>
-			<div class="tooltip-container">
-				<img class="counter-icons clue-icon" src="assets/icons/clue.svg" alt="Clue Icon"/>
-				<p class="tooltip-getClue">Get Clue</p>
-			</div>
- 		</div>
-
 		<!-- Timeline -->
 		<div class="timeline temp-no-display">
 			<div class="month" id="month-1">1</div>
@@ -169,7 +159,7 @@
 
 
 				<section class="center" data-transition="fade">
-					<h5 class="nation-info">Imagine that you are the health director of a fictional nation and you have just received classified news of the pandemic. Your goal is to prevent the death count from reaching 250,000, hospitals from overfilling, and virus positivity rate from surpassing 50%.
+					<h5 class="nation-info">Imagine that you are the health director of a fictional nation and you have just received classified news of the pandemic. Your goal is to prevent the death count from reaching 250,000 and the virus positivity rate from surpassing 50%.
 					<br><span class="pick-name">Choose nation name</span></h5>
 					<input id="inputName" placeholder="Nation" type="text"><br>
 					<button class="button-slide button-sliding-animation next" id="submitName">Next</button><br>
@@ -213,8 +203,13 @@
 				</section> -->
 
 <!-- losing screen test -->
-				<section class="center">
-					<h3>
+				<section class="center"> <!-- 10 -->
+					<div id="losing-screen">
+						<h3 id="reason-lost"></h3>
+						<p class="positive-note"><span id="reason"></span> -- but without the tough decision you made, even more citizens would have unknowingly went out & spread the virus and died...</p>
+						<h3><a href="https://cough-cough.netlify.app/" class="lose-play-again">Play Again</a></h3>
+						<p style="line-height: 0.5em"><a href="https://www.cdc.gov/coronavirus/2019-ncov/index.html" class="learn-more" target="_blank">Learn more about the importance of this pandemic</a></p>
+					</div>
 				</section>
 
 
