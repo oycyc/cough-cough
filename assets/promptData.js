@@ -35,9 +35,9 @@ const promptData = [
 	{"prompt": "The disease has spread drastically despite the actions you've done so far. You are thinking of advising the head of government to be more serious and declare this a public health emergency as more potential cases rises.",
 	"question": "Will you declare this virus an emergency?", 
 	"optionChoices": 
-		{"Declare the virus a national emergency and give more info to the public": 
+		{"Declare the virus a national emergency and give more information to the public": 
 			{"resultID": 4, "deathChange": 500, "hospitalChange": 9, "positivityRateChange": 5},
-	     	 "Try to calm the country down and give more info to the public": 
+	     	 "Try to calm the country down and give more information to the public": 
 	     		{"resultID": 4, "deathChange": 700, "hospitalChange": 0, "positivityRateChange": 5}
 	    }
 	}, //prompt 3 feb
