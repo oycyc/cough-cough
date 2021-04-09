@@ -219,7 +219,7 @@ const resultData = [
 	//14
 	"Schools are closed, but many public facilities are still open; this condition could still propel virus spread in communities. Although Italy opened its schools, non-essential businesses were closed, and Italy’s new virus caseloads dropped as low as 200 a day.",
 	//15
-	"Over time, scientists noticed mutations in SARS-CoV-2 emerging around the world. Evidence suggests that although current vaccines could be less effective against some of the new strains, it does not mean that vaccines will not offer protection against them. In addition, scientists are keeping track of major mutations and can adjust the vaccine development process accordingly.",
+	"Over time, scientists noticed mutations in SARS-CoV-2 emerging around the world. In areas where the new strain appeared, cases went up. Evidence suggests that although current vaccines could be less effective against some of the new strains, it does not mean that vaccines will not offer protection against them. Scientists are keeping track of major mutations and can adjust the vaccine development process accordingly.",
 	//16
 	"A recommendation is only a recommendation and is not very effective for crucial health policies. In the United States, the CDC recommended families not travel for Thanksgiving & the December holiday season, yet for Thanksgiving alone, there were 10 million people that traveled by air. In just two weeks following, cases and hospitalizations increased by about 20%, and the deaths jumped 39%.",
 	//17
