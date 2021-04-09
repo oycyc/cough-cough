@@ -21,6 +21,7 @@
 - check to make sure no eventlistener that is not needed is not removed to reduce memory
 - make it change counter after 'Continue' button of result bc both things changing lots of action brain can't focus
 - countryHealthStatus() more conditions
+- longer prompt on mobile, counter blocks a lil
 
 ## images 
 - new background animation pic ideas? :

@@ -666,7 +666,7 @@ div.prompt > h6 { /* every prompt inside the .prompt div container */
 .two-option-section {
   padding: 0 22.5%; 
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: 50% 50%;
   justify-content: space-evenly;
   gap: 1em;
 }
@@ -681,7 +681,7 @@ div.prompt > h6 { /* every prompt inside the .prompt div container */
 
 .three-option-row1 {
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: 50% 50%;
   justify-content: space-evenly;
   gap: 1em;
 }
