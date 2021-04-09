@@ -19,6 +19,7 @@
 - clean javascript code
 - add cool icons?
 -https://www.videezy.com/backgrounds/50703-virus-cells-flowing-viral-disease-outbreak-concept
+- more row gap space for mobile options
 
 ## images 
 - new background animation pic ideas? :

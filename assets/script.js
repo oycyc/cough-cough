@@ -343,8 +343,8 @@ const resultBody = document.querySelector("#result > span.result-text");
 const resultContinue = document.querySelector("#result > div");
 
 const loadInResult = () => {
-	let clueButton = document.querySelector(".clue");
-	clueButton.classList.add("temp-no-display");
+	// let clueButton = document.querySelector(".clue");
+	// clueButton.classList.add("temp-no-display");
 	resultCircle.classList.remove("no-display");
 	resultCircle.classList.remove("result-exit-animation");
 	resultCircle.classList.add("result-load-animation");
@@ -630,55 +630,3 @@ function losingScreen(reason) {
 	
 };
 
-/*********************************************
-  Clue
- *********************************************/
-let showClue = document.querySelector(".show-clue");
-let getClue = document.querySelector(".clue");
-const clues = [
-	["This is for month 1", "This is for month 1 too"],
-	["This is for month 3", "This is for month 3 too and cici is the cutest of all <3"],
- 	["Month 6", "3*2=6"]
-];
-
-function displayHintOption(displayValue) {
-	if (displayValue) {
-		getClue.style.display = "block"
-	} else {
-		getClue.style.display = "none"
-	}
-};
-
-// don't show for now
-// startTimeline.addEventListener("click", () => {
-// 	displayHintOption(true);
-// });
-
-function displayHint(displayValue) {
-	if (displayValue) {
-		showClue.style.display = "block"
-	} else {
-		showClue.style.display = "none"
-	}
-};
-
-
-
-getClue.addEventListener("click", () => {
-	//declaring variables
-	let currentMonth = document.querySelector(".current");
-	let currentMonthNumber = parseInt(currentMonth.innerText);
-	//find number month 
- 	showClue.innerText = clues[currentMonthNumber - 1][1];
- 	displayHint(true);
- 	console.log("ouch!"); // u cute <3
-
-/* 	if (showClue.style.display = "none") {
- 		showClue.style.display = "block";
- 		console.log("hidden");
- 	} 
- 	if (showClue.style.display = "block") {
- 		showClue.style.display = "none";
- 		console.log("hey");
- 	}*/
- });
