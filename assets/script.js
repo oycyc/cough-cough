@@ -470,7 +470,7 @@ function losingScreen(reason) {
 			break;
 		case "hospital":
 			lostReasonTitle.textContent = "Your hospital capacity exceeded 100%";
-			lostReasonText.textContent = "Your hospitals are overfilled, meaning that the sickest patients who are about to die has nowhere to go";
+			lostReasonText.textContent = "Your hospitals are overfilled, meaning that the sickest patients who are about to die have nowhere to go";
 			break;
 		case "virus":
 			lostReasonTitle.textContent = "The virus positivity rate exceeded 50%";
