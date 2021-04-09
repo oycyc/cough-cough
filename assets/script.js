@@ -195,7 +195,7 @@ function changeCounters(death, hospital, positive) {
 const checkLosing = () => {
 	if (deathData <= 10000 || hospitalData >= 100 || virusData >= 50) return true;
 } 
-
+// if losing send to losing screen Reveal.slide(10);
 
 // function checkLosing() {
 // 	if (deathData <= 10000) {
@@ -270,19 +270,19 @@ function createOptions(optionsInfo) {
 			parentOption.classList.add("two-option-section", "disable-selection");
 			optionClassNames = ["option"];
 			twoOrFourOptions();
-			console.log("TWOOOO");
+			console.log("TWOOOO options");
 			break;
 		case 3:
 			parentOption.classList.add("three-option-section", "disable-selection");
 			optionClassNames = ["option", "three-option"];
 			threeOptions();
-			console.log("THREEEE");
+			console.log("THREEEE options");
 			break;
 		case 4:
 			parentOption.classList.add("two-option-section", "four-option-section", "disable-selection");
 			optionClassNames = ["option", "four-option"];
 			twoOrFourOptions();
-			console.log("FOURRRRRRR");
+			console.log("FOURRRRRRR options");
 			break;
 		default:
 			console.log("!!! Option amount is not btwn. 2-4 !!!");
@@ -340,11 +340,13 @@ function createOptions(optionsInfo) {
 };
 
 function startLoadingEventListeners() {
-	Reveal.on("slidechanged", event => {
-		console.log("New section detected");
-		let promptToBeLoaded = document.querySelector("div.slides > section.center.present > div"); // selects the present loading animation div
-		loadInPrompt(promptToBeLoaded);
-	});
+	Reveal.on("slidechanged", loadAnimations);
+};
+
+function loadAnimations() {
+	console.log("new section");
+	let promptToBeLoaded = document.querySelector("div.slides > section.center.present > div"); // selects the present loading animation div
+	loadInPrompt(promptToBeLoaded);
 };
 
 /*********************************************
@@ -605,9 +607,28 @@ function countryHealthStatus() {
 /*********************************************
   Losing
  *********************************************/
-function createLosingScreen(reason) {
-
-}
+function losingScreen(reason) {
+	const lostReasonTitle = document.getElementById("reason-lost");
+	const lostReasonText = document.getElementById("reason");
+	switch(reason) {
+		case "death":
+			lostReasonTitle.textContent = "Your death count exceeded 10,000";
+			lostReasonText.textContent = "That's one in every hundred people of your population dying!";
+			break;
+		case "hospital":
+			lostReasonTitle.textContent = "Your hospital capacity exceeded 100%";
+			lostReasonText.textContent = "Your hospitals are overfilled, meaning that the sickest patients who are about to die has nowhere to go";
+			break;
+		case "virus":
+			lostReasonTitle.textContent = "The virus positivity rate exceeded 50%";
+			lostReasonText.textContent = "That's one in two people of your population contracting the virus!";
+			break;
+	};
+	Reveal.removeEventListener("slidechanged", loadAnimations);
+	Reveal.slide(10);
+	document.getElementById("losing-screen").classList.add("heartBeatAnimation");
+	
+};
 
 /*********************************************
   Clue
