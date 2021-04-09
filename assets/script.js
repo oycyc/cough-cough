@@ -549,8 +549,6 @@ function newMonthScreen(monthName) {
 	} else {
 		let nextMonthName = allMonthNames[parseInt(document.querySelector(".current").textContent, 10)];
 		// add code here to change the month timeline and meter 
-		changeMonthText();
-		removeAddClass();
 
 
 		const newSection = document.createElement("section");
@@ -571,6 +569,8 @@ function newMonthScreen(monthName) {
 		newMonthContinue.classList.add("button-slide", "button-sliding-animation", "new-month-button", "no-animations");
 		newMonthContinue.textContent = "Continue";
 		newMonthContinue.addEventListener("click", function createNextMonthPrompts() {
+			changeMonthText();
+			removeAddClass();
 			monthlyQuestions[nextMonthName]["questions"].forEach(questionIndex => { // returns index of questions
 				insertNewPrompt(questionIndex);
 			});

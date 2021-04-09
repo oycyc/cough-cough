@@ -1055,7 +1055,7 @@ div.prompt > h6 { /* every prompt inside the .prompt div container */
   display: flex;
   justify-content: center;
   align-items: center; 
-  animation: fadein 2.5s linear forwards;
+  animation: fadein 4s linear forwards;
 }
 
 @keyframes fadein {
@@ -1077,7 +1077,7 @@ div.prompt > h6 { /* every prompt inside the .prompt div container */
   display: flex;
   justify-content: center;
   align-items: center; 
-  animation: fadeout 1.4s linear forwards;
+  animation: fadeout 2.5s linear forwards;
 }
 
 /*returns the month styling back to normal*/

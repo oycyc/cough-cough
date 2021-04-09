@@ -11,6 +11,8 @@
 - logo too much boing boing change a little
 - change losing screen selectors to ids
 - winning screen continueAfterResult() check there
+- play again button link back to first prompt instead of beginning
+- month number moving animation
 
 ## images 
 - new background animation pic ideas? :
