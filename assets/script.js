@@ -86,17 +86,6 @@ function nextSlide() {
 	console.log("Reveal next, onto: " + Reveal.getSlidePastCount());
 }
 
-function goTo(x) {
-	Reveal.slide(x);
-	console.log("Going to slide: " + x);
-}
-
-function consoleTest(x) {
-	console.log("It worked! " + x);
-}
-
-
-
 document.querySelectorAll(".nextPrompt").forEach(item => {
 	item.addEventListener("click", event => nextSlide());
 });
@@ -189,23 +178,25 @@ function changeCounters(death, hospital, positive) {
 		countingAnimation(virusCounter, virusData, virusData + positive, 2000);
 		virusData += positive;
 	};
-	checkLosing();
 };
 
-const checkLosing = () => {
-	if (deathData <= 10000 || hospitalData >= 100 || virusData >= 50) return true;
-} 
-// if losing send to losing screen Reveal.slide(10);
+// const checkLosing = () => {
+// 	if (deathData <= 10000 || hospitalData >= 100 || virusData >= 50) return true;
+// } 
 
-// function checkLosing() {
-// 	if (deathData <= 10000) {
-// 		// losing due to death
-// 	} else if (hospitalData >= 100) {
-// 		// losing due to hospital overfill
-// 	} else if (virusData >= 50) {
-// 		// losing due one in two people has virus likely
-// 	}
-// }
+function checkLosing() {
+	if (deathData <= 10000) {
+		losingScreen("death");
+		return true;
+	} else if (hospitalData >= 100) {
+		losingScreen("hospital");
+		return true;
+	} else if (virusData >= 50) {
+		losingScreen("virus");
+		return true;
+	}
+};
+
 
 
 /*********************************************
@@ -213,15 +204,10 @@ const checkLosing = () => {
  *********************************************/
  let monthQuestionAnswered = 0;
  let totalQuestionAnswered = 0;
-/*
-  if (question's hint) {
- 	display and set value
- } */
 
 const loadInPrompt = element => element.classList.add("prompt-load-animation");
 const loadOutPrompt = element => {
 	element.classList.add("prompt-exit-animation");
-	// add later to change cursor to default bc hover still can see cursor
 };
 
 function insertNewPrompt(promptNumber) { // promptNumber corresponds to the element index of the promptData array
@@ -382,15 +368,15 @@ const setResultBody = info => {resultBody.textContent = info};
 
 function continueAfterResult() {
 	exitOutResult();
+	if (checkLosing()) return;
 	resultCircle.classList.remove("result-load-animation");
-	// check if lost code here
-	// or win or last slide etc or last prompt in month or last month
-	// if (lost) xyz
+	// check if last prompt of month bc then u win
 	let monthScreenElements;
 	if (lastPromptOfMonth()) {
 		monthScreenElements = newMonthScreen(currentMonthName);
 		monthScreenElements[3].classList.remove("no-animations");
 		monthScreenElements.forEach(element => element.classList.add("rotateIn"));
+		changeData();
 	}
 	Reveal.next(); 
 	resultContinue.removeEventListener("click", continueAfterResult);
@@ -398,6 +384,10 @@ function continueAfterResult() {
 
 const lastPromptOfMonth = () => monthQuestionAnswered >= monthlyQuestions[currentMonthName]["questions"].length;
 
+function changeData() {
+	monthQuestionAnswered = 0;
+	currentMonthName = allMonthNames[parseInt(document.querySelector(".current").innerText, 10) - 1];
+}
 /*********************************************
   Nation Input & More Info Screen
  *********************************************/
@@ -406,7 +396,7 @@ const submitName = document.getElementById("submitName");
 const inputName = document.getElementById("inputName");
 const errorElement = document.getElementById("error");
 const audio = new Audio("assets/music/demised_to_shield_end_portion.mp3");
-audio.volume = 0.05; // lower volume to 0.05 from 0.5
+audio.volume = 0.1; // lower volume to 0.1 from 0.5
 const mute = document.getElementById("mute");
 
 function mutePlay() {
@@ -509,6 +499,12 @@ startTimeline.addEventListener("click", () => {
 // 		num_month.innerText = parseInt(num_month.innerText) + 1;
 // 	}
 // });
+// taken from above ^^
+function changeMonthText() {
+	if (parseInt(num_month.innerText) < 12) {
+		num_month.innerText = parseInt(num_month.innerText) + 1;
+ 	}
+}
 
 function removeAddClass() {
 	let month_x = document.querySelector(".current");
@@ -540,12 +536,12 @@ function startGame() { // loads January prompts
  	Reveal.next();
 };
 
-function newMonth(monthName) { // creates new prompt for the month
- 	let indexesOfPrompts = monthlyQuestions[monthName]["questions"];
- 	if (monthlyQuestions[monthName]["randomizable"]) indexesOfPrompts.sort(randomizeList); // randomize prompts for certain months
- 	indexesOfPrompts.forEach(index => insertNewPrompt(index));
- 	questionsAnswered = 0;
-};
+// function newMonth(monthName) { // creates new prompt for the month
+//  	let indexesOfPrompts = monthlyQuestions[monthName]["questions"];
+//  	if (monthlyQuestions[monthName]["randomizable"]) indexesOfPrompts.sort(randomizeList); // randomize prompts for certain months
+//  	indexesOfPrompts.forEach(index => insertNewPrompt(index));
+//  	questionsAnswered = 0;
+// };
 
 function newMonthScreen(monthName) {
 	if (monthName === "December") { 
@@ -553,6 +549,10 @@ function newMonthScreen(monthName) {
 	} else {
 		let nextMonthName = allMonthNames[parseInt(document.querySelector(".current").textContent, 10)];
 		// add code here to change the month timeline and meter 
+		changeMonthText();
+		removeAddClass();
+
+
 		const newSection = document.createElement("section");
 		newSection.classList.add("center", "future", "month-screen");
 

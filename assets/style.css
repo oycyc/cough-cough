@@ -1356,6 +1356,6 @@ div.prompt > h6 { /* every prompt inside the .prompt div container */
 
 .heartBeatAnimation {
   animation-name: heartBeat;
-  animation-duration: 2s;
+  animation-duration: 2.75s;
   animation-timing-function: ease-in-out;
 }

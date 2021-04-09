@@ -2,7 +2,7 @@
 const promptData = [
 	{"prompt": "The Affordable Care Act requires you get health insurance. The good news? Your child is covered by the state. The bad? You aren’t. Jiaqi is beautiful! She's my forever love! ❤",
 	"question": "Who does cici love forever?", 
-	"optionChoices": {"Jiaqi": {"resultID": 0, "deathChange": 5, "hospitalChange": 9, "positivityRateChange": 0},
+	"optionChoices": {"Jiaqi": {"resultID": 0, "deathChange": 5, "hospitalChange": 5, "positivityRateChange": 0},
 	                  "Shao": {"resultID": 0, "deathChange": 0, "hospitalChange": 0, "positivityRateChange": 0}},
     "hint": false
 	}, // prompt 0

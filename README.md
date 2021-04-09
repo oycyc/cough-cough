@@ -1,7 +1,7 @@
 # beep boop
 ## to dos
 - navbar
-	- info about covid?
+	- info about covid? (to make it an even 6)
 	- give up
 - change population symbol in counter to red if virus spread
 - play in "portrait mode" not landscape mode popup if on mobile
@@ -10,6 +10,7 @@
 - in the intro about page explain how it's teaching education related
 - logo too much boing boing change a little
 - change losing screen selectors to ids
+- winning screen continueAfterResult() check there
 
 ## images 
 - new background animation pic ideas? :
