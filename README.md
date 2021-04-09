@@ -11,8 +11,11 @@
 - logo too much boing boing change a little
 - change losing screen selectors to ids
 - winning screen continueAfterResult() check there
+	- add cute gif https://giphy.com/gifs/molangofficialpage-social-distancing-stay-safe-keep-kaIJGG8lNC3u5DM3tg
 - play again button link back to first prompt instead of beginning
 - month number moving animation
+- first text animations add skip button
+- contact with netlify
 
 ## images 
 - new background animation pic ideas? :
