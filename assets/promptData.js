@@ -4,9 +4,9 @@ const promptData = [
 	"question": "How will you keep your citizens safe from the virus?", 
 	"optionChoices": 
 		{"Advise citizens to avoid gathering with others and stay safe": 
-			{"resultID": 0, "deathChange": 5, "hospitalChange": 9, "positivityRateChange": 0},
+			{"resultID": 0, "deathChange": 5, "hospitalChange": 9, "positivityRateChange": 5},
 	         "Require citizens to wear masks in all public places": 
-	     		{"resultID": 1, "deathChange": 0, "hospitalChange": 0, "positivityRateChange": 0}
+	     		{"resultID": 1, "deathChange": 0, "hospitalChange": 5, "positivityRateChange": 2}
 	    	},
    	"hint": false
 	}, // prompt 0
@@ -15,11 +15,11 @@ const promptData = [
 	"question": "How will you get testing kits?", 
 	"optionChoices": 
 		{"Have your nation's scientists develop a plan for testing for the disease": 
-			{"resultID": 2, "deathChange": 0, "hospitalChange": 0, "positivityRateChange": 0}, 
+			{"resultID": 2, "deathChange": 15, "hospitalChange": -2, "positivityRateChange": 5}, 
 		 "Request testing kits from neighboring countries": 
-		 	{"resultID": 2, "deathChange": 0, "hospitalChange": 0, "positivityRateChange": 0},
+		 	{"resultID": 2, "deathChange": 15, "hospitalChange": -2, "positivityRateChange": 5},
 		 "Request testing kits from an international health organization": 
-		 	{"resultID": 2, "deathChange": 0, "hospitalChange": 0, "positivityRateChange": 0}
+		 	{"resultID": 2, "deathChange": 15, "hospitalChange": -2, "positivityRateChange": 5}
 		}
 	},
 
@@ -27,9 +27,9 @@ const promptData = [
 	"question": "Should the quarantine be mandatory?", 
 	"optionChoices": 
 		{"Make self-isolating quarantine mandatory": 
-			{"resultID": 3, "deathChange": 55, "hospitalChange": 25, "positivityRateChange": 550}, 
+			{"resultID": 3, "deathChange": 50, "hospitalChange": 5, "positivityRateChange": 0}, 
 		 "Only ask and recommend people to quarantine": 
-		 	{"resultID": 3, "deathChange": 0, "hospitalChange": 0, "positivityRateChange": 10}
+		 	{"resultID": 3, "deathChange": 100, "hospitalChange": 25, "positivityRateChange": 10}
 		}
 	},
 
@@ -37,9 +37,9 @@ const promptData = [
 	"question": "Will you declare this virus an emergency?", 
 	"optionChoices": 
 		{"Declare the virus a national emergency and give more info to the public": 
-			{"resultID": 4, "deathChange": 5, "hospitalChange": 9, "positivityRateChange": 0},
+			{"resultID": 4, "deathChange": 500, "hospitalChange": 9, "positivityRateChange": 5},
 	     	 "Try to calm the country down and give more info to the public": 
-	     		{"resultID": 4, "deathChange": 0, "hospitalChange": 0, "positivityRateChange": 0}
+	     		{"resultID": 4, "deathChange": 700, "hospitalChange": 0, "positivityRateChange": 5}
 	    }
 	}, //prompt 3 feb
 
@@ -47,11 +47,11 @@ const promptData = [
 	"question": "How will you restrict international travel?", 
 	"optionChoices": 
 		{"Shut down international travel entirely": 
-			{"resultID": 5, "deathChange": 5, "hospitalChange": 9, "positivityRateChange": 0},
+			{"resultID": 5, "deathChange": 400, "hospitalChange": 9, "positivityRateChange": 2},
 		 "Ban travel from & to virus hotspots": 
-		 	{"resultID": 5, "deathChange": 0, "hospitalChange": 0, "positivityRateChange": 0},
+		 	{"resultID": 5, "deathChange": 700, "hospitalChange": 15, "positivityRateChange": 7},
 	    	 "Advise citizens against traveling": 
-	     		{"resultID": 5, "deathChange": 0, "hospitalChange": 0, "positivityRateChange": 0}
+	     		{"resultID": 5, "deathChange": 1100, "hospitalChange": 20, "positivityRateChange": 18}
 	    }
 	},
 
@@ -59,11 +59,11 @@ const promptData = [
 	"question": "Will you restrict public gatherings?", 
 	"optionChoices": 
 		{"Put a restriction on the number of people allowed in a public gathering": 
-			{"resultID": 6, "deathChange": 5, "hospitalChange": 9, "positivityRateChange": 0},
+			{"resultID": 6, "deathChange": 800, "hospitalChange": 9, "positivityRateChange": 0},
 	    	 "No restrictions on public gatherings": 
-	     		{"resultID": 6, "deathChange": 0, "hospitalChange": 0, "positivityRateChange": 0},
+	     		{"resultID": 6, "deathChange": 1400, "hospitalChange": 25, "positivityRateChange": 0},
 	    	 "Order a complete lockdown of the country aside from essential services": 
-	     		{"resultID": 6, "deathChange": 0, "hospitalChange": 0, "positivityRateChange": 0}
+	     		{"resultID": 6, "deathChange": 100, "hospitalChange": 2, "positivityRateChange": 0}
 	    }
 	},
 
@@ -71,7 +71,7 @@ const promptData = [
 	"question": "Will you launch public awareness campaigns?", 
 	"optionChoices": 
 		{"Launch public awareness campaigns": 
-			{"resultID": 7, "deathChange": 5, "hospitalChange": 9, "positivityRateChange": 0}
+			{"resultID": 7, "deathChange": 400, "hospitalChange": -5, "positivityRateChange": -5}
 		}
 	}, //prompt 6 march
 
@@ -79,11 +79,11 @@ const promptData = [
 	"question": "How will schools operate?", 
 	"optionChoices": 
 		{"Move all students into a virtual environment to learn": 
-			{"resultID": 8, "deathChange": 5, "hospitalChange": 9, "positivityRateChange": 0},
+			{"resultID": 8, "deathChange": 1500, "hospitalChange": 5, "positivityRateChange": 4},
 	     	 "Keep all schools open": 
-	     		{"resultID": 8, "deathChange": 0, "hospitalChange": 0, "positivityRateChange": 0},
+	     		{"resultID": 8, "deathChange": 1950, "hospitalChange": 9, "positivityRateChange": 8},
 	   	 "Keep younger children in school buildings and move older children into a virtual environment": 
-	   	 	{"resultID": 8, "deathChange": 0, "hospitalChange": 0, "positivityRateChange": 0}
+	   	 	{"resultID": 8, "deathChange": 1750, "hospitalChange": 7, "positivityRateChange": 6}
 	   	}
 	},
 
@@ -91,9 +91,9 @@ const promptData = [
 	"question": "Will you offer assistance to healthcare workers?", 
 	"optionChoices": 
 		{"Offer assistance by providing more medical supplies and add benefits for doctors": 
-			{"resultID": 9, "deathChange": 5, "hospitalChange": 9, "positivityRateChange": 0},
+			{"resultID": 9, "deathChange": 300, "hospitalChange": 9, "positivityRateChange": 2},
 	     	 "Ignore their needs": 
-	     		{"resultID": 9, "deathChange": 0, "hospitalChange": 0, "positivityRateChange": 0}
+	     		{"resultID": 9, "deathChange": 3000, "hospitalChange": 50, "positivityRateChange": 35}
 	    }
 	}, //prompt 8 april
 
@@ -101,9 +101,9 @@ const promptData = [
 	"question": "Will you approve this new treatment?", 
 	"optionChoices": 
 		{"Approve it": 
-			{"resultID": 10, "deathChange": 5, "hospitalChange": 9, "positivityRateChange": 0},
+			{"resultID": 10, "deathChange": 204, "hospitalChange": -7, "positivityRateChange": 0},
 	     	 "Reject it": 
-		 	{"resultID": 10, "deathChange": 0, "hospitalChange": 0, "positivityRateChange": 0}
+		 	{"resultID": 10, "deathChange": 406, "hospitalChange": 15, "positivityRateChange": 0}
 	 	}
 	}, //may
 
@@ -111,11 +111,11 @@ const promptData = [
 	"question": "Do workplaces and various facilities have to shut down?", 
 	"optionChoices": 
 		{"Keep them completely open": 
-			{"resultID": 11, "deathChange": 5, "hospitalChange": 9, "positivityRateChange": 0},
+			{"resultID": 11, "deathChange": 4620, "hospitalChange": 40, "positivityRateChange": 30},
 	     	 "Shut them down": 
-	     		{"resultID": 11, "deathChange": 0, "hospitalChange": 0, "positivityRateChange": 0},
+	     		{"resultID": 11, "deathChange": 2130, "hospitalChange": -8, "positivityRateChange": -7},
 	   	 "Allow them to open with some restrictions": 
-	   	 	{"resultID": 11, "deathChange": 0, "hospitalChange": 0, "positivityRateChange": 0}
+	   	 	{"resultID": 11, "deathChange": 3254, "hospitalChange": 15, "positivityRateChange": 6}
 	   	}
 	}, //prompt 10 june
 
@@ -123,9 +123,9 @@ const promptData = [
 	"question": "How will you improve the contact tracing system?", 
 	"optionChoices": 
 		{"Update citizens on the extent to which the virus had spread on social media platforms": 
-			{"resultID": 12, "deathChange": 5, "hospitalChange": 9, "positivityRateChange": 0},
+			{"resultID": 12, "deathChange": 231, "hospitalChange": 5, "positivityRateChange": 2},
 	     	 "Develop an app to monitor potential cases": 
-	     		{"resultID": 12, "deathChange": 0, "hospitalChange": 0, "positivityRateChange": 0}
+	     		{"resultID": 12, "deathChange": 231, "hospitalChange": 5, "positivityRateChange": 2}
 	    	}
 	},
 
@@ -133,11 +133,11 @@ const promptData = [
 	"question": "Will you change your travel policy?", 
 	"optionChoices": 
 		{"Allow borders to open": 
-			{"resultID": 13, "deathChange": 5, "hospitalChange": 9, "positivityRateChange": 0},
+			{"resultID": 13, "deathChange": 4612, "hospitalChange": 32, "positivityRateChange": 15},
 		 "Enact a mandatory quarantine of 14 days for all visitors": 
-			{"resultID": 13, "deathChange": 5, "hospitalChange": 9, "positivityRateChange": 0},
+			{"resultID": 13, "deathChange": 3584, "hospitalChange": 10, "positivityRateChange": 4},
 	    	 "Keep the borders shut": 
-	     		{"resultID": 13, "deathChange": 0, "hospitalChange": 0, "positivityRateChange": 0}
+	     		{"resultID": 13, "deathChange": 123, "hospitalChange": -5, "positivityRateChange": -9}
 	    }
 	}, //12 august
 
@@ -145,9 +145,9 @@ const promptData = [
 	"question": "How will schools operate?", 
 	"optionChoices": 
 		{"Allow students back into the school building with mask and social distancing guidelines": 
-			{"resultID": 14, "deathChange": 5, "hospitalChange": 9, "positivityRateChange": 0},
+			{"resultID": 14, "deathChange": 80, "hospitalChange": 9, "positivityRateChange": 3},
 	     	 "Require students to learn in a virtual environment": 
-	     		{"resultID": 14, "deathChange": 0, "hospitalChange": 0, "positivityRateChange": 0}
+	     		{"resultID": 14, "deathChange": 50, "hospitalChange": 0, "positivityRateChange": 0}
 	    }
 	},
 
@@ -155,21 +155,21 @@ const promptData = [
 	"question": "How will you find out more about the variant?", 
 	"optionChoices": 
 		{"Keep track of developments in the new variant": 
-			{"resultID": 15, "deathChange": 5, "hospitalChange": 9, "positivityRateChange": 0},
+			{"resultID": 15, "deathChange": 300, "hospitalChange": 15, "positivityRateChange": 6},
 		 "Obtain current scientific findings on the new variant from other countries": 
-		 	{"resultID": 15, "deathChange": 0, "hospitalChange": 0, "positivityRateChange": 0}
+		 	{"resultID": 15, "deathChange": 300, "hospitalChange": 15, "positivityRateChange": 6}
 		}
 	},
 
 	{"prompt": "Many of your citizens want to visit their friends and family this holiday season.",
 	"question": "Will you change any traveling restrictions?", 
 	"optionChoices": 
-		{"Allow citizens to travel in and out of the nation if they show prove of a negative test within 72 hours": 
-			{"resultID": 17, "deathChange": 5, "hospitalChange": 9, "positivityRateChange": 0},
+		{"Allow citizens to travel in and out of the nation if they show proof of a negative test within 72 hours": 
+			{"resultID": 17, "deathChange": 1000, "hospitalChange": 5, "positivityRateChange": 10},
 		 "Recommend people not to travel": 
-		 	{"resultID": 16, "deathChange": 5, "hospitalChange": 9, "positivityRateChange": 0},
+		 	{"resultID": 16, "deathChange": 2100, "hospitalChange": 9, "positivityRateChange": 15},
 	 	 "Loosen restrictions": 
-	 	 	{"resultID": 17, "deathChange": 0, "hospitalChange": 0, "positivityRateChange": 0}
+	 	 	{"resultID": 17, "deathChange": 2100, "hospitalChange": 13, "positivityRateChange": 15}
 	 	}
 	},
 
