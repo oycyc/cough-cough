@@ -386,7 +386,7 @@ const lastPromptOfMonth = () => monthQuestionAnswered >= monthlyQuestions[curren
 
 function changeData() {
 	monthQuestionAnswered = 0;
-	currentMonthName = allMonthNames[parseInt(document.querySelector(".current").innerText, 10) - 1];
+	currentMonthName = allMonthNames[parseInt(document.querySelector(".current").innerText, 10)];
 }
 /*********************************************
   Nation Input & More Info Screen

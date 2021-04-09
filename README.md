@@ -16,6 +16,9 @@
 - month number moving animation
 - first text animations add skip button
 - contact with netlify
+- clean javascript code
+- add cool icons?
+-https://www.videezy.com/backgrounds/50703-virus-cells-flowing-viral-disease-outbreak-concept
 
 ## images 
 - new background animation pic ideas? :
