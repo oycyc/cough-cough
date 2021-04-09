@@ -70,7 +70,9 @@ const promptData = [
 	"question": "Will you launch public awareness campaigns?", 
 	"optionChoices": 
 		{"Launch public awareness campaigns": 
-			{"resultID": 7, "deathChange": 400, "hospitalChange": -5, "positivityRateChange": -5}
+			{"resultID": 7, "deathChange": 400, "hospitalChange": -5, "positivityRateChange": -5},
+		 "Don't launch public awareness campaigns":
+		 	{"resultID": 7, "deathChange": 700, "hospitalChange": 3, "positivityRateChange": 3}
 		}
 	}, //prompt 6 march
 
