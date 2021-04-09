@@ -22,7 +22,7 @@ const promptData = [
 		}
 	},
 
-	{"prompt": "Now that you've expanded your country's testing capabilities, it's much easier locate outbreaks in individual local communities. Contact tracers can then let more people if know they've been exposed to the virus and ask them to quarantine.",
+	{"prompt": "Now that you've expanded your country's testing capabilities, it's much easier to locate outbreaks in individual local communities. Contact tracers can then let more people know if they've been exposed to the virus and ask them to quarantine.",
 	"question": "Should the quarantine be mandatory?", 
 	"optionChoices": 
 		{"Make self-isolating quarantine mandatory": 
@@ -35,9 +35,9 @@ const promptData = [
 	{"prompt": "The disease has spread drastically despite the actions you've done so far. You are thinking of advising the head of government to be more serious and declare this a public health emergency as more potential cases rises.",
 	"question": "Will you declare this virus an emergency?", 
 	"optionChoices": 
-		{"Declare the virus a national emergency and give more info to the public": 
+		{"Declare the virus a national emergency and give more information to the public": 
 			{"resultID": 4, "deathChange": 500, "hospitalChange": 9, "positivityRateChange": 5},
-	     	 "Try to calm the country down and give more info to the public": 
+	     	 "Try to calm the country down and give more information to the public": 
 	     		{"resultID": 4, "deathChange": 700, "hospitalChange": 0, "positivityRateChange": 5}
 	    }
 	}, //prompt 3 feb
@@ -70,7 +70,7 @@ const promptData = [
 	"question": "Will you launch public awareness campaigns?", 
 	"optionChoices": 
 		{"Launch public awareness campaigns": 
-			{"resultID": 7, "deathChange": 400, "hospitalChange": -5, "positivityRateChange": -5},
+			{"resultID": 7, "deathChange": 100, "hospitalChange": -5, "positivityRateChange": -5},
 		 "Don't launch public awareness campaigns":
 		 	{"resultID": 7, "deathChange": 700, "hospitalChange": 3, "positivityRateChange": 3}
 		}
@@ -80,11 +80,11 @@ const promptData = [
 	"question": "How will schools operate?", 
 	"optionChoices": 
 		{"Move all students into a virtual environment to learn": 
-			{"resultID": 8, "deathChange": 1500, "hospitalChange": 5, "positivityRateChange": 4},
+			{"resultID": 8, "deathChange": 500, "hospitalChange": 5, "positivityRateChange": 4},
 	     	 "Keep all schools open": 
-	     		{"resultID": 8, "deathChange": 1950, "hospitalChange": 9, "positivityRateChange": 8},
+	     		{"resultID": 8, "deathChange": 950, "hospitalChange": 9, "positivityRateChange": 8},
 	   	 "Keep younger children in school buildings and move older children into a virtual environment": 
-	   	 	{"resultID": 8, "deathChange": 1750, "hospitalChange": 7, "positivityRateChange": 6}
+	   	 	{"resultID": 8, "deathChange": 750, "hospitalChange": 7, "positivityRateChange": 6}
 	   	}
 	},
 
@@ -92,7 +92,7 @@ const promptData = [
 	"question": "Will you offer assistance to healthcare workers?", 
 	"optionChoices": 
 		{"Offer assistance by providing more medical supplies and add benefits for doctors": 
-			{"resultID": 9, "deathChange": 300, "hospitalChange": 9, "positivityRateChange": 2},
+			{"resultID": 9, "deathChange": 200, "hospitalChange": 9, "positivityRateChange": 2},
 	     	 "Ignore their needs": 
 	     		{"resultID": 9, "deathChange": 3000, "hospitalChange": 50, "positivityRateChange": 35}
 	    }
@@ -102,7 +102,7 @@ const promptData = [
 	"question": "Will you approve this new treatment?", 
 	"optionChoices": 
 		{"Approve it": 
-			{"resultID": 10, "deathChange": 204, "hospitalChange": -7, "positivityRateChange": 0},
+			{"resultID": 10, "deathChange": 24, "hospitalChange": -7, "positivityRateChange": 0},
 	     	 "Reject it": 
 		 	{"resultID": 10, "deathChange": 406, "hospitalChange": 15, "positivityRateChange": 0}
 	 	}
@@ -114,7 +114,7 @@ const promptData = [
 		{"Keep them completely open": 
 			{"resultID": 11, "deathChange": 4620, "hospitalChange": 40, "positivityRateChange": 30},
 	     	 "Shut them down": 
-	     		{"resultID": 11, "deathChange": 2130, "hospitalChange": -8, "positivityRateChange": -7},
+	     		{"resultID": 11, "deathChange": 50, "hospitalChange": -8, "positivityRateChange": -7},
 	   	 "Allow them to open with some restrictions": 
 	   	 	{"resultID": 11, "deathChange": 3254, "hospitalChange": 15, "positivityRateChange": 6}
 	   	}
@@ -124,9 +124,9 @@ const promptData = [
 	"question": "How will you improve the contact tracing system?", 
 	"optionChoices": 
 		{"Update citizens on the extent to which the virus had spread on social media platforms": 
-			{"resultID": 12, "deathChange": 231, "hospitalChange": 5, "positivityRateChange": 2},
+			{"resultID": 12, "deathChange": 5, "hospitalChange": 5, "positivityRateChange": 2},
 	     	 "Develop an app to monitor potential cases": 
-	     		{"resultID": 12, "deathChange": 231, "hospitalChange": 5, "positivityRateChange": 2}
+	     		{"resultID": 12, "deathChange": 5, "hospitalChange": 5, "positivityRateChange": 2}
 	    	}
 	},
 
@@ -148,7 +148,7 @@ const promptData = [
 		{"Allow students back into the school building with mask and social distancing guidelines": 
 			{"resultID": 14, "deathChange": 80, "hospitalChange": 9, "positivityRateChange": 3},
 	     	 "Require students to learn in a virtual environment": 
-	     		{"resultID": 14, "deathChange": 50, "hospitalChange": 0, "positivityRateChange": 0}
+	     		{"resultID": 14, "deathChange": 50, "hospitalChange": 0, "positivityRateChange": 2}
 	    }
 	},
 
@@ -156,9 +156,9 @@ const promptData = [
 	"question": "How will you find out more about the variant?", 
 	"optionChoices": 
 		{"Keep track of developments in the new variant": 
-			{"resultID": 15, "deathChange": 300, "hospitalChange": 15, "positivityRateChange": 6},
+			{"resultID": 15, "deathChange": 400, "hospitalChange": 15, "positivityRateChange": 6},
 		 "Obtain current scientific findings on the new variant from other countries": 
-		 	{"resultID": 15, "deathChange": 300, "hospitalChange": 15, "positivityRateChange": 6}
+		 	{"resultID": 15, "deathChange": 400, "hospitalChange": 15, "positivityRateChange": 6}
 		}
 	},
 
@@ -177,8 +177,10 @@ const promptData = [
 	{"prompt": "You received news of a promising vaccine that could be used to treat the virus.",
 	"question": "Will you approve the vaccine?", 
 	"optionChoices": 
-		{"Approve and administer the vaccine to your citizens.": 
-			{"resultID": 18, "deathChange": 0, "hospitalChange": 0, "positivityRateChange": 0}
+		{"Approve and administer the vaccine to your citizens": 
+			{"resultID": 18, "deathChange": 0, "hospitalChange": 0, "positivityRateChange": 0},
+		 "Refuse to administer the vaccine to your citizens":
+		 	{"resultID": 18, "deathChange": 2000, "hospitalChange": 25, "positivityRateChange": 20}
 		}
 	},
 ];
