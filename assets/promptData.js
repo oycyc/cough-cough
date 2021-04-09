@@ -94,7 +94,7 @@ const promptData = [
 		{"Offer assistance by providing more medical supplies and add benefits for doctors": 
 			{"resultID": 9, "deathChange": 200, "hospitalChange": 9, "positivityRateChange": -2},
 	     	 "Ignore their needs": 
-	     		{"resultID": 9, "deathChange": 3000, "hospitalChange": 50, "positivityRateChange": 35}
+	     		{"resultID": 20, "deathChange": 3000, "hospitalChange": 50, "positivityRateChange": 35}
 	    }
 	}, //prompt 8 april
 
@@ -217,7 +217,7 @@ const resultData = [
 	//13
 	"Around the end of March 2020, most countries around the world either had a ban on high-risk regions or had a total border closure. Mongolia had a ban on high-risk regions ever since the end of January 2020 and enacted a total border closure at the end of March 2020. The border closure is still in effect as of April 7, 2021.",
 	//14
-	"Schools are closed, but many public facilities are still open; this condition could still propel virus spread in communities. Although Italy opened its schools, non-essential businesses were closed, and Italy’s new virus caseloads dropped as low as 200 a day.",
+	"If schools are closed but public facilities remain open, the virus positivity rate could continue to increase. Although Italy opened its schools, non-essential businesses were closed, and Italy’s new virus caseloads dropped as low as 200 a day.",
 	//15
 	"Over time, scientists noticed mutations in SARS-CoV-2 emerging around the world. In areas where the new strain appeared, cases went up. Evidence suggests that although current vaccines could be less effective against some of the new strains, it does not mean that vaccines will not offer protection against them. Scientists are keeping track of major mutations and can adjust the vaccine development process accordingly.",
 	//16
@@ -227,7 +227,9 @@ const resultData = [
 	//18
 	"Administering the vaccine is a great step towards preventing the transmission of disease and decreasing the death count in your nation! However, your nation's citizens will still need to do their part and practice safety measures such as wearing masks to contain the disease.",
 	//19
-	"The refusal to approve and administer vaccines to your citizens is detrimental to the health of your nation. Without vaccinations, researchers warn that it will be difficult for the nation to reach herd immunity, a point at which spread is unlikely because enough people are immune to the disease. To reach herd immunity without vaccines would mean higher infection rates and deaths."
+	"The refusal to approve and administer vaccines to your citizens is detrimental to the health of your nation. Without vaccinations, researchers warn that it will be difficult for the nation to reach herd immunity, a point at which spread is unlikely because enough people are immune to the disease. To reach herd immunity without vaccines would mean higher infection rates and deaths.",
+	//20
+	"Ignoring healthcare workers’ needs is unacceptable, especially during times of crisis like this. As determined doctors and healthcare workers are fighting in the front line of this battle, hospitals have reported a shortage of supplies, which puts staff and patients at risk. In a survey taken by 925 Afghan healthcare workers, less than 50% had access to disposable gowns, face shields, and medical masks."
 ];
 
 
