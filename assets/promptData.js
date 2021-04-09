@@ -4,9 +4,9 @@ const promptData = [
 	"question": "How will you keep your citizens safe from the virus?", 
 	"optionChoices": // no death & virus change bc not unlocked yet
 		{"Advise citizens to avoid gathering with others and stay safe": 
-			{"resultID": 0, "deathChange": 0, "hospitalChange": 9, "positivityRateChange": 0},
-	   "Require citizens to wear masks in all public places": 
-	    	{"resultID": 1, "deathChange": 0, "hospitalChange": 5, "positivityRateChange": 0}
+			{"resultID": 0, "deathChange": 0, "hospitalChange": 9, "positivityRateChange": 2},
+	   	 "Require citizens to wear masks in all public places": 
+	    		{"resultID": 1, "deathChange": 0, "hospitalChange": 5, "positivityRateChange": 0}
 	    },
 	}, // prompt 0
 
@@ -36,9 +36,9 @@ const promptData = [
 	"question": "Will you declare this virus an emergency?", 
 	"optionChoices": 
 		{"Declare the virus a national emergency and give more information to the public": 
-			{"resultID": 4, "deathChange": 500, "hospitalChange": 9, "positivityRateChange": 5},
+			{"resultID": 4, "deathChange": 500, "hospitalChange": 2, "positivityRateChange": 5},
 	     	 "Try to calm the country down and give more information to the public": 
-	     		{"resultID": 4, "deathChange": 700, "hospitalChange": 0, "positivityRateChange": 5}
+	     		{"resultID": 4, "deathChange": 700, "hospitalChange": 9, "positivityRateChange": 8}
 	    }
 	}, //prompt 3 feb
 
@@ -58,9 +58,9 @@ const promptData = [
 	"question": "Will you restrict public gatherings?", 
 	"optionChoices": 
 		{"Put a restriction on the number of people allowed in a public gathering": 
-			{"resultID": 6, "deathChange": 800, "hospitalChange": 9, "positivityRateChange": 0},
+			{"resultID": 6, "deathChange": 800, "hospitalChange": 9, "positivityRateChange": 7},
 	    	 "No restrictions on public gatherings": 
-	     		{"resultID": 6, "deathChange": 1400, "hospitalChange": 25, "positivityRateChange": 0},
+	     		{"resultID": 6, "deathChange": 1400, "hospitalChange": 25, "positivityRateChange": 10},
 	    	 "Order a complete lockdown of the country aside from essential services": 
 	     		{"resultID": 6, "deathChange": 100, "hospitalChange": 2, "positivityRateChange": 0}
 	    }
@@ -80,11 +80,11 @@ const promptData = [
 	"question": "How will schools operate?", 
 	"optionChoices": 
 		{"Move all students into a virtual environment to learn": 
-			{"resultID": 8, "deathChange": 500, "hospitalChange": 5, "positivityRateChange": 4},
+			{"resultID": 8, "deathChange": 500, "hospitalChange": 5, "positivityRateChange": -1},
 	     	 "Keep all schools open": 
-	     		{"resultID": 8, "deathChange": 950, "hospitalChange": 9, "positivityRateChange": 8},
+	     		{"resultID": 8, "deathChange": 950, "hospitalChange": 9, "positivityRateChange": 7},
 	   	 "Keep younger children in school buildings and move older children into a virtual environment": 
-	   	 	{"resultID": 8, "deathChange": 750, "hospitalChange": 7, "positivityRateChange": 6}
+	   	 	{"resultID": 8, "deathChange": 750, "hospitalChange": 7, "positivityRateChange": 5}
 	   	}
 	},
 
@@ -92,7 +92,7 @@ const promptData = [
 	"question": "Will you offer assistance to healthcare workers?", 
 	"optionChoices": 
 		{"Offer assistance by providing more medical supplies and add benefits for doctors": 
-			{"resultID": 9, "deathChange": 200, "hospitalChange": 9, "positivityRateChange": 2},
+			{"resultID": 9, "deathChange": 200, "hospitalChange": 9, "positivityRateChange": -2},
 	     	 "Ignore their needs": 
 	     		{"resultID": 9, "deathChange": 3000, "hospitalChange": 50, "positivityRateChange": 35}
 	    }
@@ -104,7 +104,7 @@ const promptData = [
 		{"Approve it": 
 			{"resultID": 10, "deathChange": 24, "hospitalChange": -7, "positivityRateChange": 0},
 	     	 "Reject it": 
-		 	{"resultID": 10, "deathChange": 406, "hospitalChange": 15, "positivityRateChange": 0}
+		 	{"resultID": 10, "deathChange": 406, "hospitalChange": 15, "positivityRateChange": 5}
 	 	}
 	}, //may
 
@@ -124,9 +124,9 @@ const promptData = [
 	"question": "How will you improve the contact tracing system?", 
 	"optionChoices": 
 		{"Update citizens on the extent to which the virus had spread on social media platforms": 
-			{"resultID": 12, "deathChange": 5, "hospitalChange": 5, "positivityRateChange": 2},
+			{"resultID": 12, "deathChange": 5, "hospitalChange": 5, "positivityRateChange": 0},
 	     	 "Develop an app to monitor potential cases": 
-	     		{"resultID": 12, "deathChange": 5, "hospitalChange": 5, "positivityRateChange": 2}
+	     		{"resultID": 12, "deathChange": 5, "hospitalChange": 5, "positivityRateChange": 0}
 	    	}
 	},
 
@@ -148,7 +148,7 @@ const promptData = [
 		{"Allow students back into the school building with mask and social distancing guidelines": 
 			{"resultID": 14, "deathChange": 80, "hospitalChange": 9, "positivityRateChange": 3},
 	     	 "Require students to learn in a virtual environment": 
-	     		{"resultID": 14, "deathChange": 50, "hospitalChange": 0, "positivityRateChange": 2}
+	     		{"resultID": 14, "deathChange": 50, "hospitalChange": 0, "positivityRateChange": 1}
 	    }
 	},
 
