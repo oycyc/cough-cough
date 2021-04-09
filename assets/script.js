@@ -298,6 +298,7 @@ function isTestingKitPrompt(promptNumber) {
 	if (promptNumber === 1) {
 		countingAnimation(deathsCounter, 1, 16, 1000);
 		deathData = 16;
+		populationData -= deathData;
 		countingAnimation(virusCounter, 1, 8, 1000); 
 		virusData = 8;
 		// function isn't needed after this runs, the 'Deaths' & 'Virus' counters are unlocked and can't be unlocked again
