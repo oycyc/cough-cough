@@ -1,2 +1,0 @@
-# Cough Cough uses the [Reveal.js](https://revealjs.com/) framework for the foundations.
-This folder stores necessary [Reveal.js](https://revealjs.com/) files. It serves to make this project a single page web app.

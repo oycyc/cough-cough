@@ -1,0 +1,143 @@
+<!-- Clue -->
+		<div class="clue">
+			<p class="show-clue"></p>
+			<div class="tooltip-container">
+				<img class="counter-icons clue-icon" src="assets/icons/clue.svg" alt="Clue Icon"/>
+				<p class="tooltip-getClue">Get Clue</p>
+			</div>
+ 		</div>
+		
+		
+/*********************************************
+  Clue
+ *********************************************/
+.clue {
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 1em;
+  z-index: 25;
+  display: none;
+} 
+
+.show-clue {
+  background-color: lightgray;
+  color: #333;
+  height: 7em;
+  width: 14em;
+  padding: 1em 1em;
+  border-radius: 5px;
+  display: none;
+  margin-bottom: 1em;
+}
+
+.tooltip-container {
+  position: relative;
+  height: 50px;
+  width: 50px;
+}
+
+/*positions the tooltip above the clue icon*/
+.tooltip-getClue {
+  display: block;
+  position: absolute;
+  padding: 1em;
+  border-radius: 4px;
+  background-color: #adb5b5;
+  color: #333;
+  bottom: 0;
+  left: 50%;
+  white-space: nowrap;
+  margin-bottom: 0.5em;
+  transform: scale(0); /*makes it invisible*/
+  transition: 
+    transform ease-out 150ms,
+    bottom ease-out 150ms;
+}
+
+/*when hovered over the img, style of tooltip-getClue shows*/
+.tooltip-container:hover .tooltip-getClue { 
+  transform: scale(1);
+  bottom: 100%;
+}
+
+/*RESPONSIVE*/
+@media only screen and (max-width: 1400px) {
+  .clue {
+    font-size: 1em;
+    letter-spacing: 0.04em;
+  }
+
+  .tooltip-container {
+    height: 40px;
+    width: 40px;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .tooltip-container {
+    height: 35px;
+    width: 35px;
+  }
+}
+
+@media only screen and (max-width: 360px) {
+  .tooltip-container {
+    height: 28px;
+    width: 28px;
+  }
+}
+
+/*********************************************
+  Clue
+ *********************************************/
+let showClue = document.querySelector(".show-clue");
+let getClue = document.querySelector(".clue");
+const clues = [
+	["This is for month 1", "This is for month 1 too"],
+	["This is for month 3", "This is for month 3 too and cici is the cutest of all <3"],
+ 	["Month 6", "3*2=6"]
+];
+
+function displayHintOption(displayValue) {
+	if (displayValue) {
+		getClue.style.display = "block"
+	} else {
+		getClue.style.display = "none"
+	}
+};
+
+// don't show for now
+// startTimeline.addEventListener("click", () => {
+// 	displayHintOption(true);
+// });
+
+function displayHint(displayValue) {
+	if (displayValue) {
+		showClue.style.display = "block"
+	} else {
+		showClue.style.display = "none"
+	}
+};
+
+
+
+getClue.addEventListener("click", () => {
+	//declaring variables
+	let currentMonth = document.querySelector(".current");
+	let currentMonthNumber = parseInt(currentMonth.innerText);
+	//find number month 
+ 	showClue.innerText = clues[currentMonthNumber - 1][1];
+ 	displayHint(true);
+ 	console.log("ouch!"); // u cute <3
+
+/* 	if (showClue.style.display = "none") {
+ 		showClue.style.display = "block";
+ 		console.log("hidden");
+ 	} 
+ 	if (showClue.style.display = "block") {
+ 		showClue.style.display = "none";
+ 		console.log("hey");
+ 	}*/
+ });
