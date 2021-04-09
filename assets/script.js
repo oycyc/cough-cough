@@ -22,65 +22,8 @@ Reveal.initialize({
 
 
 /*********************************************
-  MOBILE HAMBURGER MENU
- *********************************************/
-const hamburger = document.querySelector(".hamburger-menu");
-const navLinks = document.querySelector(".mobile-nav-items");
-const links = document.querySelectorAll(".mobile-nav-items li");
-/* when hamburger button clicked, toggle the .open class
-   when hamburger menu opened, each link will toggle .fade class which adds the ease in animation*/
-hamburger.addEventListener("click", () => {
-  navLinks.classList.toggle("open");
-  links.forEach(link => {
-    link.classList.toggle("fade");
-  });
-});
-
-/*********************************************
-  MODALS
- *********************************************/
-const openModalButtons = document.querySelectorAll("[data-modal-target]");
-const closeModalButtons = document.querySelectorAll("[data-close-button]");
-const overlay = document.getElementById("overlay");
-
-openModalButtons.forEach(item => {
-	item.addEventListener("click", () => {
-		const modal = document.querySelector(item.dataset.modalTarget);
-		openModal(modal);
-	})
-});
-
-closeModalButtons.forEach(item => {
-	item.addEventListener("click", () => {
-		const modal = item.closest(".modal");
-		closeModal(modal);
-	})
-});
-
-overlay.addEventListener("click", () => {
-	const modals = document.querySelectorAll(".modal.active");
-	modals.forEach(modal => {
-		closeModal(modal);
-	})
-});
-
-function openModal(modal) {
-	if (modal == null) return;
-	modal.classList.add("active");
-	overlay.classList.add("active");
-};
-
-function closeModal(modal) {
-	if (modal == null) return;
-	modal.classList.remove("active");
-	overlay.classList.remove("active");
-};
-
-
-/*********************************************
   testing stuff
  *********************************************/
-let increaseButton = document.getElementById("increase-test");
 function nextSlide() {
 	Reveal.next();
 	console.log("Reveal next, onto: " + Reveal.getSlidePastCount());
@@ -91,7 +34,7 @@ document.querySelectorAll(".nextPrompt").forEach(item => {
 });
 
 /*********************************************
-  General Utility
+  Utility Functions
  *********************************************/
 function commaFormat(value) {
 	return value.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,'); // regex to put commas into numbers
@@ -105,7 +48,7 @@ function toggleVisibility(element) { element.classList.toggle("temp-no-display")
 
 function removeAllNoDisplay() { // we can use this for testing, call function in console
 	const hiddenElements = document.getElementsByClassName("temp-no-display");
-	while (hiddenElements.length)  // list api method is live and changes are reflected automatically
+	while (hiddenElements.length)  // list api method is live so changes are reflected automatically
 		hiddenElements[0].classList.remove("temp-no-display");
 };
 
@@ -143,12 +86,13 @@ function countingAnimation(element, start, end, duration) {
 /*********************************************
   Counters
  *********************************************/
+// DOM elements
 const counterParentDiv = document.getElementById("counters");
 const populationCounter = document.getElementById("population-counter");
 const deathsCounter = document.getElementById("deaths-counter");
 const hospitalCounter = document.getElementById("hospital-capacity");
 const virusCounter = document.getElementById("virus-positivity");
-
+// data itself
 let populationData = 1000000;
 let deathData = "?"; // stat not unlocked in the beginning of the game
 let hospitalData = 8;
@@ -158,10 +102,6 @@ populationCounter.textContent = commaFormat(populationData); // in case animatio
 deathsCounter.textContent = deathData;
 hospitalCounter.textContent = hospitalData;
 virusCounter.textContent = virusData;
-
-function newMonthCounters() { // simluate real world, natural data movement
-
-}
 
 function changeCounters(death, hospital, positive) {
 	if (deathData === "?" || virusData === "?") { 
@@ -180,10 +120,6 @@ function changeCounters(death, hospital, positive) {
 	};
 };
 
-// const checkLosing = () => {
-// 	if (deathData <= 10000 || hospitalData >= 100 || virusData >= 50) return true;
-// } 
-
 function checkLosing() {
 	if (deathData <= 10000) {
 		losingScreen("death");
@@ -197,33 +133,70 @@ function checkLosing() {
 	}
 };
 
+function newMonthCounters() { // simluate real world, natural data movement
 
+}
 
 /*********************************************
-  Loading Prompts
+  Timeline
  *********************************************/
- let monthQuestionAnswered = 0;
- let totalQuestionAnswered = 0;
+const startTimeline = document.getElementById("startTimeline");
+const month_1 = document.getElementById("month-1");
+const month_meter = document.getElementById("month-meter");
+const num_month = document.getElementById("num-month");
+ 
 
-const loadInPrompt = element => element.classList.add("prompt-load-animation");
-const loadOutPrompt = element => {
-	element.classList.add("prompt-exit-animation");
+//when player clicks "accept the challenge," adds  a class of current to the first month and hide mute button
+startTimeline.addEventListener("click", () => {
+	month_1.classList.add("current");
+	displayMuteButton(false);
+	removeAllNoDisplay(); // show everything hidden (counter, month, nav)
+	countingAnimation(populationCounter, 0, 1000000, 1000);
+	countingAnimation(hospitalCounter, 0, 8, 750);
+	startLoadingEventListeners();
+	startGame(); // organize and make all of this into one single function later?
+// remove event listener after 
+});
+
+function changeMonthText() {
+	if (parseInt(num_month.innerText) < 12) {
+		num_month.innerText = parseInt(num_month.innerText) + 1;
+ 	}
+}
+
+function removeAddClass() {
+	let month_x = document.querySelector(".current");
+	let nextMonthNumber = parseInt(month_x.innerText) + 1;
+	let nextMonth = "month-" + nextMonthNumber;
+	let month_y = document.getElementById(nextMonth);
+
+	month_x.classList.remove("current");
+	month_x.classList.add("previous");
+	month_y.classList.add("current");
 };
 
+/*********************************************
+  Creating New Prompts & Options
+*********************************************/
+let monthQuestionAnswered = 0;
+let totalQuestionAnswered = 0;
+
+const loadInPrompt = element => element.classList.add("prompt-load-animation");
+const loadOutPrompt = element => element.classList.add("prompt-exit-animation");
+
 function insertNewPrompt(promptNumber) { // promptNumber corresponds to the element index of the promptData array
-	this.promptNumber = promptNumber;
+	this.promptNumber = promptNumber; // so child functions can access it too
 	const newPromptInfo = promptData[promptNumber];
 
     const newSection = document.createElement("section"); // create entire new section for new screen
     newSection.classList.add("center", "future");
 
-    this.newDiv = document.createElement("div"); // container for everything on the new screen
+    this.newDiv = document.createElement("div"); // container for everything on the new screen, this stmt for child function eventListener loading out
     if (Object.keys(newPromptInfo["optionChoices"]).length >= 3) {
     	newDiv.classList.add("margin-top-more"); // extra spacing so it doesn't hit counters for mobile
     } else {
     	newDiv.classList.add("margin-top");
-    }
-    newDiv.dataset.promptNum = promptNumber;
+    };
 
     const promptDiv = document.createElement("div"); // div for the actual prompt & add the question from array
     promptDiv.classList.add("prompt");
@@ -237,12 +210,11 @@ function insertNewPrompt(promptNumber) { // promptNumber corresponds to the elem
 
     newDiv.appendChild(promptDiv);
     newDiv.appendChild(questionDiv);
-    newDiv.append(optionDiv);
+    newDiv.appendChild(optionDiv);
     newSection.appendChild(newDiv);
 
     Reveal.getSlidesElement().append(newSection);
     Reveal.sync();
-
 };
 
 function createOptions(optionsInfo) {
@@ -257,30 +229,27 @@ function createOptions(optionsInfo) {
 			parentOption.classList.add("two-option-section", "disable-selection");
 			optionClassNames = ["option"];
 			twoOrFourOptions();
-			console.log("TWOOOO options");
 			break;
 		case 3:
 			parentOption.classList.add("three-option-section", "disable-selection");
 			optionClassNames = ["option", "three-option"];
 			threeOptions();
-			console.log("THREEEE options");
 			break;
 		case 4:
 			parentOption.classList.add("two-option-section", "four-option-section", "disable-selection");
 			optionClassNames = ["option", "four-option"];
 			twoOrFourOptions();
-			console.log("FOURRRRRRR options");
 			break;
 		default:
 			console.log("!!! Option amount is not btwn. 2-4 !!!");
 	};
 
-	function twoOrFourOptions() { // NEED MORE SPACING ON ROW S
+	function twoOrFourOptions() { // append the option elements
 		let optionsList = loopAllOptions();
 		optionsList.forEach(innerOptionDiv => {parentOption.appendChild(innerOptionDiv)}); // append every option created above to parent div
 	};
 
-	function threeOptions() { // need another function bc element styling different
+	function threeOptions() { // diff. function from above bc element styling different
 		let optionsList = loopAllOptions();
 		// instead of .forEach loop, manually add them in bc it needs to be in different row divs
 		const row1 = document.createElement("div");
@@ -296,47 +265,50 @@ function createOptions(optionsInfo) {
 		parentOption.appendChild(row2);
 	};
 
-   	function loopAllOptions() {
+   	function loopAllOptions() { // creates the actual option elements + event listeners needed
    		const inputPromptNumber = this.promptNumber;
-   		let allOptions = []
    		const divLoadOut = this.newDiv;
-		Object.keys(optionsInfo).forEach(option => { // loop through to add values
+   		let allOptions = []
+
+		Object.keys(optionsInfo).forEach(option => { // loop all options to add values
 			let optionIndex = allOptions.push(document.createElement("div")) - 1; // push to the list, which returns count of list, index will be -1
 			optionClassNames.forEach(className => {allOptions[optionIndex].classList.add(className)}); // loops thru all classes needed & add
 			allOptions[optionIndex].title = option;
 			allOptions[optionIndex].appendChild(document.createTextNode(option)); // insert the actual text
 			// add event listeners
-			allOptions[optionIndex].addEventListener("click", function optionClicked() {
+			allOptions[optionIndex].addEventListener("click", function optionClicked() { // when they choose an option:
+				// counters to keep track
 				monthQuestionAnswered++;
 				totalQuestionAnswered++;
+				// load out prompt, change the counter, change the result circle, then load result circle
 				loadOutPrompt(divLoadOut);
 				changeCounters(optionsInfo[option]["deathChange"], optionsInfo[option]["hospitalChange"], optionsInfo[option]["positivityRateChange"]);
 				setResultBody(resultData[optionsInfo[option]["resultID"]]);
 				loadInResult();
 				allOptions[optionIndex].removeEventListener("click", optionClicked);
-				isTestingKitPrompt(inputPromptNumber);
+				isTestingKitPrompt(inputPromptNumber); // individual case, checks if it's the prompt to unlock Deaths & Virus counters
 			});
 		});
-		return allOptions;
-   	}
-
-   	return parentOption;
+		return allOptions; // returns all the individual options for parent function to append into parent element
+   	};
+   	return parentOption; // returns the parent element w/ all the individual options appended to it
 };
 
 function isTestingKitPrompt(promptNumber) {
 	if (promptNumber === 1) {
 		countingAnimation(deathsCounter, 1, 16, 1000);
 		countingAnimation(virusCounter, 1, 8, 1000); 
-		isTestingKitPrompt = function() {}; // remove processes bc not needed anymore but can't use garbage collection bc function still being called
-	}
-}
+		// function isn't needed after this runs, the 'Deaths' & 'Virus' counters are unlocked and can't be unlocked again
+		// but the function will keep getting called so garbage collection can't be used, hence redefine function to do nothing
+		isTestingKitPrompt = function() {};
+	};
+};
 
-function startLoadingEventListeners() {
+function startLoadingEventListeners() { // every time user goes to new section, add the loading in animation
 	Reveal.on("slidechanged", loadAnimations);
 };
 
 function loadAnimations() {
-	console.log("new section");
 	let promptToBeLoaded = document.querySelector("div.slides > section.center.present > div"); // selects the present loading animation div
 	loadInPrompt(promptToBeLoaded);
 };
@@ -348,20 +320,18 @@ const resultCircle = document.getElementById("result");
 const resultBody = document.querySelector("#result > span.result-text");
 const resultContinue = document.querySelector("#result > div");
 
-const loadInResult = () => {
-	// let clueButton = document.querySelector(".clue");
-	// clueButton.classList.add("temp-no-display");
+const loadInResult = () => { // remove old animation and make it appear with new animation, eventListener for when Continue btn clicked
 	resultCircle.classList.remove("no-display");
 	resultCircle.classList.remove("result-exit-animation");
 	resultCircle.classList.add("result-load-animation");
 	resultContinue.addEventListener("click", continueAfterResult);
 };
-const exitOutResult = () => {
+const exitOutResult = () => { // add exit animation, then when animation ends, make it disappear
 	resultCircle.classList.add("result-exit-animation");
 	resultCircle.addEventListener("animationend", resultDisplayNone);
 	resultCircle.addEventListener("webkitAnimationEnd", resultDisplayNone);
 };
-const resultDisplayNone = () => {
+const resultDisplayNone = () => { // makes it disappear and remove the eventListener reduce memory usage
 	resultCircle.classList.add("no-display");
 	removeResultEvent();
 };
@@ -372,30 +342,153 @@ const removeResultEvent = () => {
 
 const setResultBody = info => {resultBody.textContent = info};
 
-function continueAfterResult() {
+function continueAfterResult() { // when they click Continue button:
 	exitOutResult();
-	if (checkLosing()) return;
+	if (checkLosing()) return; // if lost, run checkLosing function which directs to losing screen and stop the THIS function
+	
 	resultCircle.classList.remove("result-load-animation");
 	// check if last prompt of month bc then u win
+
 	let monthScreenElements;
-	if (lastPromptOfMonth()) {
+	if (lastPromptOfMonth()) { // checks to see if it's the last prompt of the month, if so, there's no prompt left so do other commands
 		monthScreenElements = newMonthScreen(currentMonthName);
-		monthScreenElements[3].classList.remove("no-animations");
+		monthScreenElements[3].classList.remove("no-animations"); // individual case, it's a div and an earlier eventListener loads every prompt on view to create an animation, but we want a diff. animation
 		monthScreenElements.forEach(element => element.classList.add("rotateIn"));
-		changeData();
-	}
+		changeMonthData();
+	};
+
 	Reveal.next(); 
 	resultContinue.removeEventListener("click", continueAfterResult);
 };
 
 const lastPromptOfMonth = () => monthQuestionAnswered >= monthlyQuestions[currentMonthName]["questions"].length;
 
-function changeData() {
+function changeMonthData() {
 	monthQuestionAnswered = 0;
 	currentMonthName = allMonthNames[parseInt(document.querySelector(".current").innerText, 10)];
-}
+};
+
+
+
 /*********************************************
-  Nation Input & More Info Screen
+  Monthing 
+ *********************************************/
+const allMonthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+let currentMonthName = "January";
+
+function startGame() { // loads January prompts
+	insertNewPrompt(0);
+ 	insertNewPrompt(1);
+ 	insertNewPrompt(2);
+ 	Reveal.next();
+};
+
+// function newMonth(monthName) { // creates new prompt for the month
+//  	let indexesOfPrompts = monthlyQuestions[monthName]["questions"];
+//  	if (monthlyQuestions[monthName]["randomizable"]) indexesOfPrompts.sort(randomizeList); // randomize prompts for certain months
+//  	indexesOfPrompts.forEach(index => insertNewPrompt(index));
+//  	questionsAnswered = 0;
+// };
+// when there's more prompts, some months' prompts can be randomized
+
+function newMonthScreen(monthName) {
+	if (monthName === "December") { 
+	// use the condition in the earlier function, needs to be detected earlier
+	// if it's december, no more months left, they didn't lose, so end game screen
+	} else {
+		// creates the new month screen
+		let nextMonthName = allMonthNames[parseInt(document.querySelector(".current").textContent, 10)];
+
+		const newSection = document.createElement("section");
+		newSection.classList.add("center", "future", "month-screen");
+
+		const h3Title = document.createElement("h3");
+		h3Title.classList.add("new-month-title");
+		h3Title.textContent = "New Month";
+
+		const h6Announcement = document.createElement("h6");
+		h6Announcement.textContent = "You made it through " + monthName + "!";
+
+		const pText = document.createElement("p");
+		pText.classList.add("new-month-text");
+		pText.textContent = "So far, you have made " + totalQuestionAnswered + " decisions, and the health of your country is " + countryHealthStatus();
+
+		const newMonthContinue = document.createElement("div");
+		newMonthContinue.classList.add("button-slide", "button-sliding-animation", "new-month-button", "no-animations");
+		newMonthContinue.textContent = "Continue";
+		newMonthContinue.addEventListener("click", function createNextMonthPrompts() { // after they click continue button:
+			changeMonthText(); // change the # in "Month #"
+			removeAddClass(); // remove where the active is at in month timeline
+			monthlyQuestions[nextMonthName]["questions"].forEach(questionIndex => { // returns index of questions
+				insertNewPrompt(questionIndex);
+			});
+			newMonthContinue.removeEventListener("click", createNextMonthPrompts);
+			console.log("new prompts created for month of " + nextMonthName);
+			// exits out the new month screen and when it ends, go next section which should be the prompts created
+			[h3Title, h6Announcement, pText, newMonthContinue].forEach(element => {
+				element.classList.add("rotateOut");
+			});
+			h3Title.addEventListener("animationend", () => Reveal.next());
+			h3Title.addEventListener("webkitAnimationEnd", () => Reveal.next());
+		});
+		// finish creating the new month screen
+		newSection.appendChild(h3Title);
+		newSection.appendChild(h6Announcement);
+		newSection.appendChild(pText);
+		newSection.appendChild(newMonthContinue);
+
+		Reveal.getSlidesElement().append(newSection);
+		Reveal.sync();
+		return newSection.children; // return all elements for load in animation
+	};
+};
+
+function countryHealthStatus() { // text for "the health of your country is..."
+	if (virusData <= 15) {
+		return "looking phenomenal!";
+	} else if (virusData <= 35) {
+		return "looking adequate.";
+	} else {
+		return "not doing so well...";
+	}
+}
+
+/*********************************************
+  Losing
+ *********************************************/
+function losingScreen(reason) {
+	// html structure is already at section 1, so just change the text to the reason for losing
+	// then go there and load the animation
+	const lostReasonTitle = document.getElementById("reason-lost");
+	const lostReasonText = document.getElementById("reason");
+	switch(reason) {
+		case "death":
+			lostReasonTitle.textContent = "Your death count exceeded 10,000";
+			lostReasonText.textContent = "That's one in every hundred people of your population dying!";
+			break;
+		case "hospital":
+			lostReasonTitle.textContent = "Your hospital capacity exceeded 100%";
+			lostReasonText.textContent = "Your hospitals are overfilled, meaning that the sickest patients who are about to die has nowhere to go";
+			break;
+		case "virus":
+			lostReasonTitle.textContent = "The virus positivity rate exceeded 50%";
+			lostReasonText.textContent = "That's one in two people of your population contracting the virus!";
+			break;
+	};
+	Reveal.removeEventListener("slidechanged", loadAnimations); // remove the eventListener that adds an animation every time to add a different animation
+	Reveal.slide(10);
+	document.getElementById("losing-screen").classList.add("heartBeatAnimation");
+};
+
+
+
+
+
+
+
+
+/*********************************************
+  Nation Name Input & More Info Screen
  *********************************************/
 // constants for the functions about inserting new nation name
 const submitName = document.getElementById("submitName");
@@ -478,162 +571,56 @@ function checkInput() {
 };
 
 /*********************************************
-  Timeline
+  MOBILE HAMBURGER MENU
  *********************************************/
-const startTimeline = document.getElementById("startTimeline");
-const month_1 = document.getElementById("month-1");
-const month_meter = document.getElementById("month-meter");
-const num_month = document.getElementById("num-month");
- 
-
-//when player clicks "accept the challenge," adds a class of current to the first month and hide mute button
-startTimeline.addEventListener("click", () => {
-	month_1.classList.add("current");
-	displayMuteButton(false);
-	removeAllNoDisplay(); // show everything hidden (counter, month, nav)
-	countingAnimation(populationCounter, 0, 1000000, 1000);
-	countingAnimation(hospitalCounter, 0, 8, 750);
-	startLoadingEventListeners();
-	startGame(); // organize and make all of this into one single function later?
-// remove event listener after 
+const hamburger = document.querySelector(".hamburger-menu");
+const navLinks = document.querySelector(".mobile-nav-items");
+const links = document.querySelectorAll(".mobile-nav-items li");
+/* when hamburger button clicked, toggle the .open class
+   when hamburger menu opened, each link will toggle .fade class which adds the ease in animation*/
+hamburger.addEventListener("click", () => {
+  navLinks.classList.toggle("open");
+  links.forEach(link => {
+    link.classList.toggle("fade");
+  });
 });
 
-// align w option choices
-//replace increaseButton for another button that then changes the month number
-// increaseButton.addEventListener("click", () => {
-// 	if (parseInt(num_month.innerText) < 12) {
-// 		num_month.innerText = parseInt(num_month.innerText) + 1;
-// 	}
-// });
-// taken from above ^^
-function changeMonthText() {
-	if (parseInt(num_month.innerText) < 12) {
-		num_month.innerText = parseInt(num_month.innerText) + 1;
- 	}
-}
-
-function removeAddClass() {
-	let month_x = document.querySelector(".current");
-	let nextMonthNumber = parseInt(month_x.innerText) + 1;
-	let nextMonth = "month-" + nextMonthNumber;
-	let month_y = document.getElementById(nextMonth);
-
-	month_x.classList.remove("current");
-	month_x.classList.add("previous");
-	month_y.classList.add("current");
-};
-
-//change button later
-// increaseButton.addEventListener("click", () => {
-// 	removeAddClass()
-// });
-
 /*********************************************
-  Monthing 
+  MODALS
  *********************************************/
-const allMonthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
- // let currentMonthName = allMonthsNames[parseInt(document.querySelector(".current").innerText, 10) - 1];
-let currentMonthName = "January";
+const openModalButtons = document.querySelectorAll("[data-modal-target]");
+const closeModalButtons = document.querySelectorAll("[data-close-button]");
+const overlay = document.getElementById("overlay");
 
-function startGame() { // loads January prompts
-	insertNewPrompt(0);
- 	insertNewPrompt(1);
+openModalButtons.forEach(item => {
+	item.addEventListener("click", () => {
+		const modal = document.querySelector(item.dataset.modalTarget);
+		openModal(modal);
+	})
+});
 
- 	insertNewPrompt(2);
- 	Reveal.next();
+closeModalButtons.forEach(item => {
+	item.addEventListener("click", () => {
+		const modal = item.closest(".modal");
+		closeModal(modal);
+	})
+});
+
+overlay.addEventListener("click", () => {
+	const modals = document.querySelectorAll(".modal.active");
+	modals.forEach(modal => {
+		closeModal(modal);
+	})
+});
+
+function openModal(modal) {
+	if (modal == null) return;
+	modal.classList.add("active");
+	overlay.classList.add("active");
 };
 
-// function newMonth(monthName) { // creates new prompt for the month
-//  	let indexesOfPrompts = monthlyQuestions[monthName]["questions"];
-//  	if (monthlyQuestions[monthName]["randomizable"]) indexesOfPrompts.sort(randomizeList); // randomize prompts for certain months
-//  	indexesOfPrompts.forEach(index => insertNewPrompt(index));
-//  	questionsAnswered = 0;
-// };
-
-function newMonthScreen(monthName) {
-	if (monthName === "December") { 
-	// if it's december, no more months left, they didn't lose, so end game screen
-	} else {
-		let nextMonthName = allMonthNames[parseInt(document.querySelector(".current").textContent, 10)];
-		// add code here to change the month timeline and meter 
-
-
-		const newSection = document.createElement("section");
-		newSection.classList.add("center", "future", "month-screen");
-
-		const h3Title = document.createElement("h3");
-		h3Title.classList.add("new-month-title");
-		h3Title.textContent = "New Month";
-
-		const h6Announcement = document.createElement("h6");
-		h6Announcement.textContent = "You made it through " + monthName + "!";
-
-		const pText = document.createElement("p");
-		pText.classList.add("new-month-text");
-		pText.textContent = "So far, you have made " + totalQuestionAnswered + " decisions, and the health of your country is " + countryHealthStatus();
-
-		const newMonthContinue = document.createElement("div");
-		newMonthContinue.classList.add("button-slide", "button-sliding-animation", "new-month-button", "no-animations");
-		newMonthContinue.textContent = "Continue";
-		newMonthContinue.addEventListener("click", function createNextMonthPrompts() {
-			changeMonthText();
-			removeAddClass();
-			monthlyQuestions[nextMonthName]["questions"].forEach(questionIndex => { // returns index of questions
-				insertNewPrompt(questionIndex);
-			});
-			newMonthContinue.removeEventListener("click", createNextMonthPrompts);
-			console.log("new prompts created for month of " + nextMonthName);
-			[h3Title, h6Announcement, pText, newMonthContinue].forEach(element => {
-				element.classList.add("rotateOut");
-			});
-			h3Title.addEventListener("animationend", () => Reveal.next());
-			h3Title.addEventListener("webkitAnimationEnd", () => Reveal.next());
-		});
-
-		newSection.appendChild(h3Title);
-		newSection.appendChild(h6Announcement);
-		newSection.appendChild(pText);
-		newSection.appendChild(newMonthContinue);
-
-		Reveal.getSlidesElement().append(newSection);
-		Reveal.sync();
-		return newSection.children; // return all elements for load in animation
-	};
+function closeModal(modal) {
+	if (modal == null) return;
+	modal.classList.remove("active");
+	overlay.classList.remove("active");
 };
-
-function countryHealthStatus() {
-	if (virusData <= 15) {
-		return "looking phenomenal!";
-	} else if (virusData <= 35) {
-		return "looking adequate.";
-	} else {
-		return "not doing so well...";
-	}
-}
-
-/*********************************************
-  Losing
- *********************************************/
-function losingScreen(reason) {
-	const lostReasonTitle = document.getElementById("reason-lost");
-	const lostReasonText = document.getElementById("reason");
-	switch(reason) {
-		case "death":
-			lostReasonTitle.textContent = "Your death count exceeded 10,000";
-			lostReasonText.textContent = "That's one in every hundred people of your population dying!";
-			break;
-		case "hospital":
-			lostReasonTitle.textContent = "Your hospital capacity exceeded 100%";
-			lostReasonText.textContent = "Your hospitals are overfilled, meaning that the sickest patients who are about to die has nowhere to go";
-			break;
-		case "virus":
-			lostReasonTitle.textContent = "The virus positivity rate exceeded 50%";
-			lostReasonText.textContent = "That's one in two people of your population contracting the virus!";
-			break;
-	};
-	Reveal.removeEventListener("slidechanged", loadAnimations);
-	Reveal.slide(10);
-	document.getElementById("losing-screen").classList.add("heartBeatAnimation");
-	
-};
-

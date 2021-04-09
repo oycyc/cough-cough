@@ -8,7 +8,6 @@
 	- @media orientation check
 - darken red color/more bold as deaths/virus positivity increases
 - in the intro about page explain how it's teaching education related
-- logo too much boing boing change a little
 - change losing screen selectors to ids
 - winning screen continueAfterResult() check there
 	- add cute gif https://giphy.com/gifs/molangofficialpage-social-distancing-stay-safe-keep-kaIJGG8lNC3u5DM3tg
@@ -16,10 +15,10 @@
 - month number moving animation
 - first text animations add skip button
 - contact with netlify
-- clean javascript code
 - add cool icons?
 -https://www.videezy.com/backgrounds/50703-virus-cells-flowing-viral-disease-outbreak-concept
 - more row gap space for mobile options
+- check to make sure no eventlistener that is not needed is not removed to reduce memory
 
 ## images 
 - new background animation pic ideas? :
@@ -27,9 +26,6 @@
 	- https://www.freepik.com/collection/coronavirus-background/691268
 - https://www.vecteezy.com/vector-art/1975718-blue-virus-theme-background
 - #00bc27 #113254
-
-## random ideas
-- shake stuff https://www.w3schools.com/howto/howto_css_shake_image.asp
 - https://www.canva.com/colors/color-palettes/summer-splash/
 
 ## bugs 
