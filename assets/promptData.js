@@ -180,7 +180,7 @@ const promptData = [
 		{"Approve and administer the vaccine to your citizens": 
 			{"resultID": 18, "deathChange": 0, "hospitalChange": 0, "positivityRateChange": 0},
 		 "Refuse to administer the vaccine to your citizens":
-		 	{"resultID": 18, "deathChange": 2000, "hospitalChange": 25, "positivityRateChange": 20}
+		 	{"resultID": 19, "deathChange": 2000, "hospitalChange": 25, "positivityRateChange": 35}
 		}
 	},
 ];
@@ -225,7 +225,9 @@ const resultData = [
 	//17
 	"Loosening restrictions while there is no major immunity and the virus is still prominent is certainly not a good idea. In the United States, the CDC recommended families not travel for Thanksgiving & the December holiday season, yet still, for Thanksgiving alone, there were 10 million people that traveled by air. In just two weeks following, cases and hospitalizations increased by about 20%, and the deaths jumped 39%.",
 	//18
-	"Administering the vaccine is a great step towards preventing the transmission of disease and decreasing the death count in your nation! However, your nation's citizens will still need to do their part and practice safety measures such as wearing masks to contain the disease."
+	"Administering the vaccine is a great step towards preventing the transmission of disease and decreasing the death count in your nation! However, your nation's citizens will still need to do their part and practice safety measures such as wearing masks to contain the disease.",
+	//19
+	"The refusal to approve and administer vaccines to your citizens is detrimental to the health of your nation. Without vaccinations, researchers warn that it will be difficult for the nation to reach herd immunity, a point at which spread is unlikely because enough people are immune to the disease. To reach herd immunity without vaccines would mean higher infection rates and deaths."
 ];
 
 
