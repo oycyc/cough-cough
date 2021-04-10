@@ -11,7 +11,6 @@ Reveal.initialize({
 	transition: 'none',
 	backgroundTransition: 'none',
 	transitionSpeed: 'slow',
-	center: false,
 	// responsive
 	width: "85%",
 	height: "85%",
@@ -638,3 +637,9 @@ function closeModal(modal) {
 	modal.classList.remove("active");
 	overlay.classList.remove("active");
 };
+
+
+Reveal.on("ready", event => {
+	document.querySelector(".landing-page").classList.add("heartBeatAnimation");
+
+})

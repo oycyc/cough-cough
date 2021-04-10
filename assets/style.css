@@ -25,7 +25,7 @@
   box-sizing: border-box;
 }
 
-.full-view { /* For title landing page, easier to position elements. */
+.full-view { /* Easier to position elements. */
   height:100%;
   width:100%;  
 }
@@ -36,22 +36,6 @@
   }
 }
 
-/*.title {
-  margin: 5% !important;
-}*/
-
-.title { /*!important is needed bc theme sheet overrides*/
-  font-family: 'Chalkdust', Georgia, serif !important;
-  color: #007a00 !important;
-}
-
-.landing-page {
-  display: grid !important;
-  grid-template-columns: auto;
-  grid-template-rows: auto auto;
-  justify-content: center;
-  align-items: center;
-}
 
 .temp-no-display {display: none !important;}
 
@@ -74,25 +58,6 @@
 .no-animations {
   animation: none !important;
   -webkit-animation: none !important;
-}
-
-/*********************************************
-  Virus Sprite Animation
- *********************************************/
-.spriteAnimation {
-  animation: MoveUpDown 10s linear infinite;
-  position: absolute;
-  width: 10%;
-  height: 10%;
-}
-
-@keyframes MoveUpDown {
-  0%, 100% {
-    left: 0%;
-  }
-  50% {
-    left: 50%;
-  }
 }
 
 /*********************************************
@@ -169,7 +134,51 @@
     top: 100%;
   }
 }
+/*********************************************
+  Landing Screen
+ *********************************************/
+#title { /*!important is needed bc theme sheet overrides*/
+  font-family: 'Chalkdust', Georgia, serif;
+  color: #007a00;
+  text-shadow: 0px -4px 10px rgb(255 255 255 / 30%), 0px 3px 0px #7ac68a, 0px 14px 10px rgb(0 0 0 / 15%), 0px 24px 2px rgb(0 0 0 / 10%), 0px 34px 30px rgb(0 0 0 / 10%);
+}
 
+.landing-page {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  row-gap: 0.5em;
+}
+
+#landing-text {
+  margin: 0 20%;
+  font-size: 0.8em;
+  color: #0f3153;
+}
+
+#landingPageContinue {
+  margin: 0 37.5%;
+  border-radius: 10px;
+}
+
+@media only screen and (max-width: 600px) {
+  #title {
+    font-size: 1.5em;
+  }
+
+  .landing-page {
+    row-gap: 0;
+  }
+
+  #landing-text {
+    margin: 0 0 10px 0;
+    font-size: 0.5em;
+  }
+
+  #landingPageContinue {
+    margin: 0 20%;
+  }
+}
 
 /*********************************************
   Navigation Bar
@@ -1395,4 +1404,54 @@ div.prompt > h6 { /* every prompt inside the .prompt div container */
 .jackInTheBox {
   animation-name: jackInTheBox;
   animation-duration: 2s;
+}
+
+
+
+
+
+
+@keyframes animate {
+  0%{
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+    border-radius: 0;
+  }
+
+  100%{
+    transform: translateY(-1000px) rotate(720deg);
+    opacity: 0;
+    border-radius: 50%;
+  }
+}
+
+#animation {
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  z-index: 30;
+}
+
+#testing {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+#testing li {
+  position: absolute; 
+  display: block;
+  list-style: none;
+  /* width: 20px; */
+  /* height: 20px; */
+  /* background: rgba(255, 255, 255, 0.2); */
+  animation: animate 25s linear infinite;
+  bottom: -150px;
+  left: 25%;
+  width: 25px;
+  height: 25px;
+  animation-delay: 0s;
 }
