@@ -389,7 +389,7 @@
   text-align: center;
 }
 /**/
-#contact {
+/*#contact {
   height: 50%;
   background: white;
   display: flex;
@@ -431,7 +431,7 @@ form .data textarea {
 form .data input:focus{
   border-color: #3498db;
   border-bottom-width: 2px;
-}
+}*/
 
 
 /**/

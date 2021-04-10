@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Cough Cough - Contact</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+
+input[type=text], select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical;
+}
+
+input[type=submit] {
+    background-color: #00bfff;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type=submit]:hover {
+    background-color: #1e90ff;
+}
+
+.container {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+}
+</style>
+</head>
+<body>
+
+<h2>Cough Cough Contact</h2>
+<h4>If you want to contact us for any reason, feel free to fill out the form below!</h4>
+
+<div class="container">
+  <form name="contactForm" method="POST" data-netlify="true">
+    <label for="fname">Your Email</label>
+    <input type="text" id="fname" name="firstname" placeholder="Your email..">
+
+    <label for="lname">Your Name</label>
+    <input type="text" id="lname" name="lastname" placeholder="Your name..">
+    <label for="message">Message</label>
+    <textarea id="message" name="message" placeholder="Write something.." style="height:200px"></textarea>
+
+    <input type="submit" value="Send">
+  </form>
+</div>
+
+</body>
+</html>
