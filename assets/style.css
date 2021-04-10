@@ -96,6 +96,18 @@
 }
 
 /*********************************************
+  Intro Animations
+*********************************************/
+.intro-animation-text {
+  margin: 0 20% !important;
+}
+
+@media only screen and (max-width: 900px) {
+  .intro-animation-text {
+    margin: 0 !important;
+  }
+}
+/*********************************************
   Button Styling
 *********************************************/
 .button-slide {
