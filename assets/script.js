@@ -21,21 +21,36 @@ Reveal.initialize({
 
 
 /*********************************************
-  testing stuff
+  Landing Screen
  *********************************************/
-function nextSlide() {
-	Reveal.next();
-	console.log("Reveal next, onto: " + Reveal.getSlidePastCount());
-}
+const landingContinueBtn = document.getElementById("landingPageContinue");
+// instead of animating whole parent div, animate individual element inside parent div 
+// so center positioning doesn't mess up after the animation
+const landingScreenEls = [document.getElementById("title"), document.getElementById("landing-text"), landingContinueBtn];
 
-document.querySelectorAll(".nextPrompt").forEach(item => {
-	item.addEventListener("click", event => nextSlide());
+landingContinueBtn.addEventListener("click", function landingContinue() {
+	landingScreenEls.forEach(element => element.classList.remove("zoomInDown"));
+	landingScreenEls.forEach(element => element.classList.add("zoomOut"));
+	document.getElementById("virus-background-animation").classList.add("prompt-exit-animation");
+
+	landingContinueBtn.addEventListener("animationend", function animationEventListener() {
+		Reveal.next();
+		toggleVisibility(document.getElementById("navigation"));
+		landingContinueBtn.removeEventListener("click", landingContinue);
+		landingContinueBtn.removeEventListener("click", animationEventListener);
+	});
+
+	landingContinueBtn.addEventListener("webkitAnimationEnd", function animationEventListener() {
+		Reveal.next();
+		toggleVisibility(document.getElementById("navigation"));
+		landingContinueBtn.removeEventListener("click", landingContinue);
+		landingContinueBtn.removeEventListener("click", animationEventListener);
+	});
 });
 
-document.getElementById("landingPageContinue").addEventListener("click", function showNav() {
-	toggleVisibility(document.getElementById("navigation"));
-	document.getElementById("landingPageContinue").removeEventListener("click", showNav);
-});
+Reveal.on("ready", event => { // when page loads and is ready
+	landingScreenEls.forEach(element => element.classList.add("zoomInDown")); 
+})
 
 /*********************************************
   Utility Functions
@@ -86,6 +101,15 @@ function countingAnimation(element, start, end, duration) {
     timer = setInterval(run, stepTime);
     run();
 };
+
+function nextSlide() {
+	Reveal.next();
+	console.log("Reveal next, onto: " + Reveal.getSlidePastCount());
+}
+
+document.querySelectorAll(".nextPrompt").forEach(item => {
+	item.addEventListener("click", event => nextSlide());
+});
 
 /*********************************************
   Counters
@@ -638,8 +662,3 @@ function closeModal(modal) {
 	overlay.classList.remove("active");
 };
 
-
-Reveal.on("ready", event => {
-	document.querySelector(".landing-page").classList.add("heartBeatAnimation");
-
-})
