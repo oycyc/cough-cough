@@ -1448,7 +1448,7 @@ div.prompt > h6 { /* every prompt inside the .prompt div container */
 @keyframes rotateMove {
   0%{
     transform: translateY(0) rotate(0deg);
-    opacity: 0.8;
+    opacity: 0.6;
     border-radius: 0;
   }
 
@@ -1463,7 +1463,7 @@ div.prompt > h6 { /* every prompt inside the .prompt div container */
   @keyframes rotateMove {
     0%{
       transform: translateY(0) rotate(0deg);
-      opacity: 0.7;
+      opacity: 0.5;
       border-radius: 0;
     }
 

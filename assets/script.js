@@ -23,6 +23,7 @@ Reveal.initialize({
 /*********************************************
   Landing Screen
  *********************************************/
+const virusSprites = document.getElementById("virus-background-animation")
 const landingContinueBtn = document.getElementById("landingPageContinue");
 // instead of animating whole parent div, animate individual element inside parent div 
 // so center positioning doesn't mess up after the animation
@@ -31,10 +32,11 @@ const landingScreenEls = [document.getElementById("title"), document.getElementB
 landingContinueBtn.addEventListener("click", function landingContinue() {
 	landingScreenEls.forEach(element => element.classList.remove("zoomInDown"));
 	landingScreenEls.forEach(element => element.classList.add("zoomOut"));
-	document.getElementById("virus-background-animation").classList.add("prompt-exit-animation");
+	virusSprites.classList.add("prompt-exit-animation");
 
 	landingContinueBtn.addEventListener("animationend", function animationEventListener() {
 		Reveal.next();
+		virusSprites.remove();
 		toggleVisibility(document.getElementById("navigation"));
 		landingContinueBtn.removeEventListener("click", landingContinue);
 		landingContinueBtn.removeEventListener("click", animationEventListener);
@@ -42,6 +44,7 @@ landingContinueBtn.addEventListener("click", function landingContinue() {
 
 	landingContinueBtn.addEventListener("webkitAnimationEnd", function animationEventListener() {
 		Reveal.next();
+		virusSprites.remove();
 		toggleVisibility(document.getElementById("navigation"));
 		landingContinueBtn.removeEventListener("click", landingContinue);
 		landingContinueBtn.removeEventListener("click", animationEventListener);
