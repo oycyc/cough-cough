@@ -1138,7 +1138,7 @@ div.prompt > h6 { /* every prompt inside the .prompt div container */
   font-weight: 600;
   position: fixed;
   right: 4.5em;
-  top: 1.2em;
+  top: 0.9em;
   text-align: right;
 }
 

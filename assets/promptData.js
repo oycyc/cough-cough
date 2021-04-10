@@ -4,9 +4,9 @@ const promptData = [
 	"question": "How will you keep your citizens safe from the virus?", 
 	"optionChoices": // no death & virus change bc not unlocked yet
 		{"Advise citizens to avoid gathering with others and stay safe": 
-			{"resultID": 0, "deathChange": 0, "hospitalChange": 9, "positivityRateChange": 0},
-	   "Require citizens to wear masks in all public places": 
-	    	{"resultID": 1, "deathChange": 0, "hospitalChange": 5, "positivityRateChange": 0}
+			{"resultID": 0, "deathChange": 0, "hospitalChange": 9, "positivityRateChange": 2},
+	   	 "Require citizens to wear masks in all public places": 
+	    		{"resultID": 1, "deathChange": 0, "hospitalChange": 5, "positivityRateChange": 0}
 	    },
 	}, // prompt 0
 
@@ -14,11 +14,11 @@ const promptData = [
 	"question": "How will you get testing kits?", 
 	"optionChoices":  // no deaths & virus change bc not unlocked yet
 		{"Have your nation's scientists develop a plan for testing for the disease": 
-			{"resultID": 2, "deathChange": 0, "hospitalChange": -2, "positivityRateChange": 0}, 
+			{"resultID": 2, "deathChange": 0, "hospitalChange": -2, "positivityRateChange": 2}, 
 		 "Request testing kits from neighboring countries": 
-		 	{"resultID": 2, "deathChange": 0, "hospitalChange": -2, "positivityRateChange": 0},
+		 	{"resultID": 2, "deathChange": 0, "hospitalChange": -2, "positivityRateChange": 2},
 		 "Request testing kits from an international health organization": 
-		 	{"resultID": 2, "deathChange": 0, "hospitalChange": -2, "positivityRateChange": 0}
+		 	{"resultID": 2, "deathChange": 0, "hospitalChange": -2, "positivityRateChange": 2}
 		}
 	},
 
@@ -26,7 +26,7 @@ const promptData = [
 	"question": "Should the quarantine be mandatory?", 
 	"optionChoices": 
 		{"Make self-isolating quarantine mandatory": 
-			{"resultID": 3, "deathChange": 50, "hospitalChange": 5, "positivityRateChange": 0}, 
+			{"resultID": 3, "deathChange": 50, "hospitalChange": 5, "positivityRateChange": 2}, 
 		 "Only ask and recommend people to quarantine": 
 		 	{"resultID": 3, "deathChange": 100, "hospitalChange": 25, "positivityRateChange": 10}
 		}
@@ -36,13 +36,13 @@ const promptData = [
 	"question": "Will you declare this virus an emergency?", 
 	"optionChoices": 
 		{"Declare the virus a national emergency and give more information to the public": 
-			{"resultID": 4, "deathChange": 500, "hospitalChange": 9, "positivityRateChange": 5},
+			{"resultID": 4, "deathChange": 500, "hospitalChange": 2, "positivityRateChange": 5},
 	     	 "Try to calm the country down and give more information to the public": 
-	     		{"resultID": 4, "deathChange": 700, "hospitalChange": 0, "positivityRateChange": 5}
+	     		{"resultID": 4, "deathChange": 700, "hospitalChange": 9, "positivityRateChange": 8}
 	    }
 	}, //prompt 3 feb
 
-	{"prompt": "Global air travel is fast way of spreading the virus. One individual from the other side of the world that is infected could potentially spread the virus to a new region that's never seen the virus ever before.",
+	{"prompt": "Global air travel is a fast way of spreading the virus. One individual from the other side of the world that is infected could potentially spread the virus to a new region that's never seen the virus ever before.",
 	"question": "How will you restrict international travel?", 
 	"optionChoices": 
 		{"Shut down international travel entirely": 
@@ -58,9 +58,9 @@ const promptData = [
 	"question": "Will you restrict public gatherings?", 
 	"optionChoices": 
 		{"Put a restriction on the number of people allowed in a public gathering": 
-			{"resultID": 6, "deathChange": 800, "hospitalChange": 9, "positivityRateChange": 0},
+			{"resultID": 6, "deathChange": 800, "hospitalChange": 9, "positivityRateChange": 7},
 	    	 "No restrictions on public gatherings": 
-	     		{"resultID": 6, "deathChange": 1400, "hospitalChange": 25, "positivityRateChange": 0},
+	     		{"resultID": 6, "deathChange": 1400, "hospitalChange": 25, "positivityRateChange": 10},
 	    	 "Order a complete lockdown of the country aside from essential services": 
 	     		{"resultID": 6, "deathChange": 100, "hospitalChange": 2, "positivityRateChange": 0}
 	    }
@@ -70,7 +70,7 @@ const promptData = [
 	"question": "Will you launch public awareness campaigns?", 
 	"optionChoices": 
 		{"Launch public awareness campaigns": 
-			{"resultID": 7, "deathChange": 100, "hospitalChange": -5, "positivityRateChange": -5},
+			{"resultID": 7, "deathChange": 100, "hospitalChange": -5, "positivityRateChange": -1},
 		 "Don't launch public awareness campaigns":
 		 	{"resultID": 7, "deathChange": 700, "hospitalChange": 3, "positivityRateChange": 3}
 		}
@@ -80,11 +80,11 @@ const promptData = [
 	"question": "How will schools operate?", 
 	"optionChoices": 
 		{"Move all students into a virtual environment to learn": 
-			{"resultID": 8, "deathChange": 500, "hospitalChange": 5, "positivityRateChange": 4},
+			{"resultID": 8, "deathChange": 500, "hospitalChange": 5, "positivityRateChange": -1},
 	     	 "Keep all schools open": 
-	     		{"resultID": 8, "deathChange": 950, "hospitalChange": 9, "positivityRateChange": 8},
+	     		{"resultID": 8, "deathChange": 950, "hospitalChange": 9, "positivityRateChange": 7},
 	   	 "Keep younger children in school buildings and move older children into a virtual environment": 
-	   	 	{"resultID": 8, "deathChange": 750, "hospitalChange": 7, "positivityRateChange": 6}
+	   	 	{"resultID": 8, "deathChange": 750, "hospitalChange": 7, "positivityRateChange": 5}
 	   	}
 	},
 
@@ -92,9 +92,9 @@ const promptData = [
 	"question": "Will you offer assistance to healthcare workers?", 
 	"optionChoices": 
 		{"Offer assistance by providing more medical supplies and add benefits for doctors": 
-			{"resultID": 9, "deathChange": 200, "hospitalChange": 9, "positivityRateChange": 2},
+			{"resultID": 9, "deathChange": 200, "hospitalChange": 9, "positivityRateChange": -2},
 	     	 "Ignore their needs": 
-	     		{"resultID": 9, "deathChange": 3000, "hospitalChange": 50, "positivityRateChange": 35}
+	     		{"resultID": 20, "deathChange": 3000, "hospitalChange": 50, "positivityRateChange": 35}
 	    }
 	}, //prompt 8 april
 
@@ -104,7 +104,7 @@ const promptData = [
 		{"Approve it": 
 			{"resultID": 10, "deathChange": 24, "hospitalChange": -7, "positivityRateChange": 0},
 	     	 "Reject it": 
-		 	{"resultID": 10, "deathChange": 406, "hospitalChange": 15, "positivityRateChange": 0}
+		 	{"resultID": 10, "deathChange": 406, "hospitalChange": 15, "positivityRateChange": 5}
 	 	}
 	}, //may
 
@@ -114,7 +114,7 @@ const promptData = [
 		{"Keep them completely open": 
 			{"resultID": 11, "deathChange": 4620, "hospitalChange": 40, "positivityRateChange": 30},
 	     	 "Shut them down": 
-	     		{"resultID": 11, "deathChange": 50, "hospitalChange": -8, "positivityRateChange": -7},
+	     		{"resultID": 11, "deathChange": 50, "hospitalChange": -8, "positivityRateChange": -3},
 	   	 "Allow them to open with some restrictions": 
 	   	 	{"resultID": 11, "deathChange": 3254, "hospitalChange": 15, "positivityRateChange": 6}
 	   	}
@@ -124,9 +124,9 @@ const promptData = [
 	"question": "How will you improve the contact tracing system?", 
 	"optionChoices": 
 		{"Update citizens on the extent to which the virus had spread on social media platforms": 
-			{"resultID": 12, "deathChange": 5, "hospitalChange": 5, "positivityRateChange": 2},
+			{"resultID": 12, "deathChange": 5, "hospitalChange": 5, "positivityRateChange": 0},
 	     	 "Develop an app to monitor potential cases": 
-	     		{"resultID": 12, "deathChange": 5, "hospitalChange": 5, "positivityRateChange": 2}
+	     		{"resultID": 12, "deathChange": 5, "hospitalChange": 5, "positivityRateChange": 0}
 	    	}
 	},
 
@@ -138,7 +138,7 @@ const promptData = [
 		 "Enact a mandatory quarantine of 14 days for all visitors": 
 			{"resultID": 13, "deathChange": 3584, "hospitalChange": 10, "positivityRateChange": 4},
 	    	 "Keep the borders shut": 
-	     		{"resultID": 13, "deathChange": 123, "hospitalChange": -5, "positivityRateChange": -9}
+	     		{"resultID": 13, "deathChange": 123, "hospitalChange": -5, "positivityRateChange": -3}
 	    }
 	}, //12 august
 
@@ -148,7 +148,7 @@ const promptData = [
 		{"Allow students back into the school building with mask and social distancing guidelines": 
 			{"resultID": 14, "deathChange": 80, "hospitalChange": 9, "positivityRateChange": 3},
 	     	 "Require students to learn in a virtual environment": 
-	     		{"resultID": 14, "deathChange": 50, "hospitalChange": 0, "positivityRateChange": 2}
+	     		{"resultID": 14, "deathChange": 50, "hospitalChange": 0, "positivityRateChange": 1}
 	    }
 	},
 
@@ -156,9 +156,9 @@ const promptData = [
 	"question": "How will you find out more about the variant?", 
 	"optionChoices": 
 		{"Keep track of developments in the new variant": 
-			{"resultID": 15, "deathChange": 400, "hospitalChange": 15, "positivityRateChange": 6},
+			{"resultID": 15, "deathChange": 400, "hospitalChange": 15, "positivityRateChange": 5},
 		 "Obtain current scientific findings on the new variant from other countries": 
-		 	{"resultID": 15, "deathChange": 400, "hospitalChange": 15, "positivityRateChange": 6}
+		 	{"resultID": 15, "deathChange": 400, "hospitalChange": 15, "positivityRateChange": 5}
 		}
 	},
 
@@ -180,7 +180,7 @@ const promptData = [
 		{"Approve and administer the vaccine to your citizens": 
 			{"resultID": 18, "deathChange": 0, "hospitalChange": 0, "positivityRateChange": 0},
 		 "Refuse to administer the vaccine to your citizens":
-		 	{"resultID": 18, "deathChange": 2000, "hospitalChange": 25, "positivityRateChange": 20}
+		 	{"resultID": 19, "deathChange": 2000, "hospitalChange": 25, "positivityRateChange": 35}
 		}
 	},
 ];
@@ -217,15 +217,19 @@ const resultData = [
 	//13
 	"Around the end of March 2020, most countries around the world either had a ban on high-risk regions or had a total border closure. Mongolia had a ban on high-risk regions ever since the end of January 2020 and enacted a total border closure at the end of March 2020. The border closure is still in effect as of April 7, 2021.",
 	//14
-	"Schools are closed, but many public facilities are still open; this condition could still propel virus spread in communities. Although Italy opened its schools, non-essential businesses were closed, and Italy’s new virus caseloads dropped as low as 200 a day.",
+	"If schools are closed but public facilities remain open, the virus positivity rate could continue to increase. Although Italy opened its schools, non-essential businesses were closed, and Italy’s new virus caseloads dropped as low as 200 a day.",
 	//15
-	"Over time, scientists noticed mutations in SARS-CoV-2 emerging around the world. Evidence suggests that although current vaccines could be less effective against some of the new strains, it does not mean that vaccines will not offer protection against them. In addition, scientists are keeping track of major mutations and can adjust the vaccine development process accordingly.",
+	"Over time, scientists noticed mutations in SARS-CoV-2 emerging around the world. In areas where the new strain appeared, cases went up. Evidence suggests that although current vaccines could be less effective against some of the new strains, it does not mean that vaccines will not offer protection against them. Scientists are keeping track of major mutations and can adjust the vaccine development process accordingly.",
 	//16
 	"A recommendation is only a recommendation and is not very effective for crucial health policies. In the United States, the CDC recommended families not travel for Thanksgiving & the December holiday season, yet for Thanksgiving alone, there were 10 million people that traveled by air. In just two weeks following, cases and hospitalizations increased by about 20%, and the deaths jumped 39%.",
 	//17
 	"Loosening restrictions while there is no major immunity and the virus is still prominent is certainly not a good idea. In the United States, the CDC recommended families not travel for Thanksgiving & the December holiday season, yet still, for Thanksgiving alone, there were 10 million people that traveled by air. In just two weeks following, cases and hospitalizations increased by about 20%, and the deaths jumped 39%.",
 	//18
-	"Administering the vaccine is a great step towards preventing the transmission of disease and decreasing the death count in your nation! However, your nation's citizens will still need to do their part and practice safety measures such as wearing masks to contain the disease."
+	"Administering the vaccine is a great step towards preventing the transmission of disease and decreasing the death count in your nation! However, your nation's citizens will still need to do their part and practice safety measures such as wearing masks to contain the disease.",
+	//19
+	"The refusal to approve and administer vaccines to your citizens is detrimental to the health of your nation. Without vaccinations, researchers warn that it will be difficult for the nation to reach herd immunity, a point at which spread is unlikely because enough people are immune to the disease. To reach herd immunity without vaccines would mean higher infection rates and deaths.",
+	//20
+	"Ignoring healthcare workers’ needs is unacceptable, especially during times of crisis like this. As determined doctors and healthcare workers are fighting in the front line of this battle, hospitals have reported a shortage of supplies, which puts staff and patients at risk. In a survey taken by 925 Afghan healthcare workers, less than 50% had access to disposable gowns, face shields, and medical masks."
 ];
 
 
