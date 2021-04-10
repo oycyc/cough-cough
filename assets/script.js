@@ -146,7 +146,7 @@ const month_meter = document.getElementById("month-meter");
 const num_month = document.getElementById("num-month");
  
 
-//when player clicks "accept the challenge," adds  a class of current to the first month and hide mute button
+//when player clicks "accept the challenge," adds a class of current to the first month
 startTimeline.addEventListener("click", () => {
 	month_1.classList.add("current");
 	displayMuteButton(false);
@@ -158,13 +158,13 @@ startTimeline.addEventListener("click", () => {
 // remove event listener after 
 });
 
-function changeMonthText() {
+function changeMonthText() { //change top right month number on smaller screens
 	if (parseInt(num_month.innerText) < 12) {
 		num_month.innerText = parseInt(num_month.innerText) + 1;
  	}
 }
 
-function removeAddClass() {
+function removeAddClass() { //when moving on, find current month to remove class and add class of current to next month 
 	let month_x = document.querySelector(".current");
 	let nextMonthNumber = parseInt(month_x.innerText) + 1;
 	let nextMonth = "month-" + nextMonthNumber;
@@ -505,16 +505,14 @@ const audio = new Audio("assets/music/demised_to_shield_end_portion.mp3");
 audio.volume = 0.1; // lower volume to 0.1 from 0.5
 const mute = document.getElementById("mute");
 
-function mutePlay() {
+function mutePlay() { //play audio + allow user to mute/unmute during animation
 	audio.play();
 	mute.addEventListener("click", () => {
 		if (audio.muted) {
 			audio.muted = false;
-			console.log("cici cute");
 			mute.style.background = "url('assets/icons/speaker.svg') no-repeat";
 		} else {
 			audio.muted = true;
-			console.log("cici cutest");
 			mute.style.background = "url('assets/icons/mute.svg') no-repeat";
 		}
 	});
@@ -536,8 +534,6 @@ submitName.addEventListener("click", function() {
 		replaceNationName();
 		mutePlay();
 		displayMuteButton(true);
-	} else {
-		console.log("cici brainz"); //change later
 	}
 });
 
