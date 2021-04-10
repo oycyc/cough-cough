@@ -92,7 +92,7 @@ const promptData = [
 	"question": "Will you offer assistance to healthcare workers?", 
 	"optionChoices": 
 		{"Offer assistance by providing more medical supplies and add benefits for doctors": 
-			{"resultID": 9, "deathChange": 200, "hospitalChange": 9, "positivityRateChange": -2},
+			{"resultID": 9, "deathChange": 300, "hospitalChange": 7, "positivityRateChange": -2},
 	     	 "Ignore their needs": 
 	     		{"resultID": 20, "deathChange": 3000, "hospitalChange": 50, "positivityRateChange": 35}
 	    }
