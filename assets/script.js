@@ -351,10 +351,13 @@ function continueAfterResult() { // when they click Continue button:
 	
 	resultCircle.classList.remove("result-load-animation");
 	// check if last prompt of month bc then u win
-
-	let monthScreenElements;
-	if (lastPromptOfMonth()) { // checks to see if it's the last prompt of the month, if so, there's no prompt left so do other commands
-		monthScreenElements = newMonthScreen(currentMonthName);
+	if (lastPromptOfMonth() && currentMonthName === "December") {
+		Reveal.removeEventListener("slidechanged", loadAnimations); // remove the eventListener that adds an animation every time to add a different animation
+		Reveal.slide(11);
+		document.getElementById("success").classList.add("jackInTheBox");
+		return; // stop everything, won already
+	} else if (lastPromptOfMonth()) { // checks to see if it's the last prompt of the month, if so, there's no prompt left so do other commands
+		let monthScreenElements = newMonthScreen(currentMonthName);
 		monthScreenElements[3].classList.remove("no-animations"); // individual case, it's a div and an earlier eventListener loads every prompt on view to create an animation, but we want a diff. animation
 		monthScreenElements.forEach(element => element.classList.add("rotateIn"));
 		changeMonthData();
@@ -383,6 +386,7 @@ function startGame() { // loads January prompts
 	insertNewPrompt(0);
  	insertNewPrompt(1);
  	insertNewPrompt(2);
+ 	Reveal.next();
  	Reveal.next();
 };
 

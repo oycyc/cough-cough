@@ -991,12 +991,12 @@ div.prompt > h6 { /* every prompt inside the .prompt div container */
 }
 
 .positive-note {
-  line-height: 1;
+  line-height: 0.95;
   margin: 0 20%;
   font-size: 0.7em;
 }
 
-.lose-play-again {
+.play-again {
   color: #ffc6bf;
   text-decoration: none;
   border-bottom: 5px dotted currentColor;
@@ -1017,7 +1017,7 @@ div.prompt > h6 { /* every prompt inside the .prompt div container */
     margin: 0% 12.5%;
     font-size: 0.4em;
   }
-  .lose-play-again {
+  .play-again {
     font-size: 0.7em;
   }
   .learn-more {
@@ -1028,6 +1028,39 @@ div.prompt > h6 { /* every prompt inside the .prompt div container */
   .positive-note {
     margin: 0;
   }
+}
+/*********************************************
+ Winning Screen
+ *********************************************/
+#great-job {
+  color: #f1c7ce !important;
+  font-size: 1.25em!important;
+  line-height: 0.9;
+}
+
+#success > p {
+  font-size: 0.65em;
+  margin: 0 12.5%;
+  line-height: 0.95;
+}
+
+#success > p > a {
+  color: pink;
+}
+
+@media only screen and (max-width: 800px) {
+  #great-job {
+    font-size: 0.7em !important;
+  }
+  #success > p {
+    margin: 0;
+    font-size: 0.4em;
+  }
+
+}
+
+@media only screen and (max-width: 600px) {
+
 }
 
 /*********************************************
@@ -1172,7 +1205,6 @@ div.prompt > h6 { /* every prompt inside the .prompt div container */
     opacity: 0;
   }
 }
-
 @keyframes fadeInDown {
   from {
     opacity: 0;
@@ -1184,7 +1216,6 @@ div.prompt > h6 { /* every prompt inside the .prompt div container */
     transform: translate3d(0, 0, 0);
   }
 }
-
 @keyframes fadeOutDown {
   from {
     opacity: 1;
@@ -1207,7 +1238,6 @@ div.prompt > h6 { /* every prompt inside the .prompt div container */
     opacity: 1;
   }
 }
-
 @keyframes rotateOut {
   from {
     opacity: 1;
@@ -1218,7 +1248,6 @@ div.prompt > h6 { /* every prompt inside the .prompt div container */
     opacity: 0;
   }
 }
-
 @keyframes heartBeat {
   0% {
     transform: scale(1);
@@ -1237,6 +1266,26 @@ div.prompt > h6 { /* every prompt inside the .prompt div container */
   }
 
   70% {
+    transform: scale(1);
+  }
+}
+@keyframes jackInTheBox {
+  from {
+    opacity: 0;
+    transform: scale(0.1) rotate(30deg);
+    transform-origin: center bottom;
+  }
+
+  50% {
+    transform: rotate(-10deg);
+  }
+
+  70% {
+    transform: rotate(3deg);
+  }
+
+  to {
+    opacity: 1;
     transform: scale(1);
   }
 }
@@ -1281,4 +1330,9 @@ div.prompt > h6 { /* every prompt inside the .prompt div container */
   animation-name: heartBeat;
   animation-duration: 2.75s;
   animation-timing-function: ease-in-out;
+}
+
+.jackInTheBox {
+  animation-name: jackInTheBox;
+  animation-duration: 2s;
 }
