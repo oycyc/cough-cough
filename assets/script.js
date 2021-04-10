@@ -36,7 +36,7 @@ landingContinueBtn.addEventListener("click", function landingContinue() {
 
 	landingContinueBtn.addEventListener("animationend", function animationEventListener() {
 		Reveal.next();
-		virusSprites.remove();
+		virusSprites.remove(); // lots of animation, better to just delete it so it doesn't use much memory
 		toggleVisibility(document.getElementById("navigation"));
 		landingContinueBtn.removeEventListener("click", landingContinue);
 		landingContinueBtn.removeEventListener("click", animationEventListener);
@@ -44,7 +44,7 @@ landingContinueBtn.addEventListener("click", function landingContinue() {
 
 	landingContinueBtn.addEventListener("webkitAnimationEnd", function animationEventListener() {
 		Reveal.next();
-		virusSprites.remove();
+		virusSprites.remove(); // lots of animation, better to just delete it so it doesn't use much memory
 		toggleVisibility(document.getElementById("navigation"));
 		landingContinueBtn.removeEventListener("click", landingContinue);
 		landingContinueBtn.removeEventListener("click", animationEventListener);
