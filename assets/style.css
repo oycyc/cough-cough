@@ -1094,6 +1094,7 @@ div.prompt > h6 { /* every prompt inside the .prompt div container */
   color: #f1c7ce !important;
   font-size: 1.25em!important;
   line-height: 0.9;
+  margin: 0 20%;
 }
 
 #success > p {
@@ -1109,6 +1110,7 @@ div.prompt > h6 { /* every prompt inside the .prompt div container */
 @media only screen and (max-width: 800px) {
   #great-job {
     font-size: 0.7em !important;
+    margin: 0;
   }
   #success > p {
     margin: 0;

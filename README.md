@@ -1,8 +1,5 @@
 # beep boop
 ## to dos
-- navbar
-	- info about covid? (to make it an even 6)
-	- give up
 - change population symbol in counter to red if virus spread
 - play in "portrait mode" not landscape mode popup if on mobile
 	- @media orientation check
