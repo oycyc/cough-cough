@@ -42,7 +42,7 @@ const promptData = [
 	    }
 	}, //prompt 3 feb
 
-	{"prompt": "Global air travel is fast way of spreading the virus. One individual from the other side of the world that is infected could potentially spread the virus to a new region that's never seen the virus ever before.",
+	{"prompt": "Global air travel is a fast way of spreading the virus. One individual from the other side of the world that is infected could potentially spread the virus to a new region that's never seen the virus ever before.",
 	"question": "How will you restrict international travel?", 
 	"optionChoices": 
 		{"Shut down international travel entirely": 
