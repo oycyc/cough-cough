@@ -180,9 +180,9 @@ const promptData = [
 		{"Approve and administer the vaccine to your citizens": 
 			{"resultID": 18, "deathChange": 0, "hospitalChange": 0, "positivityRateChange": 0},
 		"Do more research and build public confidence before approving": 
-			{"resultID": 18, "deathChange": 0, "hospitalChange": 0, "positivityRateChange": 0},
+			{"resultID": 19, "deathChange": 0, "hospitalChange": 0, "positivityRateChange": 0},
 		 "Reject the vaccine & wait for natural herd immunity":
-		 	{"resultID": 19, "deathChange": 2000, "hospitalChange": 25, "positivityRateChange": 35}
+		 	{"resultID": 20, "deathChange": 2000, "hospitalChange": 25, "positivityRateChange": 35}
 		}
 	},
 ];
@@ -229,9 +229,9 @@ const resultData = [
 	//18
 	"Administering the vaccine is a great step towards preventing the transmission of disease and decreasing the death count in your nation! However, your nation's citizens will still need to do their part and practice safety measures such as wearing masks to contain the disease.",
 	//19
-	"The refusal to approve and administer vaccines to your citizens is detrimental to the health of your nation. Without vaccinations, researchers warn that it will be difficult for the nation to reach herd immunity, a point at which spread is unlikely because enough people are immune to the disease. To reach herd immunity without vaccines would mean much higher infection rates and deaths.",
-	// 20
 	"Public confidence is key in rolling out a brand new vaccine that was developed in less than a year, and with the political & scientific community approving it, people will be more willing to trust it. The vaccine is a great step towards preventing the transmission of disease and decreasing the death count! However, citizens will still need to do practice safety measures such as wearing masks to contain the disease.",
+	// 20
+	"The refusal to approve and administer vaccines to your citizens is detrimental to the health of your nation. Without vaccinations, researchers warn that it will be difficult for the nation to reach herd immunity, a point at which spread is unlikely because enough people are immune to the disease. To reach herd immunity without vaccines would mean much higher infection rates and deaths.",
 	//21
 	"Ignoring healthcare workers’ needs is unacceptable, especially during times of crisis like this. As determined doctors and healthcare workers are fighting in the front line of this battle, hospitals have reported a shortage of supplies, which puts staff and patients at risk. In a survey taken by 925 Afghan healthcare workers, less than 50% had access to disposable gowns, face shields, and medical masks."
 ];
