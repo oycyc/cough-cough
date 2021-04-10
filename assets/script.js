@@ -141,7 +141,7 @@ function checkLosing() {
 function newMonthCounters() { // simluate real world, natural data movement
 	let randomDeath = Math.floor(Math.random() * (25 - 1 + 1) + 1);
 	let randomHospital = Math.floor(Math.random() * (5 - -1 + 1) + -1);
-	let randomVirus = Math.floor(Math.random() * (5 - -1 + 1) + -1);
+	let randomVirus = Math.floor(Math.random() * (2 - -1 + 1) + -1);
 
 	countingAnimation(populationCounter, populationData, populationData - randomDeath, 1000);
 	populationData -= randomDeath; 
