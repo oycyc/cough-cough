@@ -388,7 +388,53 @@
   padding: 2%;
   text-align: center;
 }
+/**/
+#contact {
+  height: 50%;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 
+.contact-header {
+  border-bottom: none !important;
+}
+
+.modal-body form .data {
+  height: 45px;
+  margin: 40px;
+}
+
+form > div:nth-of-type(1) {
+  margin: 0 40px 40px 40px !important;
+}
+
+form .data label {
+  font-size: 18px;
+}
+
+form .data input{
+  height: 100%;
+  width: 100%;
+  font-size: 17px;
+  border: 1px solid silver;
+}
+
+form .data textarea {
+  height: 100%;
+  width: 100%;
+  font-size: 15px;
+  border: 1px solid silver;
+}
+
+form .data input:focus{
+  border-color: #3498db;
+  border-bottom-width: 2px;
+}
+
+
+/**/
 .modal.active {
   transform: translate(-50%, -50%) scale(1);
 }

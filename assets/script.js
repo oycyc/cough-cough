@@ -33,6 +33,11 @@ document.querySelectorAll(".nextPrompt").forEach(item => {
 	item.addEventListener("click", event => nextSlide());
 });
 
+document.getElementById("landingPageContinue").addEventListener("click", function showNav() {
+	toggleVisibility(document.getElementById("navigation"));
+	document.getElementById("landingPageContinue").removeEventListener("click", showNav);
+});
+
 /*********************************************
   Utility Functions
  *********************************************/
