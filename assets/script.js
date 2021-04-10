@@ -139,8 +139,19 @@ function checkLosing() {
 };
 
 function newMonthCounters() { // simluate real world, natural data movement
+	let randomDeath = Math.floor(Math.random() * (25 - 1 + 1) + 1);
+	let randomHospital = Math.floor(Math.random() * (5 - -1 + 1) + -1);
+	let randomVirus = Math.floor(Math.random() * (5 - -1 + 1) + -1);
 
-}
+	countingAnimation(populationCounter, populationData, populationData - randomDeath, 1000);
+	populationData -= randomDeath; 
+	countingAnimation(deathsCounter, deathData, deathData + randomDeath, 1000);
+	deathData += randomDeath;
+	countingAnimation(hospitalCounter, hospitalData, hospitalData + randomHospital, 1000);
+	hospitalData += randomHospital;
+	countingAnimation(virusCounter, virusData, virusData + randomVirus, 1000);
+	virusData += randomVirus;
+};
 
 /*********************************************
   Timeline
@@ -404,55 +415,50 @@ function startGame() { // loads January prompts
 // when there's more prompts, some months' prompts can be randomized
 
 function newMonthScreen(monthName) {
-	if (monthName === "December") { 
-	// use the condition in the earlier function, needs to be detected earlier
-	// if it's december, no more months left, they didn't lose, so end game screen
-	} else {
-		// creates the new month screen
-		let nextMonthName = allMonthNames[parseInt(document.querySelector(".current").textContent, 10)];
+	// creates the new month screen
+	let nextMonthName = allMonthNames[parseInt(document.querySelector(".current").textContent, 10)];
 
-		const newSection = document.createElement("section");
-		newSection.classList.add("center", "future", "month-screen");
+	const newSection = document.createElement("section");
+	newSection.classList.add("center", "future", "month-screen");
 
-		const h3Title = document.createElement("h3");
-		h3Title.classList.add("new-month-title");
-		h3Title.textContent = "New Month";
+	const h3Title = document.createElement("h3");
+	h3Title.classList.add("new-month-title");
+	h3Title.textContent = "New Month";
 
-		const h6Announcement = document.createElement("h6");
-		h6Announcement.textContent = "You made it through " + monthName + "!";
+	const h6Announcement = document.createElement("h6");
+	h6Announcement.textContent = "You made it through " + monthName + "!";
 
-		const pText = document.createElement("p");
-		pText.classList.add("new-month-text");
-		pText.textContent = "So far, you have made " + totalQuestionAnswered + " decisions, and the health of your country is " + countryHealthStatus();
+	const pText = document.createElement("p");
+	pText.classList.add("new-month-text");
+	pText.textContent = "So far, you have made " + totalQuestionAnswered + " decisions, and the health of your country is " + countryHealthStatus();
 
-		const newMonthContinue = document.createElement("div");
-		newMonthContinue.classList.add("button-slide", "button-sliding-animation", "new-month-button", "no-animations");
-		newMonthContinue.textContent = "Continue";
-		newMonthContinue.addEventListener("click", function createNextMonthPrompts() { // after they click continue button:
-			changeMonthText(); // change the # in "Month #"
-			removeAddClass(); // remove where the active is at in month timeline
-			monthlyQuestions[nextMonthName]["questions"].forEach(questionIndex => { // returns index of questions
-				insertNewPrompt(questionIndex);
-			});
-			newMonthContinue.removeEventListener("click", createNextMonthPrompts);
-			console.log("new prompts created for month of " + nextMonthName);
-			// exits out the new month screen and when it ends, go next section which should be the prompts created
-			[h3Title, h6Announcement, pText, newMonthContinue].forEach(element => {
-				element.classList.add("rotateOut");
-			});
-			h3Title.addEventListener("animationend", () => Reveal.next());
-			h3Title.addEventListener("webkitAnimationEnd", () => Reveal.next());
+	const newMonthContinue = document.createElement("div");
+	newMonthContinue.classList.add("button-slide", "button-sliding-animation", "new-month-button", "no-animations");
+	newMonthContinue.textContent = "Continue";
+	newMonthContinue.addEventListener("click", function createNextMonthPrompts() { // after they click continue button:
+		changeMonthText(); // change the # in "Month #"
+		removeAddClass(); // remove where the active is at in month timeline
+		newMonthCounters();
+		monthlyQuestions[nextMonthName]["questions"].forEach(questionIndex => { // returns index of questions
+			insertNewPrompt(questionIndex);
 		});
-		// finish creating the new month screen
-		newSection.appendChild(h3Title);
-		newSection.appendChild(h6Announcement);
-		newSection.appendChild(pText);
-		newSection.appendChild(newMonthContinue);
-
-		Reveal.getSlidesElement().append(newSection);
-		Reveal.sync();
-		return newSection.children; // return all elements for load in animation
-	};
+		newMonthContinue.removeEventListener("click", createNextMonthPrompts);
+		console.log("new prompts created for month of " + nextMonthName);
+		// exits out the new month screen and when it ends, go next section which should be the prompts created
+		[h3Title, h6Announcement, pText, newMonthContinue].forEach(element => {
+			element.classList.add("rotateOut");
+		});
+		h3Title.addEventListener("animationend", () => Reveal.next());
+		h3Title.addEventListener("webkitAnimationEnd", () => Reveal.next());
+	});
+	// finish creating the new month screen
+	newSection.appendChild(h3Title);
+	newSection.appendChild(h6Announcement);
+	newSection.appendChild(pText);
+	newSection.appendChild(newMonthContinue);
+	Reveal.getSlidesElement().append(newSection);
+	Reveal.sync();
+	return newSection.children; // return all elements for load in animation
 };
 
 function countryHealthStatus() { // text for "the health of your country is..."
