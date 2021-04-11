@@ -1,11 +1,21 @@
 /*
 ====================================================
 
-  TABLE OF CONTENTS (do this at the end bc the positioning of code might change)
+  TABLE OF CONTENTS
 
   - General Styling
+  - Landing Page Elements
   - Navigation Bar
   - Modals
+  - Counters (Population, Death, Hospital, Virus Positivity)
+  - More Info & Nation Input Page
+  - Prompts & Answers 
+  - Popup Circle for Result of Your Decision
+  - New Month Screen (You made it through January!)
+  - Losing Screen
+  - Winning Screen
+  - Timeline (Month counter on the right side)
+  - Individual Animation Classes w/ Keyframes
 
   MEDIA QUERIES
 
@@ -61,83 +71,9 @@
 }
 
 /*********************************************
-  Intro Animations
-*********************************************/
-.intro-animation-text {
-  margin: 0 20% !important;
-}
-
-@media only screen and (max-width: 900px) {
-  .intro-animation-text {
-    margin: 0 !important;
-  }
-}
-/*********************************************
-  Button Styling
-*********************************************/
-.button-slide {
-  color: black;
-  font-weight: bold;
-  background-color: rgb(173, 216, 230);
-  border-radius: 0px;
-  padding: 18px 36px;
-  font-size: 18px;
-  letter-spacing: 1px;
-  cursor: pointer;
-  box-shadow: inset 0 0 0 0 #D80286;
-  -webkit-transition: ease-out 0.4s;
-  -moz-transition: ease-out 0.4s;
-  transition: ease-out 0.4s;
-}
-
-.button-sliding-animation:hover {
-  box-shadow: inset 0 0 0 50px #ff5b77;
-}
-
-.button-sliding-animation:active {
-  box-shadow: inset 0 0 0 50px #ff5b77;
-}
-
-.next {
-  border: none;
-  outline: none;
-  margin: 10px;
-}
-
-/* Button Positioning */
-.center-bottom-button {
-  position: absolute;
-  bottom: 10%;
-  left: 35%;
-  right: 35%;
-} 
-
-@media only screen and (max-width: 600px) {
-  .center-bottom-button {
-    bottom: 10%;
-    left: 20%;
-    right: 20%;
-  }
-}
-
-.center-bottom-button2 { /*CHANGE NAME LATER*/
-  position: absolute;
-  left: 35%;
-  right: 35%;
-  top: 130%;
-} 
-
-@media only screen and (max-width: 600px) {
-  .center-bottom-button2 { /*CHANGE NAME LATER*/
-    left: 20%;
-    right: 20%;
-    top: 100%;
-  }
-}
-/*********************************************
   Landing Screen
- *********************************************/
-#title { /*!important is needed bc theme sheet overrides*/
+*********************************************/
+#title { 
   font-family: 'Chalkdust', Georgia, serif;
   color: #007a00;
   text-shadow: 0px -4px 10px rgb(255 255 255 / 30%), 0px 3px 0px #7ac68a, 0px 14px 10px rgb(0 0 0 / 15%), 0px 24px 2px rgb(0 0 0 / 10%), 0px 34px 30px rgb(0 0 0 / 10%);
@@ -180,6 +116,80 @@
   }
 }
 
+/* Animation Text after Nation Input */
+.intro-animation-text { /* !important is needed to override cough-theme.css */
+  margin: 0 20% !important;
+}
+
+@media only screen and (max-width: 900px) {
+  .intro-animation-text {
+    margin: 0 !important;
+  }
+}
+
+
+/*********************************************
+  Button Styling
+*********************************************/
+.button-slide {
+  color: black;
+  font-weight: bold;
+  background-color: rgb(173, 216, 230);
+  border-radius: 0px;
+  padding: 18px 36px;
+  font-size: 18px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  box-shadow: inset 0 0 0 0 #D80286; /* for animation, edge of the border to 50px on hover */
+  -webkit-transition: ease-out 0.4s;
+  -moz-transition: ease-out 0.4s;
+  transition: ease-out 0.4s;
+}
+
+.button-sliding-animation:hover {
+  box-shadow: inset 0 0 0 50px #ff5b77;
+}
+
+.button-sliding-animation:active {
+  box-shadow: inset 0 0 0 50px #ff5b77;
+}
+
+.next {
+  border: none;
+  outline: none;
+  margin: 10px;
+}
+
+/* Button Positioning */
+.center-bottom-button {
+  position: absolute;
+  bottom: 10%;
+  left: 35%;
+  right: 35%;
+} 
+
+@media only screen and (max-width: 600px) {
+  .center-bottom-button {
+    bottom: 10%;
+    left: 20%;
+    right: 20%;
+  }
+}
+
+.accept-the-challenge-btn {
+  position: absolute;
+  left: 35%;
+  right: 35%;
+  top: 130%;
+} 
+
+@media only screen and (max-width: 600px) {
+  .accept-the-challenge-btn {
+    left: 20%;
+    right: 20%;
+    top: 100%;
+  }
+}
 /*********************************************
   Navigation Bar
  *********************************************/
@@ -200,14 +210,14 @@
 #navbar {
   display: flex;
   justify-content: center;
-  align-items: center; /*baseline or center ask her*/
+  align-items: center; 
 }
 
 #navbar-title {
   font-family: Chalkdust, Georgia, serif;
   font-weight: bold;
   font-size: 3.75em;
-  color: #00bc27; /*maybe change color later*/
+  color: #00bc27; 
   margin: 0 0.5em;
   white-space: nowrap;
 }
@@ -215,7 +225,7 @@
 #navigation a {
   padding: 0 10px;
   text-decoration: none;
-  color: #e0d6ff; /*ask her if she wants to change the color later*/
+  color: #e0d6ff; 
   font-weight: bold;
   transition: color 0.3s ease-out; /* when in hover state, change color easing out */
   -webkit-transition: color 0.3s ease-out;
@@ -298,7 +308,7 @@
     font-family: Chalkdust, Georgia, serif;
     font-weight: bold;
     font-size: 2.1em;
-    color: #00bc27; /*maybe change color later*/
+    color: #00bc27;
 /*    margin: 0 0.5em;*/
     white-space: nowrap;
     margin-bottom: 0.5em;
@@ -306,7 +316,7 @@
   }
 
   .mobile-nav-items.open {
-    clip-path: circle(1500px at 150% 150%);
+    clip-path: circle(1500px at 150% 150%); /* when open, expand the clippath to be 1500px, outside of mobile viewscreen so it covers entirely */
     -webkit-clip-path: circle(1500px at 150% 150%);
     pointer-events: all;
   }
@@ -332,7 +342,7 @@
   }
 
 
-  .mobile-nav-items li:nth-child(1) {
+  .mobile-nav-items li:nth-child(1) { /* each individual element loads a little bit after each other upon opening menu */
     transition: all 0.4s ease 0.1s;
   }
 
@@ -397,55 +407,9 @@
   padding: 2%;
   text-align: center;
 }
-/**/
-/*#contact {
-  height: 50%;
-  background: white;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
 
-.contact-header {
-  border-bottom: none !important;
-}
-
-.modal-body form .data {
-  height: 45px;
-  margin: 40px;
-}
-
-form > div:nth-of-type(1) {
-  margin: 0 40px 40px 40px !important;
-}
-
-form .data label {
-  font-size: 18px;
-}
-
-form .data input{
-  height: 100%;
-  width: 100%;
-  font-size: 17px;
-  border: 1px solid silver;
-}
-
-form .data textarea {
-  height: 100%;
-  width: 100%;
-  font-size: 15px;
-  border: 1px solid silver;
-}
-
-form .data input:focus{
-  border-color: #3498db;
-  border-bottom-width: 2px;
-}*/
-
-
-/**/
 .modal.active {
-  transform: translate(-50%, -50%) scale(1);
+  transform: translate(-50%, -50%) scale(1); /* scale(0) before, change to scale(1) to make it appear */
 }
 
 .modal-header {
@@ -1125,11 +1089,6 @@ div.prompt > h6 { /* every prompt inside the .prompt div container */
     margin: 0;
     font-size: 0.4em;
   }
-
-}
-
-@media only screen and (max-width: 600px) {
-
 }
 
 /*********************************************
@@ -1249,8 +1208,6 @@ div.prompt > h6 { /* every prompt inside the .prompt div container */
     padding: 1em;
   }
 }
-
-
 
 /*********************************************
   ANIMATIONS
@@ -1460,7 +1417,7 @@ div.prompt > h6 { /* every prompt inside the .prompt div container */
 }
 
 @media only screen and (max-width: 800px) {
-  @keyframes rotateMove {
+  @keyframes rotateMove { /* change starting opacity to be 0.5, text more legible */
     0%{
       transform: translateY(0) rotate(0deg);
       opacity: 0.5;
@@ -1506,8 +1463,6 @@ div.prompt > h6 { /* every prompt inside the .prompt div container */
   position: absolute; 
   display: block;
   list-style: none;
-  /* width: 20px; */
-  /* height: 20px; */
   animation: rotateMove 25s linear infinite;
   bottom: -150px;
 }

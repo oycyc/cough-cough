@@ -179,7 +179,7 @@ const promptData = [
 	"optionChoices": 
 		{"Approve and administer the vaccine to your citizens": 
 			{"resultID": 18, "deathChange": 0, "hospitalChange": 0, "positivityRateChange": 0},
-		"Do more research and build public confidence before approving": 
+		"Do more research and build public confidence before approval": 
 			{"resultID": 19, "deathChange": 0, "hospitalChange": 0, "positivityRateChange": 0},
 		 "Reject the vaccine & wait for natural herd immunity":
 		 	{"resultID": 20, "deathChange": 2000, "hospitalChange": 25, "positivityRateChange": 35}
