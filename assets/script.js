@@ -123,6 +123,8 @@ const populationCounter = document.getElementById("population-counter");
 const deathsCounter = document.getElementById("deaths-counter");
 const hospitalCounter = document.getElementById("hospital-capacity");
 const virusCounter = document.getElementById("virus-positivity");
+const hospitalPercentSign = document.getElementById("hospital-percent");
+const virusPercentSign = document.getElementById("virus-percent");
 // data itself
 let populationData = 1000000;
 let deathData = "?"; // stat not unlocked in the beginning of the game
@@ -149,6 +151,44 @@ function changeCounters(death, hospital, positive) {
 		countingAnimation(virusCounter, virusData, virusData + positive, 2250);
 		virusData += positive;
 	};
+
+	// check to see if color change needed
+	if (deathData >= 5000 && deathData < 7500) {
+		deathsCounter.classList.add("to-red");
+	} else if (deathData >= 7500) {
+		deathsCounter.classList.add("to-dark-red");
+	};
+
+	if (hospitalData >= 50 && hospitalData < 75) {
+		hospitalCounter.classList.add("to-light-red");
+		hospitalPercentSign.classList.add("to-light-red");
+	} else if (hospitalData >= 75 && hospitalData < 90) {
+		hospitalCounter.classList.add("to-red");
+		hospitalPercentSign.classList.add("to-red");
+	} else if (hospitalData >= 90) {
+		hospitalCounter.classList.add("to-dark-red");
+		hospitalPercentSign.classList.add("to-dark-red");
+	};
+
+	if (virusData >= 25 && virusData < 35) {
+		virusCounter.classList.add("to-light-red");
+		virusPercentSign.classList.add("to-light-red");
+	} else if (virusData >= 35 && virusData < 40) {
+		virusCounter.classList.add("to-red");
+		virusPercentSign.classList.add("to-red");
+		changePopulationIcon();
+	} else if (virusData >= 40) {
+		virusCounter.classList.add("to-dark-red");
+		virusPercentSign.classList.add("to-dark-red");
+		changePopulationIcon(); // function is called here just in case decision made had a drastic change
+	};
+};
+
+function changePopulationIcon() {
+	document.querySelector("#counters > div:nth-child(1) > div > img").src = "assets/icons/redpopulation.svg";
+	// function not needed anymore after the svg is changed once, but if statement will keep calling it, wasting memory
+	// so change function to do nothing after it has run once
+	changePopulationIcon = function() {};
 };
 
 function checkLosing() {

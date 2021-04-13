@@ -75,30 +75,6 @@
 			<button data-close-button>Close</button>
 		</div>
 
-		<!-- Contact Form Modal -->
-<!-- 		<div class="modal" id="contact">
-			<div class="modal-header contact-header">
-				<div class="modal-title">Contact Us</div>
-			</div>
-			<div class="modal-body">
-				<form name="contact" data-netlify="true" method="POST">
-				    <div class="data">
-				        <label>Your Email</label>
-				        <input type="text" required>
-			        </div>
-					<div class="data">
-				        <label>Message</label>
-				        <textarea required placeholder="Have a message for us? Feel free to contact us!"></textarea>
-				    </div>
-
-					<div class="btn">
-						<button type="submit">Submit</button>
-					</div>
-				</form>
-			</div>
-
-		</div> -->
-
 		<div id="overlay"></div>
 
 		<!-- Counters -->
@@ -124,7 +100,7 @@
 				<div class="counter-container counter-container-three">
 					<img class="counter-icons" src="assets/icons/hospital.svg" alt="Hospital Capacity Icon"/>
 					<span class="counter-data" id="hospital-capacity"></span>
-					<span class="counter-percent">%</span>
+					<span class="counter-percent" id="hospital-percent">%</span>
 				</div>
 			</div>
 
@@ -132,8 +108,8 @@
 				<p class="counter-title">VIRUS<br>POSITIVITY</p>
 				<div class="counter-container counter-container-three">
 					<img class="counter-icons" src="assets/icons/covid.svg" alt="Virus Sprite Icon"/>
-					<span class="counter-data" id="virus-positivity">0</span>
-					<span class="counter-percent">%</span>
+					<span class="counter-data" id="virus-positivity"></span>
+					<span class="counter-percent" id="virus-percent">%</span>
 				</div>
 			</div>
 
@@ -235,9 +211,9 @@
 				<section class="center">
 					<div id="losing-screen">
 						<h3 id="reason-lost"></h3>
-						<p class="positive-note"><span id="reason"></span> -- but without the tough decisions you made, even more citizens would have unknowingly went out & spread the virus and died...</p>
+						<p id="positive-note"><span id="reason"></span> -- but without the tough decisions you made, even more citizens would have unknowingly went out & spread the virus and died...</p>
 						<h3><a href="https://cough-cough.netlify.app/" class="play-again">Play Again</a></h3>
-						<p style="line-height: 0.5em"><a href="https://www.cdc.gov/coronavirus/2019-ncov/index.html" class="learn-more" target="_blank" rel="noopener">Learn more about the importance of this pandemic</a></p>
+						<p><a href="https://www.cdc.gov/coronavirus/2019-ncov/index.html" id="learn-more" target="_blank" rel="noopener">Learn more about the importance of this pandemic</a></p>
 					</div>
 				</section>
 

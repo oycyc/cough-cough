@@ -37,8 +37,8 @@ const promptData = [
 	"optionChoices": 
 		{"Declare the virus a national emergency and give more information to the public": 
 			{"resultID": 4, "deathChange": 500, "hospitalChange": 2, "positivityRateChange": 5},
-	     	 "Try to calm the country down and give more information to the public": 
-	     		{"resultID": 4, "deathChange": 700, "hospitalChange": 9, "positivityRateChange": 8}
+	     "Try to calm the country down and give more information to the public": 
+	     	{"resultID": 23, "deathChange": 700, "hospitalChange": 9, "positivityRateChange": 8}
 	    }
 	}, //prompt 3 feb
 
@@ -49,8 +49,8 @@ const promptData = [
 			{"resultID": 5, "deathChange": 400, "hospitalChange": 9, "positivityRateChange": 2},
 		 "Ban travel from & to virus hotspots": 
 		 	{"resultID": 5, "deathChange": 700, "hospitalChange": 15, "positivityRateChange": 7},
-	    	 "Advise citizens against traveling": 
-	     		{"resultID": 5, "deathChange": 1100, "hospitalChange": 20, "positivityRateChange": 18}
+	    "Advise citizens against traveling": 
+	     	{"resultID": 22, "deathChange": 1100, "hospitalChange": 20, "positivityRateChange": 18}
 	    }
 	},
 
@@ -233,7 +233,13 @@ const resultData = [
 	// 20
 	"The refusal to approve and administer vaccines to your citizens is detrimental to the health of your nation. Without vaccinations, researchers warn that it will be difficult for the nation to reach herd immunity, a point at which spread is unlikely because enough people are immune to the disease. To reach herd immunity without vaccines would mean much higher infection rates and deaths.",
 	//21
-	"Ignoring healthcare workers’ needs is unacceptable, especially during times of crisis like this. As determined doctors and healthcare workers are fighting in the front line of this battle, hospitals have reported a shortage of supplies, which puts staff and patients at risk. In a survey taken by 925 Afghan healthcare workers, less than 50% had access to disposable gowns, face shields, and medical masks."
+	"Ignoring healthcare workers’ needs is unacceptable, especially during times of crisis like this. As determined doctors and healthcare workers are fighting in the front line of this battle, hospitals have reported a shortage of supplies, which puts staff and patients at risk. In a survey taken by 925 Afghan healthcare workers, less than 50% had access to disposable gowns, face shields, and medical masks.",
+	// 22
+	"By only advising people not to travel, it would not be effective. Your citizens might think you're being overly cautious and they'll just travel anyways since there is no enforcement. Overall, countries who blocked travel earlier did better with virus control than countries who did it later/looser.",
+	// 23
+	"Not declaring a pandemic a national emergency is detrimental. In the United States, President Trump at first tried to calm the public in January and February, but later declared COVID-19 a national emergency on March 13, 2020, when there were already 1,629 reported cases and 41 deaths. If it had been any later, the situation would have been even worse. Many scientists still to this day consider the timing of the emergency declaration to be too late already.",
+
+
 ];
 
 
@@ -241,7 +247,7 @@ const monthlyQuestions = { // "questions" array is the indexes of the question
 	"January": {"questions": [0, 1, 2], "randomizable": false},
 	"February": {"questions": [3, 4, 5], "randomizable": false},
 	"March": {"questions": [6, 7], "randomizable": false},
-	"April": {"questions": [8], "randomizable": true},
+	"April": {"questions": [8], "randomizable": false},
 	"May": {"questions": [9], "randomizable": false},
 	"June": {"questions": [10], "randomizable": false},
 	"July": {"questions": [11], "randomizable": false},
@@ -252,4 +258,3 @@ const monthlyQuestions = { // "questions" array is the indexes of the question
 	"December": {"questions": [16], "randomizable": false}
 };
 
-let criticalDecisions = [];

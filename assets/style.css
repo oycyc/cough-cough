@@ -555,6 +555,51 @@
   color: #fdaaaa;
 }
 
+.to-light-red { /* important statements are needed to override previous set colors */
+  animation: 2s linear lightRed;
+  color: #fc7878 !important;
+}
+
+.to-red {
+  animation: 2s linear mediumRed;
+  color: #fb5f5f !important;
+}
+
+.to-dark-red {
+  animation: 2s linear darkRed;
+  color: #f91111 !important;
+}
+
+@keyframes lightRed {
+  from {
+    color: #f7ebc8;
+  }
+
+  to {
+    color: #fc7878;
+  }
+}
+
+@keyframes mediumRed {
+  from {
+    color: #fc7878;
+  }
+
+  to {
+    color: #fb5f5f;
+  }
+}
+
+@keyframes darkRed {
+  from {
+    color: #fb5f5f;
+  }
+
+  to {
+    color: #f91111;
+  }
+}
+
 /* RESPONSIVE */
 @media only screen and (max-width: 1400px) {
   .counter-title { 
@@ -1021,7 +1066,7 @@ div.prompt > h6 { /* every prompt inside the .prompt div container */
   font-size: 1.25em !important;
 }
 
-.positive-note {
+#positive-note {
   line-height: 0.95;
   margin: 0 20%;
   font-size: 0.7em;
@@ -1033,7 +1078,11 @@ div.prompt > h6 { /* every prompt inside the .prompt div container */
   border-bottom: 5px dotted currentColor;
 }
 
-.learn-more {
+#losing-screen > p:nth-child(4) {
+  line-height: 0.5em;
+}
+
+#learn-more {
   text-decoration: none;
   color: #eee;
   border-bottom: 4px dotted currentColor;
@@ -1044,19 +1093,19 @@ div.prompt > h6 { /* every prompt inside the .prompt div container */
   #reason-lost {
     font-size: 0.7em !important;
   }
-  .positive-note {
+  #positive-note {
     margin: 0% 12.5%;
     font-size: 0.4em;
   }
   .play-again {
     font-size: 0.7em;
   }
-  .learn-more {
+  #learn-more {
     font-size: 0.47em;
   }
 }
 @media only screen and (max-width: 600px) {
-  .positive-note {
+  #positive-note {
     margin: 0;
   }
 }
