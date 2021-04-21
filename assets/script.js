@@ -33,22 +33,23 @@ landingContinueBtn.addEventListener("click", function landingContinue() {
 	landingScreenEls.forEach(element => element.classList.remove("zoomInDown"));
 	landingScreenEls.forEach(element => element.classList.add("zoomOut"));
 	virusSprites.classList.add("prompt-exit-animation");
-
+	landingContinueBtn.removeEventListener("click", landingContinue);
 	landingContinueBtn.addEventListener("animationend", function animationEventListener() {
 		Reveal.next();
 		virusSprites.remove(); // lots of animation, better to just delete it so it doesn't use much memory
 		toggleVisibility(document.getElementById("navigation"));
-		landingContinueBtn.removeEventListener("click", landingContinue);
-		landingContinueBtn.removeEventListener("click", animationEventListener);
 	});
 
 	landingContinueBtn.addEventListener("webkitAnimationEnd", function animationEventListener() {
 		Reveal.next();
 		virusSprites.remove(); // lots of animation, better to just delete it so it doesn't use much memory
 		toggleVisibility(document.getElementById("navigation"));
-		landingContinueBtn.removeEventListener("click", landingContinue);
-		landingContinueBtn.removeEventListener("click", animationEventListener);
 	});
+
+	// both eventlisteners are added, if only one runs, the other eventlistener wouldn't be removed
+	// so remove both outside of function
+	landingContinueBtn.removeEventListener("animationend", animationEventListener);
+	landingContinueBtn.removeEventListener("webkitAnimationEnd", animationEventListener);
 });
 
 Reveal.on("ready", event => { // when page loads and is ready
@@ -76,9 +77,6 @@ function removeAllNoDisplay() { // we can use this for testing, call function in
 
 const randomizeList = (a, b) => 0.5 - Math.random(); // use in array.sort(randomizeList);
 
- // implement the method used here when there's extra time
- // https://jshakespeare.com/simple-count-up-number-animation-javascript-react/
- // which adds acceleration to the ending 
 function countingAnimation(element, start, end, duration) {
     const range = end - start;
     // calc step time to show all interediate values
@@ -105,14 +103,18 @@ function countingAnimation(element, start, end, duration) {
     run();
 };
 
-function nextSlide() {
+function nextSection(count) {
+	if (count) {
+		for (let i = 0; i < count - 1; i++) { 
+		// 'count - 1' to take into account the proceeding code regardless if count was a parameter
+			Reveal.next();
+			console.log("Reveal next, onto: " + Reveal.getSlidePastCount());
+		}
+	}
 	Reveal.next();
 	console.log("Reveal next, onto: " + Reveal.getSlidePastCount());
 }
 
-document.querySelectorAll(".nextPrompt").forEach(item => {
-	item.addEventListener("click", event => nextSlide());
-});
 
 /*********************************************
   Counters
@@ -229,15 +231,12 @@ const num_month = document.getElementById("num-month");
  
 
 //when player clicks "accept the challenge," adds a class of current to the first month
-startTimeline.addEventListener("click", () => {
+startTimeline.addEventListener("click", function timelineButtonEvent() {
 	month_1.classList.add("current");
-	displayMuteButton(false);
-	removeAllNoDisplay(); // show everything hidden (counter, month, nav)
 	countingAnimation(populationCounter, 0, 1000000, 1000);
 	countingAnimation(hospitalCounter, 0, 8, 750);
-	startLoadingEventListeners();
-	startGame(); // organize and make all of this into one single function later?
-// remove event listener after 
+	startGame();
+	startTimeline.removeEventListener("click", timelineButtonEvent);
 });
 
 function changeMonthText() { //change top right month number on smaller screens
@@ -445,7 +444,7 @@ function continueAfterResult() { // when they click Continue button:
 		changeMonthData();
 	};
 
-	Reveal.next(); 
+	nextSection(); 
 	resultContinue.removeEventListener("click", continueAfterResult);
 };
 
@@ -464,12 +463,14 @@ function changeMonthData() {
 const allMonthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 let currentMonthName = "January";
 
-function startGame() { // loads January prompts
+function startGame() { // loads January prompts manually
 	insertNewPrompt(0);
  	insertNewPrompt(1);
  	insertNewPrompt(2);
- 	Reveal.next();
- 	Reveal.next();
+ 	displayMuteButton(false); // remove mute btn
+ 	removeAllNoDisplay(); // show everything hidden (counter, month, nav)
+ 	startLoadingEventListeners(); // on every new prompt, load in animation
+ 	nextSection(3); // 3 bc winning screen and losing screen are preloaded sections
 };
 
 // function newMonth(monthName) { // creates new prompt for the month
@@ -607,7 +608,7 @@ function displayMuteButton(displayValue) {
 //once the button is clicked, goes to next slide, replaces nation name, plays audio
 submitName.addEventListener("click", function() {
 	if (checkInput()) {
-		nextSlide();
+		nextSection();
 		replaceNationName();
 		mutePlay();
 		displayMuteButton(true);
