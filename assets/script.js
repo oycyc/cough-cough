@@ -113,7 +113,9 @@ function nextSection(count) {
 	}
 	Reveal.next();
 	console.log("Reveal next, onto: " + Reveal.getSlidePastCount());
-}
+};
+
+function skipSections() {Reveal.slide(9)};
 
 
 /*********************************************
@@ -237,6 +239,9 @@ startTimeline.addEventListener("click", function timelineButtonEvent() {
 	countingAnimation(hospitalCounter, 0, 8, 750);
 	startGame();
 	startTimeline.removeEventListener("click", timelineButtonEvent);
+	// remove eventlistener for all skip elements
+	console.log("outer");
+	document.querySelectorAll(".skip-intro").forEach(element => element.removeEventListener("click", skipSections));
 });
 
 function changeMonthText() { //change top right month number on smaller screens
@@ -604,15 +609,15 @@ function displayMuteButton(displayValue) {
 	}
 }
 
-
-//once the button is clicked, goes to next slide, replaces nation name, plays audio
+//once the button is clicked, goes to next slide, replaces nation name, plays audio, add eventlisteners
 submitName.addEventListener("click", function() {
 	if (checkInput()) {
 		nextSection();
 		replaceNationName();
 		mutePlay();
 		displayMuteButton(true);
-	}
+		document.querySelectorAll(".skip-intro").forEach(element => element.addEventListener("click", skipSections));
+	};
 });
 
 //tells player that the country name must be between 3-15 chars

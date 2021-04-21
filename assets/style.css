@@ -35,17 +35,11 @@
   box-sizing: border-box;
 }
 
-.full-view { /* Easier to position elements. */
-  height:100%;
-  width:100%;  
-}
-
 @media print { /* use this for rn to prevent peaking, when more time load elements dynamically instead all on html */
   * {
     display: none !important;
   }
 }
-
 
 .temp-no-display {display: none !important;}
 
@@ -120,6 +114,23 @@
 .intro-animation-text { /* !important is needed to override cough-theme.css */
   margin: 0 20% !important;
 }
+
+.skip-intro {
+  display: inline;
+  font-size: 0.5em;
+  font-weight: bold;
+  margin-top: 1em;
+  color: #d36742;
+  border-bottom: 2px dotted;
+  cursor: pointer;
+  -webkit-transition: linear 0.1s;
+  -moz-transition: linear 0.1s;
+  transition: linear 0.1s;
+}
+
+.skip-intro:hover {color: #ff4100;}
+
+.skip-intro:active {color: #ff4100;}
 
 @media only screen and (max-width: 900px) {
   .intro-animation-text {
