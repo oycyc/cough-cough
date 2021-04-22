@@ -6,16 +6,19 @@
 
 @font-face {
   font-family: Cochin;
+  font-display: swap;
   src: url(fonts/cochin/Cochin-LT-Font.ttf) format('truetype');
 }
 
 @font-face {
   font-family: Chalkdust;
+  font-display: swap;
   src: url(fonts/chalkdust/Chalkdust.ttf) format('truetype');
 }
 
 @font-face {
   font-family: Lato;
+  font-display: swap;
   src: url(fonts/lato/Lato-Regular.ttf) format('truetype');
 }
 

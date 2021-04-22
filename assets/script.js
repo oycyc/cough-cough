@@ -34,22 +34,19 @@ landingContinueBtn.addEventListener("click", function landingContinue() {
 	landingScreenEls.forEach(element => element.classList.add("zoomOut"));
 	virusSprites.classList.add("prompt-exit-animation");
 	landingContinueBtn.removeEventListener("click", landingContinue);
-	landingContinueBtn.addEventListener("animationend", function animationEventListener() {
-		Reveal.next();
-		virusSprites.remove(); // lots of animation, better to just delete it so it doesn't use much memory
-		toggleVisibility(document.getElementById("navigation"));
-	});
 
-	landingContinueBtn.addEventListener("webkitAnimationEnd", function animationEventListener() {
-		Reveal.next();
-		virusSprites.remove(); // lots of animation, better to just delete it so it doesn't use much memory
-		toggleVisibility(document.getElementById("navigation"));
-	});
+	landingContinueBtn.addEventListener("animationend", animationEnd);
+	landingContinueBtn.addEventListener("webkitAnimationEnd", animationEnd);
 
-	// both eventlisteners are added, if only one runs, the other eventlistener wouldn't be removed
-	// so remove both outside of function
-	landingContinueBtn.removeEventListener("animationend", animationEventListener);
-	landingContinueBtn.removeEventListener("webkitAnimationEnd", animationEventListener);
+	function animationEnd() { // when animation ends, continue on
+		Reveal.next();
+		virusSprites.remove(); // lots of animation elements & css, better to just delete it so it doesn't use much memory
+		toggleVisibility(document.getElementById("navigation"));
+		// both eventlisteners are added, if only one runs, the other eventlistener wouldn't be removed
+		// so remove both outside of function
+		landingContinueBtn.removeEventListener("animationend", animationEnd);
+		landingContinueBtn.removeEventListener("webkitAnimationEnd", animationEnd);
+	};
 });
 
 Reveal.on("ready", event => { // when page loads and is ready
@@ -240,7 +237,6 @@ startTimeline.addEventListener("click", function timelineButtonEvent() {
 	startGame();
 	startTimeline.removeEventListener("click", timelineButtonEvent);
 	// remove eventlistener for all skip elements
-	console.log("outer");
 	document.querySelectorAll(".skip-intro").forEach(element => element.removeEventListener("click", skipSections));
 });
 
@@ -537,11 +533,11 @@ function countryHealthStatus() { // text for "the health of your country is..."
 	if (virusData <= 15) {
 		return "looking phenomenal!";
 	} else if (virusData <= 35) {
-		return "looking adequate.";
+		return "looking average.";
 	} else {
 		return "not doing so well...";
-	}
-}
+	};
+};
 
 /*********************************************
   Losing

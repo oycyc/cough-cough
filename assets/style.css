@@ -71,6 +71,7 @@
   font-family: 'Chalkdust', Georgia, serif;
   color: #007a00;
   text-shadow: 0px -4px 10px rgb(255 255 255 / 30%), 0px 3px 0px #7ac68a, 0px 14px 10px rgb(0 0 0 / 15%), 0px 24px 2px rgb(0 0 0 / 10%), 0px 34px 30px rgb(0 0 0 / 10%);
+  font-size: 2.11em;
 }
 
 .landing-page {
@@ -1127,7 +1128,7 @@ div.prompt > h6 { /* every prompt inside the .prompt div container */
   color: #f1c7ce !important;
   font-size: 1.25em!important;
   line-height: 0.9;
-  margin: 0 20%;
+  margin: 0 20% 2% 20%;
 }
 
 #success > p {
@@ -1143,7 +1144,7 @@ div.prompt > h6 { /* every prompt inside the .prompt div container */
 @media only screen and (max-width: 800px) {
   #great-job {
     font-size: 0.7em !important;
-    margin: 0;
+    margin: 0 0 1% 0;
   }
   #success > p {
     margin: 0;
