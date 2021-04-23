@@ -93,8 +93,8 @@ const promptData = [
 	"optionChoices": 
 		{"Offer assistance by providing more medical supplies and add benefits for doctors": 
 			{"resultID": 9, "deathChange": 300, "hospitalChange": 7, "positivityRateChange": -2},
-	     	 "Ignore their needs": 
-	     		{"resultID": 20, "deathChange": 3000, "hospitalChange": 50, "positivityRateChange": 35}
+	    "Ignore their needs": 
+	     	{"resultID": 21, "deathChange": 3000, "hospitalChange": 50, "positivityRateChange": 35}
 	    }
 	}, //prompt 8 april
 
@@ -239,7 +239,7 @@ const resultData = [
 	// 23
 	"Not declaring a pandemic a national emergency is detrimental. In the United States, President Trump at first tried to calm the public in January and February, but later declared COVID-19 a national emergency on March 13, 2020, when there were already 1,629 reported cases and 41 deaths. If it had been any later, the situation would have been even worse. Many scientists still to this day consider the timing of the emergency declaration to be too late already.",
 
-
+	
 ];
 
 

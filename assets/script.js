@@ -105,14 +105,15 @@ function nextSection(count) {
 		for (let i = 0; i < count - 1; i++) { 
 		// 'count - 1' to take into account the proceeding code regardless if count was a parameter
 			Reveal.next();
-			console.log("Reveal next, onto: " + Reveal.getSlidePastCount());
-		}
-	}
+		};
+	};
 	Reveal.next();
-	console.log("Reveal next, onto: " + Reveal.getSlidePastCount());
 };
 
-function skipSections() {Reveal.slide(9)};
+function skipSections() {
+	zoomOutSkipIntro()
+	Reveal.slide(9)
+};
 
 
 /*********************************************
@@ -237,7 +238,7 @@ startTimeline.addEventListener("click", function timelineButtonEvent() {
 	startGame();
 	startTimeline.removeEventListener("click", timelineButtonEvent);
 	// remove eventlistener for all skip elements
-	document.querySelectorAll(".skip-intro").forEach(element => element.removeEventListener("click", skipSections));
+	skipIntro.removeEventListener("click", skipSections);
 });
 
 function changeMonthText() { //change top right month number on smaller screens
@@ -350,7 +351,7 @@ function createOptions(optionsInfo) {
    	function loopAllOptions() { // creates the actual option elements + event listeners needed
    		const inputPromptNumber = this.promptNumber;
    		const divLoadOut = this.newDiv;
-   		let allOptions = []
+   		let allOptions = [];
 
 		Object.keys(optionsInfo).forEach(option => { // loop all options to add values
 			let optionIndex = allOptions.push(document.createElement("div")) - 1; // push to the list, which returns count of list, index will be -1
@@ -367,10 +368,12 @@ function createOptions(optionsInfo) {
 				changeCounters(optionsInfo[option]["deathChange"], optionsInfo[option]["hospitalChange"], optionsInfo[option]["positivityRateChange"]);
 				setResultBody(resultData[optionsInfo[option]["resultID"]]);
 				loadInResult();
-				allOptions[optionIndex].removeEventListener("click", optionClicked);
+				// doesn't remove all of the elements for some reason, try to delete whole thing after new prompt
+				allOptions.forEach(element => element.removeEventListener("click", optionClicked)); // remove all event listeners after an option is chosen
 				isTestingKitPrompt(inputPromptNumber); // individual case, checks if it's the prompt to unlock Deaths & Virus counters
 			});
 		});
+
 		return allOptions; // returns all the individual options for parent function to append into parent element
    	};
    	return parentOption; // returns the parent element w/ all the individual options appended to it
@@ -468,7 +471,7 @@ function startGame() { // loads January prompts manually
 	insertNewPrompt(0);
  	insertNewPrompt(1);
  	insertNewPrompt(2);
- 	displayMuteButton(false); // remove mute btn
+ 	displayIntroButtons(false); // remove mute & skip btn
  	removeAllNoDisplay(); // show everything hidden (counter, month, nav)
  	startLoadingEventListeners(); // on every new prompt, load in animation
  	nextSection(3); // 3 bc winning screen and losing screen are preloaded sections
@@ -583,6 +586,7 @@ const errorElement = document.getElementById("error");
 const audio = new Audio("assets/music/demised_to_shield_end_portion.mp3");
 audio.volume = 0.1; // lower volume to 0.1 from 0.5
 const mute = document.getElementById("mute");
+const skipIntro = document.getElementById("intro-skip");
 
 function mutePlay() { //play audio + allow user to mute/unmute during animation
 	audio.play();
@@ -597,13 +601,33 @@ function mutePlay() { //play audio + allow user to mute/unmute during animation
 	});
 };
 
-function displayMuteButton(displayValue) {
+function displayIntroButtons(displayValue) {
 	if (displayValue) {
 		mute.style.display = "block";
+		skipIntro.style.display = "flex";
 	} else {
 		mute.style.display = "none";
+		skipIntro.style.display = "none";
 	}
+	zoomOutSkipIntro();
+};
+
+function zoomOutSkipIntro() {
+	Reveal.on("slidechanged", event => { // when it reaches last intro animation slide, hide skip btn
+		if (Reveal.getSlidePastCount() === 9) {
+			skipIntro.classList.add("zoomOutSlow");
+			skipIntro.addEventListener("animationend", () => {
+				skipIntro.style.display = "none";
+			});
+
+			skipIntro.addEventListener("webkitAnimationEnd", () => {
+				skipIntro.style.display = "none";
+			});
+		};
+	});
 }
+
+
 
 //once the button is clicked, goes to next slide, replaces nation name, plays audio, add eventlisteners
 submitName.addEventListener("click", function() {
@@ -611,8 +635,8 @@ submitName.addEventListener("click", function() {
 		nextSection();
 		replaceNationName();
 		mutePlay();
-		displayMuteButton(true);
-		document.querySelectorAll(".skip-intro").forEach(element => element.addEventListener("click", skipSections));
+		displayIntroButtons(true);
+		skipIntro.addEventListener("click", skipSections);
 	};
 });
 

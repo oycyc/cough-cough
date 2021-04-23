@@ -116,12 +116,20 @@
   margin: 0 20% !important;
 }
 
-.skip-intro {
-  display: inline;
-  font-size: 0.5em;
-  font-weight: bold;
-  margin-top: 1em;
+
+#intro-skip {
+  display: none; /* none on default, change to flex w/ eventlisteners */
+  justify-content: center;
+  position: fixed;
+  z-index: 20;
+  width: 100%;
+  bottom: 35%;
+}
+
+#intro-skip > p {
   color: #d36742;
+  font-size: 1.35em;
+  font-weight: bold;
   border-bottom: 2px dotted;
   cursor: pointer;
   -webkit-transition: linear 0.1s;
@@ -129,15 +137,28 @@
   transition: linear 0.1s;
 }
 
-.skip-intro:hover {color: #ff4100;}
+#intro-skip > p:hover {color: #b14925;}
 
-.skip-intro:active {color: #ff4100;}
+#intro-skip > p:active {color: #b14925;}
+
+@media only screen and (max-width: 1400px) {
+  #intro-skip {bottom: 27.5%;}
+}
 
 @media only screen and (max-width: 900px) {
+  .intro-animation-text {margin: 0 !important;}
+  #intro-skip {bottom: 22.5%;}
+}
+
+@media only screen and (max-width: 600px) {
+  #intro-skip {bottom: 20%;}
+  #intro-skip > p {font-size: 1.2em;}
+
   .intro-animation-text {
-    margin: 0 !important;
+    font-size: 0.8em !important;
   }
 }
+
 
 
 /*********************************************
@@ -1460,6 +1481,11 @@ div.prompt > h6 { /* every prompt inside the .prompt div container */
 .zoomOut {
   animation-name: zoomOut;
   animation-duration: 0.5s;
+}
+
+.zoomOutSlow {
+  animation-name: zoomOut;
+  animation-duration: 1.5s;
 }
 
 /* For Landing Screen */
