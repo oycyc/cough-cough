@@ -33,7 +33,6 @@ landingContinueBtn.addEventListener("click", function landingContinue() {
 	landingScreenEls.forEach(element => element.classList.remove("zoomInDown"));
 	landingScreenEls.forEach(element => element.classList.add("zoomOut"));
 	virusSprites.classList.add("prompt-exit-animation");
-	landingContinueBtn.removeEventListener("click", landingContinue);
 
 	landingContinueBtn.addEventListener("animationend", animationEnd);
 	landingContinueBtn.addEventListener("webkitAnimationEnd", animationEnd);
@@ -47,11 +46,11 @@ landingContinueBtn.addEventListener("click", function landingContinue() {
 		landingContinueBtn.removeEventListener("animationend", animationEnd);
 		landingContinueBtn.removeEventListener("webkitAnimationEnd", animationEnd);
 	};
-});
+}, {once: true});
 
 Reveal.on("ready", event => { // when page loads and is ready
 	landingScreenEls.forEach(element => element.classList.add("zoomInDown")); 
-})
+}, {once: true});
 
 /*********************************************
   Utility Functions
@@ -236,10 +235,9 @@ startTimeline.addEventListener("click", function timelineButtonEvent() {
 	countingAnimation(populationCounter, 0, 1000000, 1000);
 	countingAnimation(hospitalCounter, 0, 8, 750);
 	startGame();
-	startTimeline.removeEventListener("click", timelineButtonEvent);
-	// remove eventlistener for all skip elements
+	// remove eventlistener for skip element
 	skipIntro.removeEventListener("click", skipSections);
-});
+}, {once: true});
 
 function changeMonthText() { //change top right month number on smaller screens
 	if (parseInt(num_month.innerText) < 12) {
@@ -412,7 +410,7 @@ const loadInResult = () => { // remove old animation and make it appear with new
 	resultCircle.classList.remove("no-display");
 	resultCircle.classList.remove("result-exit-animation");
 	resultCircle.classList.add("result-load-animation");
-	resultContinue.addEventListener("click", continueAfterResult);
+	resultContinue.addEventListener("click", continueAfterResult); // don't need {once: true} bc same element div, just changed text
 };
 const exitOutResult = () => { // add exit animation, then when animation ends, make it disappear
 	resultCircle.classList.add("result-exit-animation");
@@ -513,15 +511,20 @@ function newMonthScreen(monthName) {
 		monthlyQuestions[nextMonthName]["questions"].forEach(questionIndex => { // returns index of questions
 			insertNewPrompt(questionIndex);
 		});
-		newMonthContinue.removeEventListener("click", createNextMonthPrompts);
 		console.log("new prompts created for month of " + nextMonthName);
 		// exits out the new month screen and when it ends, go next section which should be the prompts created
 		[h3Title, h6Announcement, pText, newMonthContinue].forEach(element => {
 			element.classList.add("rotateOut");
 		});
-		h3Title.addEventListener("animationend", () => Reveal.next());
-		h3Title.addEventListener("webkitAnimationEnd", () => Reveal.next());
-	});
+		h3Title.addEventListener("animationend", continueAfterAnimation);
+		h3Title.addEventListener("webkitAnimationEnd", continueAfterAnimation);
+
+		function continueAfterAnimation() {
+			Reveal.next();
+			h3Title.removeEventListener("animationend", continueAfterAnimation);
+			h3Title.removeEventListener("webkitAnimationEnd", continueAfterAnimation);
+		};
+	}, {once: true});
 	// finish creating the new month screen
 	newSection.appendChild(h3Title);
 	newSection.appendChild(h6Announcement);
@@ -618,10 +621,12 @@ function zoomOutSkipIntro() {
 			skipIntro.classList.add("zoomOutSlow");
 			skipIntro.addEventListener("animationend", () => {
 				skipIntro.style.display = "none";
+				skipIntro.remove(); // delete element after bc not used anymore & eventlistener
 			});
 
 			skipIntro.addEventListener("webkitAnimationEnd", () => {
 				skipIntro.style.display = "none";
+				skipIntro.remove(); // delete element after bc not used anymore & eventlistener
 			});
 		};
 	});
@@ -630,13 +635,14 @@ function zoomOutSkipIntro() {
 
 
 //once the button is clicked, goes to next slide, replaces nation name, plays audio, add eventlisteners
-submitName.addEventListener("click", function() {
+submitName.addEventListener("click", function submitNameClick() {
 	if (checkInput()) {
 		nextSection();
 		replaceNationName();
 		mutePlay();
 		displayIntroButtons(true);
 		skipIntro.addEventListener("click", skipSections);
+		submitName.removeEventListener("click", submitNameClick);
 	};
 });
 
