@@ -546,7 +546,9 @@
 }
 
 .counter-title {
+  display: inline-block;
   font-size: 1.25em;
+  font-weight: bold;
   letter-spacing: 0.05em;
   border-bottom: 2px dotted rgba(247, 235, 299, 0.5);
   margin-bottom: 0.2em;
@@ -554,14 +556,14 @@
 
 .counter-container { /* individual container for icon + numbers */
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: auto auto auto auto;
   grid-template-rows: auto;
   align-items: center;
   justify-content: left;
 }
 
-.counter-container-three { /* for counter when there's a % sign (need 3) */
-  grid-template-columns: auto auto auto;
+.counter-container-five { /* for counter when there's a % sign (need 3) */
+  grid-template-columns: auto auto auto auto auto;
 }
 
 .counter-container > img:nth-of-type(1) { /* spacing after icon */
@@ -573,6 +575,11 @@
   width: 50px;
 }
 
+.arrow-change-icons {
+  height: 35px;
+  width: 35px;
+}
+
 .counter-data {
   font-weight: bold;
   letter-spacing: 0.02em;
@@ -582,6 +589,12 @@
 .counter-percent {
   font-weight: bold;
   font-size: 1.5em;
+}
+
+.arrow-change-amt {
+  font-weight: bold;
+  font-size: 1.25em;
+  color: #ff908f;
 }
 
 #deaths-counter {
@@ -636,8 +649,8 @@
 /* RESPONSIVE */
 @media only screen and (max-width: 1400px) {
   .counter-title { 
-    font-size: 1em;
-    letter-spacing: 0.04em;
+    font-size: 1.15em;
+    letter-spacing: 0.01em;
   }
 
   #counters > div { /* spacing btwn interior div containers*/
@@ -680,6 +693,10 @@
   }
 
   .counter-percent {
+    font-size: 1em;
+  }
+
+  .arrow-change-amt {
     font-size: 1em;
   }
 }

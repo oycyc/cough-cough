@@ -126,6 +126,14 @@ const hospitalCounter = document.getElementById("hospital-capacity");
 const virusCounter = document.getElementById("virus-positivity");
 const hospitalPercentSign = document.getElementById("hospital-percent");
 const virusPercentSign = document.getElementById("virus-percent");
+const populationArrow = document.getElementById("population-arrow");
+const deathArrow = document.getElementById("death-arrow");
+const hospitalArrow = document.getElementById("hospital-arrow");
+const virusArrow = document.getElementById("virus-arrow");
+const populationChange = document.getElementById("population-change");
+const deathChange = document.getElementById("death-change");
+const hospitalChange = document.getElementById("hospital-change");
+const virusChange = document.getElementById("virus-change");
 // data itself
 let populationData = 1000000;
 let deathData = "?"; // stat not unlocked in the beginning of the game
@@ -138,20 +146,41 @@ hospitalCounter.textContent = hospitalData;
 virusCounter.textContent = virusData;
 
 function changeCounters(death, hospital, positive) {
+	arrowChangeVisibility(true);
 	if (deathData === "?" || virusData === "?") { 
 		// deaths & virus positivity rate not unlocked yet, so don't change
 		countingAnimation(hospitalCounter, hospitalData, hospitalData + hospital, 2250);
 		hospitalData += hospital;
+		populationArrow.classList.add("no-display");
+		populationChange.classList.add("no-display");
+		deathArrow.classList.add("no-display");
+		deathChange.classList.add("no-display");
+		virusArrow.classList.add("no-display");
+		virusChange.classList.add("no-display");
+		countingAnimation(hospitalChange, 0, hospital, 750);
 	} else {
 		countingAnimation(populationCounter, populationData, populationData - death, 2250);
 		populationData -= death; 
+		countingAnimation(populationChange, 0, -death, 750);
+		// deaths
 		countingAnimation(deathsCounter, deathData, deathData + death, 2250);
 		deathData += death;
+		countingAnimation(deathChange, 0, death, 750);
+		// hospital
 		countingAnimation(hospitalCounter, hospitalData, hospitalData + hospital, 2250);
 		hospitalData += hospital;
+		countingAnimation(hospitalChange, 0, hospital, 750);
+		// virus positivity
 		countingAnimation(virusCounter, virusData, virusData + positive, 2250);
 		virusData += positive;
+		countingAnimation(virusChange, 0, positive, 750);
 	};
+
+	// add in increase/decrease arrow icons
+	populationArrow.src = "assets/icons/red_decrease.svg";
+	deathArrow.src = "assets/icons/red_increase.svg";
+	hospitalArrow.src = (hospital >= 0) ? "assets/icons/red_increase.svg":"assets/icons/green_decrease.svg";
+	virusArrow.src = (positive >= 0) ? "assets/icons/red_increase.svg":"assets/icons/green_decrease.svg";
 
 	// check to see if color change needed
 	if (deathData >= 5000 && deathData < 7500) {
@@ -185,6 +214,28 @@ function changeCounters(death, hospital, positive) {
 	};
 };
 
+function arrowChangeVisibility(display) {
+	if (display) {
+		populationArrow.classList.remove("no-display");
+		populationChange.classList.remove("no-display");
+		deathArrow.classList.remove("no-display");
+		deathChange.classList.remove("no-display");
+		hospitalArrow.classList.remove("no-display");
+		hospitalChange.classList.remove("no-display");
+		virusArrow.classList.remove("no-display");
+		virusChange.classList.remove("no-display");
+	} else {
+		populationArrow.classList.add("no-display");
+		populationChange.classList.add("no-display");
+		deathArrow.classList.add("no-display");
+		deathChange.classList.add("no-display");
+		hospitalArrow.classList.add("no-display");
+		hospitalChange.classList.add("no-display");
+		virusArrow.classList.add("no-display");
+		virusChange.classList.add("no-display");
+	}
+}
+
 function changePopulationIcon() {
 	document.querySelector("#counters > div:nth-child(1) > div > img").src = "assets/icons/redpopulation.svg";
 	// function not needed anymore after the svg is changed once, but if statement will keep calling it, wasting memory
@@ -209,15 +260,26 @@ function newMonthCounters() { // simluate real world, natural data movement
 	let randomDeath = Math.floor(Math.random() * (25 - 1 + 1) + 1);
 	let randomHospital = Math.floor(Math.random() * (5 - -1 + 1) + -1);
 	let randomVirus = Math.floor(Math.random() * (2 - -1 + 1) + -1);
+	arrowChangeVisibility(true);
 
 	countingAnimation(populationCounter, populationData, populationData - randomDeath, 1000);
-	populationData -= randomDeath; 
+	populationData -= randomDeath;
+	countingAnimation(populationChange, 0, -randomDeath, 750);
+	// 
 	countingAnimation(deathsCounter, deathData, deathData + randomDeath, 1000);
 	deathData += randomDeath;
+	countingAnimation(deathChange, 0, randomDeath, 750);
+	// 
 	countingAnimation(hospitalCounter, hospitalData, hospitalData + randomHospital, 1000);
 	hospitalData += randomHospital;
+	countingAnimation(hospitalChange, 0, randomHospital, 750);
+	// 
 	countingAnimation(virusCounter, virusData, virusData + randomVirus, 1000);
 	virusData += randomVirus;
+	countingAnimation(virusChange, 0, randomVirus, 750);
+
+	hospitalArrow.src = (randomHospital >= 0) ? "assets/icons/red_increase.svg":"assets/icons/green_decrease.svg";
+	virusArrow.src = (randomVirus >= 0) ? "assets/icons/red_increase.svg":"assets/icons/green_decrease.svg";
 };
 
 /*********************************************
@@ -384,6 +446,13 @@ function isTestingKitPrompt(promptNumber) {
 		populationData -= deathData;
 		countingAnimation(virusCounter, 1, 8, 1000); 
 		virusData = 8;
+	} else if (promptNumber === 2) {
+		populationArrow.classList.remove("no-display");
+		populationChange.classList.remove("no-display");
+		deathArrow.classList.remove("no-display");
+		deathChange.classList.remove("no-display");
+		virusArrow.classList.remove("no-display");
+		virusChange.classList.remove("no-display");
 		// function isn't needed after this runs, the 'Deaths' & 'Virus' counters are unlocked and can't be unlocked again
 		// but the function will keep getting called so garbage collection can't be used, hence redefine function to do nothing
 		isTestingKitPrompt = function() {};
@@ -431,7 +500,7 @@ const setResultBody = info => {resultBody.textContent = info};
 function continueAfterResult() { // when they click Continue button:
 	exitOutResult();
 	if (checkLosing()) return; // if lost, run checkLosing function which directs to losing screen and stop the THIS function
-	
+	arrowChangeVisibility(false);
 	resultCircle.classList.remove("result-load-animation");
 	// check if last prompt of month bc then u win
 	if (lastPromptOfMonth() && currentMonthName === "December") {
@@ -444,6 +513,7 @@ function continueAfterResult() { // when they click Continue button:
 		monthScreenElements[3].classList.remove("no-animations"); // individual case, it's a div and an earlier eventListener loads every prompt on view to create an animation, but we want a diff. animation
 		monthScreenElements.forEach(element => element.classList.add("rotateIn"));
 		changeMonthData();
+		newMonthCounters();
 	};
 
 	nextSection(); 
@@ -507,7 +577,7 @@ function newMonthScreen(monthName) {
 	newMonthContinue.addEventListener("click", function createNextMonthPrompts() { // after they click continue button:
 		changeMonthText(); // change the # in "Month #"
 		removeAddClass(); // remove where the active is at in month timeline
-		newMonthCounters();
+		arrowChangeVisibility(false);
 		monthlyQuestions[nextMonthName]["questions"].forEach(questionIndex => { // returns index of questions
 			insertNewPrompt(questionIndex);
 		});
