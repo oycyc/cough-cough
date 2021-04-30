@@ -1692,3 +1692,17 @@ div.prompt > h6 { /* every prompt inside the .prompt div container */
   animation-delay: 0s;
   animation-duration: 11s;
 }
+
+
+/*Icons Next to New Month Screen*/
+.monthcon {
+  width: 1.5em;
+  height: 1.5em;
+}
+
+.logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.8em; 
+}
