@@ -1,9 +1,12 @@
 # beep boop
 ## to dos
+- CHART SCREEN only best for laptop screen modify media query for mobile and monitors 
+- button that shows chart screen without "continue" button
+
+
 - winning screen continueAfterResult() check there
 	- add cute gif https://giphy.com/gifs/molangofficialpage-social-distancing-stay-safe-keep-kaIJGG8lNC3u5DM3tg
 - add cool icons?
-- make it change counter after 'Continue' button of result bc both things changing lots of action brain can't focus
 - longer prompt on mobile, counter blocks a lil
 - if multiple counters exceeed, have different screen
 

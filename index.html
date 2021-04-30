@@ -34,7 +34,7 @@
 		</div>
 
 		<nav id="mobile-nav">
-			<div class="hamburger-menu"> <!-- move this to first navigation -->
+			<div class="hamburger-menu">
 				<div class="lines"></div>
 				<div class="lines"></div>
 				<div class="lines"></div>
@@ -165,6 +165,13 @@
 			</ul>
 		</div>
 
+		<!-- Charting -->
+		<div id="history-charts">
+			<canvas id="deathChart" width="600" height="225"></canvas>
+			<canvas id="percentageChart" width="600" height="225"></canvas>
+			<div class="button-slide button-sliding-animation chart-next-btn no-animations" id="chartContinue">Continue</div>
+		</div>
+
 		<!-- Skip Intro -->
 		<div id="intro-skip">
 			<p>Skip</p>
@@ -241,6 +248,7 @@
 				</section> 
 
 
+
 			
 
 				
@@ -256,6 +264,7 @@
 
 		<!-- Script -->
 		<script src="revealjs/dist/reveal.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/chart.js@3.2.0/dist/chart.min.js"></script>
 		<script src="assets/promptData.js"></script>
 		<script src="assets/script.js"></script>
 

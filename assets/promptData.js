@@ -4,7 +4,7 @@ const promptData = [
 	"question": "How will you keep your citizens safe from the virus?", 
 	"optionChoices": // no death & virus change bc not unlocked yet
 		{"Advise citizens to avoid gathering with others and stay safe": 
-			{"resultID": 0, "deathChange": 0, "hospitalChange": 9, "positivityRateChange": 2},
+			{"resultID": 0, "deathChange": 0, "hospitalChange": 9, "positivityRateChange": 0},
 	   	 "Require citizens to wear masks in all public places": 
 	    		{"resultID": 1, "deathChange": 0, "hospitalChange": 5, "positivityRateChange": 0}
 	    },
@@ -14,11 +14,11 @@ const promptData = [
 	"question": "How will you get testing kits?", 
 	"optionChoices":  // no deaths & virus change bc not unlocked yet
 		{"Have your nation's scientists develop a plan for testing for the disease": 
-			{"resultID": 2, "deathChange": 0, "hospitalChange": -2, "positivityRateChange": 2}, 
+			{"resultID": 2, "deathChange": 16, "hospitalChange": -2, "positivityRateChange": 8}, 
 		 "Request testing kits from neighboring countries": 
-		 	{"resultID": 2, "deathChange": 0, "hospitalChange": -2, "positivityRateChange": 2},
+		 	{"resultID": 2, "deathChange": 16, "hospitalChange": -2, "positivityRateChange": 8},
 		 "Request testing kits from an international health organization": 
-		 	{"resultID": 2, "deathChange": 0, "hospitalChange": -2, "positivityRateChange": 2}
+		 	{"resultID": 2, "deathChange": 16, "hospitalChange": -2, "positivityRateChange": 8}
 		}
 	},
 
