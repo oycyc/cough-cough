@@ -696,6 +696,11 @@
     font-size: 1em;
   }
 
+  .arrow-change-icons {
+    height: 25px;
+    width: 25px;
+  }
+
   .arrow-change-amt {
     font-size: 1em;
   }
@@ -1108,6 +1113,19 @@ div.prompt > h6 { /* every prompt inside the .prompt div container */
     font-size: 0.55em;
   }
 }
+
+/* asdasdsad */
+.chart-next-btn {
+  font-weight: normal;
+  margin: 0 35%;
+  border-radius: 10px;
+  letter-spacing: 0;
+  text-align: center;
+  padding: 15px 30px;
+  font-size: 15px;
+}
+
+
 /*********************************************
   Losing Screen
  *********************************************/
@@ -1307,6 +1325,30 @@ div.prompt > h6 { /* every prompt inside the .prompt div container */
     padding: 1em;
   }
 }
+/*********************************************
+  CHARTING
+*********************************************/
+#history-charts { 
+  position: absolute;
+  z-index: 25;
+  display: none;
+  grid-template-columns: auto;
+  width: 100%;
+  height: 100%;
+  align-content: start;
+  justify-content: center;
+  row-gap: 0.2em;
+  margin-top: 0.3em;
+}
+
+/* RESPONSIVE */
+@media only screen and (min-width: 1400px) { /* styling monitors/big laptops*/
+  #history-charts {
+    margin-top: -2.5em;
+    align-content: center;
+  }
+}
+
 
 /*********************************************
   ANIMATIONS
@@ -1475,7 +1517,7 @@ div.prompt > h6 { /* every prompt inside the .prompt div container */
 .rotateOut {
   animation-name: rotateOut;
   transform-origin: center;
-  animation-duration: 1s;
+  animation-duration: 0.5s;
   opacity: 0;
 }
 
@@ -1493,6 +1535,11 @@ div.prompt > h6 { /* every prompt inside the .prompt div container */
 .zoomInDown {
   animation-name: zoomInDown;
   animation-duration: 1.5s;
+}
+
+.chartFadeIn {
+  animation-name: fadeIn;
+  animation-duration: 0.5s;
 }
 
 .zoomOut {

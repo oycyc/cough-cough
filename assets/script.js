@@ -280,6 +280,8 @@ function newMonthCounters() { // simluate real world, natural data movement
 
 	hospitalArrow.src = (randomHospital >= 0) ? "assets/icons/red_increase.svg":"assets/icons/green_decrease.svg";
 	virusArrow.src = (randomVirus >= 0) ? "assets/icons/red_increase.svg":"assets/icons/green_decrease.svg";
+
+	return [randomDeath, randomHospital, randomVirus];
 };
 
 /*********************************************
@@ -328,8 +330,9 @@ let totalQuestionAnswered = 0;
 const loadInPrompt = element => element.classList.add("prompt-load-animation");
 const loadOutPrompt = element => element.classList.add("prompt-exit-animation");
 
-function insertNewPrompt(promptNumber) { // promptNumber corresponds to the element index of the promptData array
+function insertNewPrompt(promptNumber, monthName) { // promptNumber corresponds to the element index of the promptData array
 	this.promptNumber = promptNumber; // so child functions can access it too
+	this.monthName = monthName;
 	const newPromptInfo = promptData[promptNumber];
 
     const newSection = document.createElement("section"); // create entire new section for new screen
@@ -412,6 +415,7 @@ function createOptions(optionsInfo) {
    	function loopAllOptions() { // creates the actual option elements + event listeners needed
    		const inputPromptNumber = this.promptNumber;
    		const divLoadOut = this.newDiv;
+   		const monthName = this.monthName;
    		let allOptions = [];
 
 		Object.keys(optionsInfo).forEach(option => { // loop all options to add values
@@ -427,6 +431,7 @@ function createOptions(optionsInfo) {
 				// load out prompt, change the counter, change the result circle, then load result circle
 				loadOutPrompt(divLoadOut);
 				changeCounters(optionsInfo[option]["deathChange"], optionsInfo[option]["hospitalChange"], optionsInfo[option]["positivityRateChange"]);
+				updateCharting(monthName, optionsInfo[option]["deathChange"], optionsInfo[option]["hospitalChange"], optionsInfo[option]["positivityRateChange"]);		
 				setResultBody(resultData[optionsInfo[option]["resultID"]]);
 				loadInResult();
 				// doesn't remove all of the elements for some reason, try to delete whole thing after new prompt
@@ -537,9 +542,9 @@ const allMonthNames = ["January", "February", "March", "April", "May", "June", "
 let currentMonthName = "January";
 
 function startGame() { // loads January prompts manually
-	insertNewPrompt(0);
- 	insertNewPrompt(1);
- 	insertNewPrompt(2);
+	insertNewPrompt(0, "January");
+ 	insertNewPrompt(1, "January");
+ 	insertNewPrompt(2, "January");
  	displayIntroButtons(false); // remove mute & skip btn
  	removeAllNoDisplay(); // show everything hidden (counter, month, nav)
  	startLoadingEventListeners(); // on every new prompt, load in animation
@@ -604,13 +609,13 @@ function newMonthScreen(monthName) {
 
 	const newMonthContinue = document.createElement("div");
 	newMonthContinue.classList.add("button-slide", "button-sliding-animation", "new-month-button", "no-animations");
-	newMonthContinue.textContent = "Continue";
+	newMonthContinue.textContent = "View Month Summary";
 	newMonthContinue.addEventListener("click", function createNextMonthPrompts() { // after they click continue button:
 		changeMonthText(); // change the # in "Month #"
 		removeAddClass(); // remove where the active is at in month timeline
 		arrowChangeVisibility(false);
 		monthlyQuestions[nextMonthName]["questions"].forEach(questionIndex => { // returns index of questions
-			insertNewPrompt(questionIndex);
+			insertNewPrompt(questionIndex, nextMonthName);
 		});
 		console.log("new prompts created for month of " + nextMonthName);
 		// exits out the new month screen and when it ends, go next section which should be the prompts created
@@ -621,9 +626,11 @@ function newMonthScreen(monthName) {
 		divContainer.addEventListener("webkitAnimationEnd", continueAfterAnimation);
 
 		function continueAfterAnimation() {
-			Reveal.next();
 			divContainer.removeEventListener("animationend", continueAfterAnimation);
 			divContainer.removeEventListener("webkitAnimationEnd", continueAfterAnimation);
+			chartDivElement.classList.add("chartFadeIn");
+			chartDivElement.style.display = "grid";
+			//Reveal.next();
 		};
 	}, {once: true});
 	// finish creating the new month screen
@@ -838,3 +845,235 @@ function closeModal(modal) {
 	overlay.classList.remove("active");
 };
 
+/*********************************************
+  CHARTING
+*********************************************/
+// use currentMonthName as month argument
+function updateCharting(month, deathChange, hospitalChange, virusChange) {
+	const monthAbbreviations = {"January" : "Jan", "February" : "Feb", "March" : "Mar", "April" : "Apr", "May" : "May", "June" : "Jun", "July" : "Jul", "August" : "Aug", "September" : "Sep", "October" : "Oct", "November" : "Nov", "December" : "Dec"};
+
+	decisionNumbering.push(`${monthAbbreviations[month]}. (${totalQuestionAnswered})`);
+	deathChartData.push(deathChartData[deathChartData.length - 1] + deathChange);
+	hospitalChartData.push(hospitalChartData[hospitalChartData.length - 1] + hospitalChange);
+	virusChartData.push(virusChartData[virusChartData.length - 1] + virusChange);
+	deathChart.update();
+	percentageChart.update();
+};
+
+// in a rush so this will have to do
+// account for random changes after each month
+function fixChartNewMonthCounters(randomData) {
+	deathChartData[deathChartData.length - 1] += randomData[0];
+	hospitalChartData[hospitalChartData.length - 1] += randomData[1];
+	virusChartData[virusChartData.length - 1] += randomData[2];
+	deathChart.update();
+	percentageChart.update();
+}
+const chartDivElement = document.getElementById("history-charts");
+const chartScreenContinue = document.getElementById("chartContinue");
+const decisionNumbering = ["Beginning"];
+const deathChartData = [0];
+const hospitalChartData = [8];
+const virusChartData = [0];
+
+chartScreenContinue.addEventListener("click", () => {
+	// zoom out when animation finish display none and next section
+	chartDivElement.classList.add("zoomOut");
+	chartDivElement.addEventListener("animationend", continueAfterChart);
+	chartDivElement.addEventListener("webkitAnimationEnd", continueAfterChart);
+
+
+	function continueAfterChart() {
+		console.log("test");
+		nextSection();
+		chartDivElement.style.display = "none";
+		chartDivElement.classList.remove("zoomOut");
+		chartDivElement.removeEventListener("animationend", continueAfterChart);
+		chartDivElement.removeEventListener("webkitAnimationEnd", continueAfterChart);
+	}
+})
+
+const deathChartElement = document.getElementById('deathChart');
+const deathChart = new Chart(deathChartElement, {
+	type: "line",
+	data: {
+	    labels: decisionNumbering,
+	    datasets: [{ 
+		  data: deathChartData,
+		  label: "Deaths",
+		  borderColor: "#ff4c4c",
+		  lineTension: 0
+		  }]
+ 	},
+	options: {
+		responsive: false,
+		maintainAspectRatio: false,
+		scales: {
+			x: {
+				title: {
+					display: true,
+					text: "Months (Decision #)",
+					font: {
+						family: "Georgia",
+						weight: "bold"
+					},
+					color: "#f7ebc8"
+				},
+				ticks: {
+					font: {
+						family: "Georgia",
+					},
+					color: "#d3d3d3"
+				},
+				grid: {
+					// borderColor: "#fff",
+					// color: "#fff"
+				}
+			},
+			y: {
+				beginAtZero: true,
+				max: 10000,
+				display: true,
+				title: {
+					display: true,
+					text: "Total Deaths",
+					font: {
+						family: "Georgia",
+						weight: "bold"
+					},
+					color: "#f7ebc8"
+				},
+				ticks: {
+					font: {
+						family: "Georgia",
+					},
+					color: "#d3d3d3"
+				}
+			}
+		},
+		plugins: {
+			legend: {
+				display: true,
+				onClick: (e) => e.stopPropagation(),
+				labels: {
+					font: {
+						family: "Georgia",
+					},
+					color: "#d3d3d3"
+				},
+				title: {
+					display: true,
+					color: "#fffff0",
+					text: "Goal: Keep your nation's deaths < 10,000",
+					font: {
+						family: "Georgia"
+					}
+				}
+			},
+			title: {
+				display: true,
+				text: "Deaths",
+				color: "#e0d6ff",
+				font: {
+					family: "Georgia",
+				}
+			},
+		}
+	}
+})
+
+const percentageChartElement = document.getElementById('percentageChart');
+const percentageChart = new Chart(percentageChartElement, {
+	type: "line",
+	data: {
+	    labels: decisionNumbering,
+	    datasets: [
+		{ 
+		  data: hospitalChartData,
+		  label: "Hospital Capacity",
+		  borderColor: "#3cba9f",
+		  lineTension: 0
+		},
+		{ 
+		  data: virusChartData,
+		  label: "Virus Positivity",
+		  borderColor: "#d11d53",
+		  lineTension: 0
+		}]
+ 	},
+	options: {
+		responsive: false,
+		maintainAspectRatio: false,
+		scales: {
+			x: {
+				title: {
+					display: true,
+					text: "Months (Decision #)",
+					font: {
+						family: "Georgia",
+						weight: "bold"
+					},
+					color: "#f7ebc8"
+				},
+				ticks: {
+					font: {
+						family: "Georgia",
+					},
+					color: "#d3d3d3"
+				},
+			},
+			y: {
+				beginAtZero: true,
+				max: 100,
+				display: true,
+				title: {
+					display: true,
+					text: "Hospital & Virus (%)",
+					font: {
+						family: "Georgia",
+						weight: "bold"
+					},
+					color: "#f7ebc8"
+					//padding: {top: 0, left: 0, right: 0, bottom: 5}
+				},
+				ticks: {
+					font: {
+						family: "Georgia",
+					},
+					color: "#d3d3d3"
+				}
+			}
+		},
+		plugins: {
+			legend: {
+				display: true,
+				labels: {
+					font: {
+						family: "Georgia",
+					},
+					color: "#d3d3d3"
+				},
+				title: {
+					display: true,
+					color: "#fffff0",
+					text: "Goal: Keep your hospital capacity < 100% & virus positivity < 50%",
+					font: {
+						family: "Georgia",
+					}
+				}
+			},
+			title: {
+				display: true,
+				color: "#e0d6ff",
+				text: "Hospital Capacity & Virus Positivity",
+				font: {
+					family: "Georgia"
+				}
+			},
+		},
+		interaction: {
+			intersect: false,
+			mode: "index"
+		}
+	}
+})
