@@ -294,6 +294,7 @@ const num_month = document.getElementById("num-month");
 //when player clicks "accept the challenge," adds a class of current to the first month
 startTimeline.addEventListener("click", function timelineButtonEvent() {
 	month_1.classList.add("current");
+	audio.muted = true;
 	countingAnimation(populationCounter, 0, 1000000, 1000);
 	countingAnimation(hospitalCounter, 0, 8, 750);
 	startGame();
@@ -553,6 +554,21 @@ function startGame() { // loads January prompts manually
 // };
 // when there's more prompts, some months' prompts can be randomized
 
+const iconSwitches = {
+	"January": "assets/icons/calendar1.svg",
+	"February": "assets/icons/calendar-travel.svg", 
+	"March": "assets/icons/calendar-book.svg", 
+	"April": "assets/icons/calendar-stethoscope.svg", 
+	"May": "assets/icons/pill.svg", 
+	"June": "assets/icons/calendar-work.svg", 
+	"July": "assets/icons/medical-app.svg", 
+	"August": "assets/icons/calendar-group.svg", 
+	"September": "assets/icons/calendar-cap.svg", 
+	"October": "assets/icons/microscope.svg", 
+	"November": "assets/icons/pandemic.svg", 
+	"December": "assets/icons/vaccine.svg"
+}
+
 function newMonthScreen(monthName) {
 	// creates the new month screen
 	let nextMonthName = allMonthNames[parseInt(document.querySelector(".current").textContent, 10)];
@@ -560,9 +576,24 @@ function newMonthScreen(monthName) {
 	const newSection = document.createElement("section");
 	newSection.classList.add("center", "future", "month-screen");
 
+	const divContainer = document.createElement("div");
+	divContainer.classList.add("logo-container");
+
+	const imgIcon = document.createElement("img");
+	imgIcon.classList.add("monthcon");
+	imgIcon.src = iconSwitches[monthName];
+
+	const secondImgIcon = document.createElement("img");
+	secondImgIcon.classList.add("monthcon");
+	secondImgIcon.src = iconSwitches[monthName];
+
 	const h3Title = document.createElement("h3");
 	h3Title.classList.add("new-month-title");
 	h3Title.textContent = "New Month";
+
+	divContainer.appendChild(imgIcon);
+	divContainer.appendChild(h3Title);
+	divContainer.appendChild(secondImgIcon);	
 
 	const h6Announcement = document.createElement("h6");
 	h6Announcement.textContent = "You made it through " + monthName + "!";
@@ -583,20 +614,20 @@ function newMonthScreen(monthName) {
 		});
 		console.log("new prompts created for month of " + nextMonthName);
 		// exits out the new month screen and when it ends, go next section which should be the prompts created
-		[h3Title, h6Announcement, pText, newMonthContinue].forEach(element => {
+		[divContainer, h6Announcement, pText, newMonthContinue].forEach(element => {
 			element.classList.add("rotateOut");
 		});
-		h3Title.addEventListener("animationend", continueAfterAnimation);
-		h3Title.addEventListener("webkitAnimationEnd", continueAfterAnimation);
+		divContainer.addEventListener("animationend", continueAfterAnimation);
+		divContainer.addEventListener("webkitAnimationEnd", continueAfterAnimation);
 
 		function continueAfterAnimation() {
 			Reveal.next();
-			h3Title.removeEventListener("animationend", continueAfterAnimation);
-			h3Title.removeEventListener("webkitAnimationEnd", continueAfterAnimation);
+			divContainer.removeEventListener("animationend", continueAfterAnimation);
+			divContainer.removeEventListener("webkitAnimationEnd", continueAfterAnimation);
 		};
 	}, {once: true});
 	// finish creating the new month screen
-	newSection.appendChild(h3Title);
+	newSection.appendChild(divContainer);
 	newSection.appendChild(h6Announcement);
 	newSection.appendChild(pText);
 	newSection.appendChild(newMonthContinue);
