@@ -520,6 +520,9 @@ function continueAfterResult() { // when they click Continue button:
 		monthScreenElements.forEach(element => element.classList.add("rotateIn"));
 		changeMonthData();
 		newMonthCounters();
+		nextSection();
+		Reveal.sync();
+		return;
 	};
 
 	nextSection(); 
@@ -926,8 +929,8 @@ const deathChart = new Chart(deathChartElement, {
 					color: "#d3d3d3"
 				},
 				grid: {
-					// borderColor: "#fff",
-					// color: "#fff"
+					// borderColor: "#c2c2c2",
+					// color: "#c2c2c2"
 				}
 			},
 			y: {
@@ -948,6 +951,10 @@ const deathChart = new Chart(deathChartElement, {
 						family: "Georgia",
 					},
 					color: "#d3d3d3"
+				},
+				grid: {
+					// borderColor: "#c2c2c2",
+					// color: "#c2c2c2"
 				}
 			}
 		},
