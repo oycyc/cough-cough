@@ -819,7 +819,7 @@ function closeModal(modal) {
 *********************************************/
 // use currentMonthName as month argument
 function updateCharting(month, deathChange, hospitalChange, virusChange) {
-	const monthAbbreviations = {"January" : "Jan", "February" : "Feb", "March" : "Mar", "April" : "Apr", "May" : "May", "June" : "Jun", "July" : "Jul", "September" : "Sep", "October" : "Oct", "November" : "Nov", "December" : "Dec"};
+	const monthAbbreviations = {"January" : "Jan", "February" : "Feb", "March" : "Mar", "April" : "Apr", "May" : "May", "June" : "Jun", "July" : "Jul", "August" : "Aug", "September" : "Sep", "October" : "Oct", "November" : "Nov", "December" : "Dec"};
 
 	decisionNumbering.push(`${monthAbbreviations[month]}. (${totalQuestionAnswered})`);
 	deathChartData.push(deathChartData[deathChartData.length - 1] + deathChange);

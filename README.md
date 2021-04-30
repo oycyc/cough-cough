@@ -2,7 +2,7 @@
 ## to dos
 - CHART SCREEN only best for laptop screen modify media query for mobile and monitors 
 - button that shows chart screen without "continue" button
-
+- adjust chart spacing/sizing to make it less congested
 
 - winning screen continueAfterResult() check there
 	- add cute gif https://giphy.com/gifs/molangofficialpage-social-distancing-stay-safe-keep-kaIJGG8lNC3u5DM3tg

@@ -1337,8 +1337,8 @@ div.prompt > h6 { /* every prompt inside the .prompt div container */
   height: 100%;
   align-content: start;
   justify-content: center;
-  row-gap: 1em;
-  margin-top: 1em;
+  row-gap: 0.2em;
+  margin-top: 0.3em;
 }
 
 /* RESPONSIVE */
