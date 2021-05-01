@@ -1064,7 +1064,7 @@ div.prompt > h6 { /* every prompt inside the .prompt div container */
   .result-text {
     font-size: 0.385em;
     margin: 0 1em;
-    line-height: 1.15em;
+    line-height: 1.05em;
   }
 
   .result-button {
@@ -1133,6 +1133,8 @@ div.prompt > h6 { /* every prompt inside the .prompt div container */
 
   .h6-announcement {
     font-size: 0.75em !important;
+    margin: 0 !important;
+    line-height: 1 !important;
   }
 
 }
@@ -1360,7 +1362,7 @@ div.prompt > h6 { /* every prompt inside the .prompt div container */
   height: 100%;
   align-content: center;
   justify-content: center;
-  row-gap: 0.2em;
+  row-gap: 0.5em;
   margin-top: -2.5em;
 }
 
@@ -1384,6 +1386,7 @@ div.prompt > h6 { /* every prompt inside the .prompt div container */
 @media only screen and (max-width: 677px) { /* mobile */
   #history-charts {
     margin-top: -0.6em;
+    row-gap: 0.9em;
   }
 
   .chart-div {

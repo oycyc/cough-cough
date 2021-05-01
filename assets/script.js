@@ -521,7 +521,13 @@ function continueAfterResult() { // when they click Continue button:
 		changeMonthData();
 		newMonthCounters();
 		nextSection();
-		setTimeout(() => Reveal.sync(), 1750);
+		// monthScreenElements[0].addEventListener("animationend", () => {
+		// 	Reveal.sync();
+		// });
+		// monthScreenElements[0].addEventListener("webkitAnimationEnd", () => {
+		// 	Reveal.sync();
+		// });
+		resultContinue.removeEventListener("click", continueAfterResult);
 		return;
 	};
 
