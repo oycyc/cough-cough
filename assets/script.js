@@ -521,7 +521,7 @@ function continueAfterResult() { // when they click Continue button:
 		changeMonthData();
 		newMonthCounters();
 		nextSection();
-		Reveal.sync();
+		setTimeout(() => Reveal.sync(), 1750);
 		return;
 	};
 
@@ -604,6 +604,7 @@ function newMonthScreen(monthName) {
 	divContainer.appendChild(secondImgIcon);	
 
 	const h6Announcement = document.createElement("h6");
+	h6Announcement.classList.add("h6-announcement");
 	h6Announcement.textContent = "You made it through " + monthName + "!";
 
 	const pText = document.createElement("p");
@@ -633,6 +634,7 @@ function newMonthScreen(monthName) {
 			divContainer.removeEventListener("webkitAnimationEnd", continueAfterAnimation);
 			chartDivElement.classList.add("chartFadeIn");
 			chartDivElement.style.display = "grid";
+			mobileScreenChartingHideCounter(mobileScreenMediaQuery);
 			//Reveal.next();
 		};
 	}, {once: true});
@@ -851,6 +853,7 @@ function closeModal(modal) {
 /*********************************************
   CHARTING
 *********************************************/
+
 // use currentMonthName as month argument
 function updateCharting(month, deathChange, hospitalChange, virusChange) {
 	const monthAbbreviations = {"January" : "Jan", "February" : "Feb", "March" : "Mar", "April" : "Apr", "May" : "May", "June" : "Jun", "July" : "Jul", "August" : "Aug", "September" : "Sep", "October" : "Oct", "November" : "Nov", "December" : "Dec"};
@@ -887,12 +890,12 @@ chartScreenContinue.addEventListener("click", () => {
 
 
 	function continueAfterChart() {
-		console.log("test");
 		nextSection();
 		chartDivElement.style.display = "none";
 		chartDivElement.classList.remove("zoomOut");
 		chartDivElement.removeEventListener("animationend", continueAfterChart);
 		chartDivElement.removeEventListener("webkitAnimationEnd", continueAfterChart);
+		mobileScreenChartingShowCounter(mobileScreenMediaQuery);
 	}
 })
 
@@ -909,7 +912,7 @@ const deathChart = new Chart(deathChartElement, {
 		  }]
  	},
 	options: {
-		responsive: false,
+		responsive: true,
 		maintainAspectRatio: false,
 		scales: {
 			x: {
@@ -918,9 +921,10 @@ const deathChart = new Chart(deathChartElement, {
 					text: "Months (Decision #)",
 					font: {
 						family: "Georgia",
-						weight: "bold"
+						weight: "bold",
 					},
-					color: "#f7ebc8"
+					color: "#f7ebc8",
+					padding: {bottom: 4}
 				},
 				ticks: {
 					font: {
@@ -966,7 +970,8 @@ const deathChart = new Chart(deathChartElement, {
 					font: {
 						family: "Georgia",
 					},
-					color: "#d3d3d3"
+					color: "#d3d3d3",
+					padding: 1
 				},
 				title: {
 					display: true,
@@ -974,7 +979,7 @@ const deathChart = new Chart(deathChartElement, {
 					text: "Goal: Keep your nation's deaths < 10,000",
 					font: {
 						family: "Georgia"
-					}
+					},
 				}
 			},
 			title: {
@@ -983,7 +988,9 @@ const deathChart = new Chart(deathChartElement, {
 				color: "#e0d6ff",
 				font: {
 					family: "Georgia",
-				}
+				},
+				padding: {bottom: 4}
+
 			},
 		}
 	}
@@ -1009,7 +1016,7 @@ const percentageChart = new Chart(percentageChartElement, {
 		}]
  	},
 	options: {
-		responsive: false,
+		responsive: true,
 		maintainAspectRatio: false,
 		scales: {
 			x: {
@@ -1020,7 +1027,9 @@ const percentageChart = new Chart(percentageChartElement, {
 						family: "Georgia",
 						weight: "bold"
 					},
-					color: "#f7ebc8"
+					color: "#f7ebc8",
+					padding: {bottom: 2}
+
 				},
 				ticks: {
 					font: {
@@ -1058,12 +1067,13 @@ const percentageChart = new Chart(percentageChartElement, {
 					font: {
 						family: "Georgia",
 					},
-					color: "#d3d3d3"
+					color: "#d3d3d3",
+					padding: 1
 				},
 				title: {
 					display: true,
 					color: "#fffff0",
-					text: "Goal: Keep your hospital capacity < 100% & virus positivity < 50%",
+					text: "Goal: Hospital Capacity < 100% & Virus Positivity < 50%",
 					font: {
 						family: "Georgia",
 					}
@@ -1075,7 +1085,8 @@ const percentageChart = new Chart(percentageChartElement, {
 				text: "Hospital Capacity & Virus Positivity",
 				font: {
 					family: "Georgia"
-				}
+				},
+				padding: {bottom: 4}
 			},
 		},
 		interaction: {
@@ -1084,3 +1095,23 @@ const percentageChart = new Chart(percentageChartElement, {
 		}
 	}
 })
+
+
+// charting responsiveness
+const mobileScreenMediaQuery = window.matchMedia('(max-width: 677px)');
+
+function mobileScreenChartingHideCounter(mediaQuery) {
+	if (mediaQuery.matches) {
+		counterParentDiv.classList.add("no-display");
+	}
+}
+
+function mobileScreenChartingShowCounter(mediaQuery) {
+	if (mediaQuery.matches) {
+		counterParentDiv.classList.remove("no-display");
+	}
+}
+
+// biggerScreenMediaQuery.addListener(handleBigScreenChange);
+
+// mobileScreenCharting(mobileScreenMediaQuery);
