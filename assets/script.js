@@ -244,7 +244,20 @@ function changePopulationIcon() {
 };
 
 function checkLosing() {
-	if (deathData >= 10000) {
+	if (deathData >= 10000 && hospitalData >= 100) {
+		losingScreen("death and hospital");
+		return true;
+	} else if (deathData >= 10000 && virusData >= 50) {
+		losingScreen("death and virus");
+		return true;
+	} else if (hospitalData >= 100 && virusData >= 50) {
+		losingScreen("hospital and virus");
+		return true;
+	} else if (deathData >= 10000 && hospitalData >= 100 && virusData >= 50) {
+		losingScreen("death and hospital and virus");
+		return true;
+	}
+	else if (deathData >= 10000) {
 		losingScreen("death");
 		return true;
 	} else if (hospitalData >= 100) {
@@ -554,6 +567,7 @@ function startGame() { // loads January prompts manually
 	insertNewPrompt(0, "January");
  	insertNewPrompt(1, "January");
  	insertNewPrompt(2, "January");
+ 	chartButton.style.display = "grid"; // show chart button
  	displayIntroButtons(false); // remove mute & skip btn
  	removeAllNoDisplay(); // show everything hidden (counter, month, nav)
  	startLoadingEventListeners(); // on every new prompt, load in animation
@@ -679,11 +693,27 @@ function losingScreen(reason) {
 			break;
 		case "hospital":
 			lostReasonTitle.textContent = "Your hospital capacity exceeded 100%";
-			lostReasonText.textContent = "Your hospitals are overfilled, meaning that the sickest patients who are about to die have nowhere to go";
+			lostReasonText.textContent = "Your hospitals are overfilled, meaning that the sickest patients who are about to die have nowhere to go.";
 			break;
 		case "virus":
 			lostReasonTitle.textContent = "The virus positivity rate exceeded 50%";
 			lostReasonText.textContent = "That's one in two people of your population contracting the virus!";
+			break;
+		case "death and hospital": 
+			lostReasonTitle.textContent = "Fatalities exceeded 10,000 & hospital overfilled";
+			lostReasonText.textContent = "10,000 people have died AND hospitals overfilled, meaning that the sickest patients are turned away.";
+			break;
+		case "death and virus": 
+			lostReasonTitle.textContent = "Fatalities exceeded 10,000 & virus positivity > 50%";
+			lostReasonText.textContent = "10,000 people have died from the virus AND one in two people of your population contracting the virus!";
+			break;
+		case "hospital and virus": 
+			lostReasonTitle.textContent = "Hospitals overfilled & virus positivity exceeded 50%";
+			lostReasonText.textContent = "That's one in two people of your population contracting the virus AND hospitals overfilled!";
+			break;
+		case "death and hospital and virus": 
+			lostReasonTitle.textContent = "All of your health metrics exceeded!";
+			lostReasonText.textContent = "10,000 fatalities, hospital overfill, and 50% virus positivity. The virus is out of control!";
 			break;
 	};
 	Reveal.removeEventListener("slidechanged", loadAnimations); // remove the eventListener that adds an animation every time to add a different animation
@@ -881,12 +911,55 @@ function fixChartNewMonthCounters(randomData) {
 	deathChart.update();
 	percentageChart.update();
 }
+
+const chartButton = document.getElementById("chart-icon");
+newShowChartListener();
+chartButton.style.display = "none";
+
+function newShowChartListener() {
+	chartButton.addEventListener("click", () => {
+		chartDivElement.classList.add("chartFadeIn");
+		chartDivElement.style.display = "grid";
+		mobileScreenChartingHideCounter(mobileScreenMediaQuery);
+		chartScreenContinue.style.display = "none";
+		Reveal.getCurrentSlide().style.display = "none";
+		console.log("ok11")
+		newRemoveChartListener();
+		chartButton.src = "assets/icons/exit.svg";
+	}, {once: true});
+}
+
+function newRemoveChartListener() {
+	chartButton.addEventListener("click", hideCharting);
+	function hideCharting() {
+		chartDivElement.classList.remove("chartFadeIn");
+		chartDivElement.style.display = "none";
+		chartScreenContinue.style.display = "block";
+		mobileScreenChartingShowCounter(mobileScreenMediaQuery);
+		Reveal.getCurrentSlide().style.display = "block";
+		chartButton.removeEventListener("click", hideCharting);
+		chartButton.src = "assets/icons/chart.svg";
+
+		chartButton.addEventListener("click", () => {
+			chartDivElement.classList.add("chartFadeIn");
+			chartDivElement.style.display = "grid";
+			mobileScreenChartingHideCounter(mobileScreenMediaQuery);
+			chartScreenContinue.style.display = "none";
+			Reveal.getCurrentSlide().style.display = "none";
+			newRemoveChartListener();
+			chartButton.src = "assets/icons/exit.svg";
+		}, {once: true});
+	}
+}
+
 const chartDivElement = document.getElementById("history-charts");
 const chartScreenContinue = document.getElementById("chartContinue");
 const decisionNumbering = ["Beginning"];
 const deathChartData = [0];
 const hospitalChartData = [8];
 const virusChartData = [0];
+
+
 
 chartScreenContinue.addEventListener("click", () => {
 	// zoom out when animation finish display none and next section
@@ -1104,7 +1177,7 @@ const percentageChart = new Chart(percentageChartElement, {
 
 
 // charting responsiveness
-const mobileScreenMediaQuery = window.matchMedia('(max-width: 677px)');
+const mobileScreenMediaQuery = window.matchMedia('(max-width: 700px)');
 
 function mobileScreenChartingHideCounter(mediaQuery) {
 	if (mediaQuery.matches) {

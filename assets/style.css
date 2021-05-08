@@ -92,7 +92,7 @@
   border-radius: 10px;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 677px) {
   #title {
     font-size: 1.5em;
   }
@@ -201,7 +201,7 @@
   right: 35%;
 } 
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 677px) {
   .center-bottom-button {
     bottom: 10%;
     left: 20%;
@@ -216,7 +216,7 @@
   top: 130%;
 } 
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 677px) {
   .accept-the-challenge-btn {
     left: 20%;
     right: 20%;
@@ -736,8 +736,9 @@
 }
 
 /*sets font size of nation info to 0.8em*/
-.nation-info {
+#nation-info {
   font-size: 0.8em;
+  margin: 0 15%;
 }
 
 /*changes color of text "choose nation name" to #e3e37c*/
@@ -759,13 +760,20 @@
 }
 
 /*RESPONSIVE*/
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 1400px) {
+  #nation-info {
+    margin: 0 7.5%;
+  }
+}
+
+@media only screen and (max-width: 700px) {
   #error {
     font-size: 0.4em;
   }
 
-  .nation-info {
+  #nation-info {
     font-size: 0.5em;
+    margin: 0%;
   }
 
   #inputName {
@@ -918,7 +926,7 @@ div.prompt > h6 { /* every prompt inside the .prompt div container */
     line-height: 0.9em;
   }
 }
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 677px) {
   .question {
     margin: 3.5% 0%;
   }
@@ -1054,7 +1062,7 @@ div.prompt > h6 { /* every prompt inside the .prompt div container */
   }
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 677px) {
   .result-circle {
     width: 325px;
     height: 325px;
@@ -1097,7 +1105,7 @@ div.prompt > h6 { /* every prompt inside the .prompt div container */
     margin: 2% 20%;
   }
 }
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 677px) {
   h3.month-screen {
     font-size: 1.2em !important;
     margin-bottom: 10px !important;
@@ -1197,7 +1205,7 @@ div.prompt > h6 { /* every prompt inside the .prompt div container */
     font-size: 0.47em;
   }
 }
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 677px) {
   #positive-note {
     margin: 0;
   }
@@ -1355,7 +1363,7 @@ div.prompt > h6 { /* every prompt inside the .prompt div container */
 *********************************************/
 #history-charts { 
   position: absolute;
-  z-index: 25;
+  z-index: 19;
   display: none;
   grid-template-columns: auto;
   width: 100%;
@@ -1364,6 +1372,16 @@ div.prompt > h6 { /* every prompt inside the .prompt div container */
   justify-content: center;
   row-gap: 0.5em;
   margin-top: -2.5em;
+}
+
+#chart-icon {
+  position: fixed;
+  z-index: 30;
+  width: 64px;
+  height: 64px;
+  bottom: 2.5%;
+  left: 2.5%;
+  cursor: pointer;
 }
 
 /* RESPONSIVE */
@@ -1383,6 +1401,14 @@ div.prompt > h6 { /* every prompt inside the .prompt div container */
   }
 }
 
+@media only screen and (max-width: 1300px) { /* small laptops */
+  .chart-div {
+    width: 575px;
+    height: 170px;
+  }
+}
+
+
 @media only screen and (max-width: 677px) { /* mobile */
   #history-charts {
     margin-top: -0.6em;
@@ -1391,7 +1417,7 @@ div.prompt > h6 { /* every prompt inside the .prompt div container */
 
   .chart-div {
     width: 300px;
-    height: 200px;
+    height: 175px;
   }
 
   .chart-next-btn {
