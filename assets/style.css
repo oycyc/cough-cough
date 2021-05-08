@@ -1409,7 +1409,7 @@ div.prompt > h6 { /* every prompt inside the .prompt div container */
 }
 
 
-@media only screen and (max-width: 677px) { /* mobile */
+@media only screen and (max-width: 730px) { /* mobile */
   #history-charts {
     margin-top: -0.6em;
     row-gap: 0.9em;
@@ -1424,6 +1424,13 @@ div.prompt > h6 { /* every prompt inside the .prompt div container */
     margin: 0 25%;
     font-size: 14px;
     padding: 13px 28px;
+  }
+
+  #chart-icon {
+    width: 40px;
+    height: 40px;
+    bottom: 1%;
+    left: 1%;
   }
 }
 
