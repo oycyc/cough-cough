@@ -533,6 +533,7 @@ function continueAfterResult() { // when they click Continue button:
 		monthScreenElements.forEach(element => element.classList.add("rotateIn"));
 		changeMonthData();
 		newMonthCounters();
+		chartButton.style.display = "none";
 		nextSection();
 		// monthScreenElements[0].addEventListener("animationend", () => {
 		// 	Reveal.sync();
@@ -567,7 +568,7 @@ function startGame() { // loads January prompts manually
 	insertNewPrompt(0, "January");
  	insertNewPrompt(1, "January");
  	insertNewPrompt(2, "January");
- 	chartButton.style.display = "grid"; // show chart button
+ 	chartButton.style.display = "block"; // show chart button
  	displayIntroButtons(false); // remove mute & skip btn
  	removeAllNoDisplay(); // show everything hidden (counter, month, nav)
  	startLoadingEventListeners(); // on every new prompt, load in animation
@@ -970,6 +971,7 @@ chartScreenContinue.addEventListener("click", () => {
 
 	function continueAfterChart() {
 		nextSection();
+		chartButton.style.display = "block";
 		chartDivElement.style.display = "none";
 		chartDivElement.classList.remove("zoomOut");
 		chartDivElement.removeEventListener("animationend", continueAfterChart);
