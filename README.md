@@ -14,5 +14,3 @@
 - #00bc27 #113254
 - https://www.videezy.com/backgrounds/50703-virus-cells-flowing-viral-disease-outbreak-concept
 
-## bugs 
-- when click chart btn while on result circle didn't account for that case
