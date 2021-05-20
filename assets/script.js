@@ -890,8 +890,7 @@ function closeModal(modal) {
 /*********************************************
   CHARTING
 *********************************************/
-
-// use currentMonthName as month argument
+// updates the charting data after each decision made
 function updateCharting(month, deathChange, hospitalChange, virusChange) {
 	const monthAbbreviations = {"January" : "Jan", "February" : "Feb", "March" : "Mar", "April" : "Apr", "May" : "May", "June" : "Jun", "July" : "Jul", "August" : "Aug", "September" : "Sep", "October" : "Oct", "November" : "Nov", "December" : "Dec"};
 
@@ -903,20 +902,16 @@ function updateCharting(month, deathChange, hospitalChange, virusChange) {
 	percentageChart.update();
 };
 
-// in a rush so this will have to do
-// account for random changes after each month
+// updates the random data change that happens every month to simulate natural movement 
 function fixChartNewMonthCounters(randomData) {
 	deathChartData[deathChartData.length - 1] += randomData[0];
 	hospitalChartData[hospitalChartData.length - 1] += randomData[1];
 	virusChartData[virusChartData.length - 1] += randomData[2];
 	deathChart.update();
 	percentageChart.update();
-}
+};
 
-const chartButton = document.getElementById("chart-icon");
-newShowChartListener();
-chartButton.style.display = "none";
-
+// adds event listener for chart button
 function newShowChartListener() {
 	chartButton.addEventListener("click", () => {
 		chartDivElement.classList.add("chartFadeIn");
@@ -924,12 +919,12 @@ function newShowChartListener() {
 		mobileScreenChartingHideCounter(mobileScreenMediaQuery);
 		chartScreenContinue.style.display = "none";
 		Reveal.getCurrentSlide().style.display = "none";
-		console.log("ok11")
 		newRemoveChartListener();
 		chartButton.src = "assets/icons/exit.svg";
 	}, {once: true});
-}
+};
 
+// shows the chart after clicking icon and changes the icon
 function newRemoveChartListener() {
 	chartButton.addEventListener("click", hideCharting);
 	function hideCharting() {
@@ -950,17 +945,19 @@ function newRemoveChartListener() {
 			newRemoveChartListener();
 			chartButton.src = "assets/icons/exit.svg";
 		}, {once: true});
-	}
-}
+	};
+};
 
 const chartDivElement = document.getElementById("history-charts");
 const chartScreenContinue = document.getElementById("chartContinue");
+const chartButton = document.getElementById("chart-icon");
+newShowChartListener();
+chartButton.style.display = "none";
+
 const decisionNumbering = ["Beginning"];
 const deathChartData = [0];
 const hospitalChartData = [8];
 const virusChartData = [0];
-
-
 
 chartScreenContinue.addEventListener("click", () => {
 	// zoom out when animation finish display none and next section
@@ -1192,7 +1189,3 @@ function mobileScreenChartingShowCounter(mediaQuery) {
 		counterParentDiv.classList.remove("no-display");
 	}
 }
-
-// biggerScreenMediaQuery.addListener(handleBigScreenChange);
-
-// mobileScreenCharting(mobileScreenMediaQuery);

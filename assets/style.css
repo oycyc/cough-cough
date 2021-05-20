@@ -15,19 +15,8 @@
   - Losing Screen
   - Winning Screen
   - Timeline (Month counter on the right side)
+  - Charting
   - Individual Animation Classes w/ Keyframes
-
-  MEDIA QUERIES
-
-  Most of the styling is designed from desktop first then to mobile. 
-  Although this would make it load a bit slower on mobile devices, our website's performance is 
-  generally very fast and our main target device would be a computer screen. Since there is a 
-  limited amount of time to develop this, designing this from desktop down would be easier overall.
-
-  There is only three media queries as there is limited time for this project.
-  Max Width: 1400px -- Laptops/Tablets
-  Max Width: 800px -- Phones/Smaller Tablets
-  Max Width: 360px -- Smaller Phones
 ====================================================
 */
 
@@ -188,10 +177,10 @@
 }
 
 .next {
-  border: none;
-  outline: none;
-  margin: 10px;
+  margin: 0 42.5%;
+  border-radius: 10px;
 }
+
 
 /* Button Positioning */
 .center-bottom-button {
@@ -206,6 +195,11 @@
     bottom: 10%;
     left: 20%;
     right: 20%;
+  }
+
+  .next {
+    margin: 3% 32.5% 0 32.5%;
+    padding: 16px 36px;
   }
 }
 
@@ -729,10 +723,28 @@
 /*styling input where user inserts name*/
 #inputName {
   font-size: 0.5em;
-  width: 10em;
-  height: 2em;
-  color: #333;
+  text-align: center;
+  width: 14em;
+  height: 2.25em;
+  color: #222;
   margin-bottom: 15px;
+  font-family: 'Cochin', Georgia, serif;
+  border-radius: 8px;
+}
+
+#inputName::placeholder {
+  color: black;
+  opacity: 0.65;
+}
+
+#inputName:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: black;
+  opacity: 0.65;
+}
+
+#inputName::-ms-input-placeholder { /* Microsoft Edge */
+  color: black;
+  opacity: 0.65;
 }
 
 /*sets font size of nation info to 0.8em*/
@@ -778,8 +790,8 @@
 
   #inputName {
     font-size: 0.4em;
-    width: 9em;
-    height: 1.4em;
+    width: 10em;
+    height: 2em;
   }
 }
 
@@ -1433,21 +1445,6 @@ div.prompt > h6 { /* every prompt inside the .prompt div container */
     left: 1%;
   }
 }
-
-
-
-@media only screen and (min-width: 1800px) { /* styling monitors/big laptops*/
-/*  #history-charts {
-    margin-top: -2.5em;
-    align-content: center;
-  }
-  .chart-div {
-    width: 1000px;
-    height: 325px;
-  }*/
-}
-
-
 
 /*********************************************
   ANIMATIONS
