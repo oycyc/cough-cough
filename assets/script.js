@@ -447,8 +447,16 @@ function createOptions(optionsInfo) {
 				updateCharting(monthName, optionsInfo[option]["deathChange"], optionsInfo[option]["hospitalChange"], optionsInfo[option]["positivityRateChange"]);		
 				setResultBody(resultData[optionsInfo[option]["resultID"]]);
 				loadInResult();
-				// doesn't remove all of the elements for some reason, try to delete whole thing after new prompt
-				allOptions.forEach(element => element.removeEventListener("click", optionClicked)); // remove all event listeners after an option is chosen
+				// delete all the options after one option is chosen
+				divLoadOut.addEventListener("animationend", removeOptionsAfterClicked);
+				divLoadOut.addEventListener("webkitAnimationEnd", removeOptionsAfterClicked);
+
+				function removeOptionsAfterClicked() {
+					parentOption.remove();
+					divLoadOut.removeEventListener("animationend", removeOptionsAfterClicked);
+					divLoadOut.removeEventListener("webkitAnimationEnd", removeOptionsAfterClicked);
+				};
+
 				isTestingKitPrompt(inputPromptNumber); // individual case, checks if it's the prompt to unlock Deaths & Virus counters
 			});
 		});
@@ -535,12 +543,6 @@ function continueAfterResult() { // when they click Continue button:
 		newMonthCounters();
 		chartButton.style.display = "none";
 		nextSection();
-		// monthScreenElements[0].addEventListener("animationend", () => {
-		// 	Reveal.sync();
-		// });
-		// monthScreenElements[0].addEventListener("webkitAnimationEnd", () => {
-		// 	Reveal.sync();
-		// });
 		resultContinue.removeEventListener("click", continueAfterResult);
 		return;
 	};
@@ -918,33 +920,37 @@ function newShowChartListener() {
 		chartDivElement.style.display = "grid";
 		mobileScreenChartingHideCounter(mobileScreenMediaQuery);
 		chartScreenContinue.style.display = "none";
+		chartButton.src = "assets/icons/exit.svg";
+
+		if (!resultCircle.classList.contains("no-display")) {
+			exitOutResult();
+			newRemoveChartListener("result circle");
+			return;
+		};
+
 		Reveal.getCurrentSlide().style.display = "none";
 		newRemoveChartListener();
-		chartButton.src = "assets/icons/exit.svg";
 	}, {once: true});
 };
 
 // shows the chart after clicking icon and changes the icon
-function newRemoveChartListener() {
+function newRemoveChartListener(specialCase) {
 	chartButton.addEventListener("click", hideCharting);
 	function hideCharting() {
 		chartDivElement.classList.remove("chartFadeIn");
 		chartDivElement.style.display = "none";
 		chartScreenContinue.style.display = "block";
 		mobileScreenChartingShowCounter(mobileScreenMediaQuery);
-		Reveal.getCurrentSlide().style.display = "block";
 		chartButton.removeEventListener("click", hideCharting);
 		chartButton.src = "assets/icons/chart.svg";
+		newShowChartListener();
 
-		chartButton.addEventListener("click", () => {
-			chartDivElement.classList.add("chartFadeIn");
-			chartDivElement.style.display = "grid";
-			mobileScreenChartingHideCounter(mobileScreenMediaQuery);
-			chartScreenContinue.style.display = "none";
-			Reveal.getCurrentSlide().style.display = "none";
-			newRemoveChartListener();
-			chartButton.src = "assets/icons/exit.svg";
-		}, {once: true});
+		if (specialCase) {
+			loadInResult();
+			return;
+		};
+
+		Reveal.getCurrentSlide().style.display = "block";;
 	};
 };
 

@@ -15,6 +15,4 @@
 - https://www.videezy.com/backgrounds/50703-virus-cells-flowing-viral-disease-outbreak-concept
 
 ## bugs 
-- function loopAllOptions() removeEventListener only removes THAT particular option chosen's event listener, need to remove all to prevent clogging memory
-- reveal.js allows skipping forward, adding #/SLIDENUMBERHERE after the url, fix by using https://www.w3schools.com/howto/howto_js_get_url.asp https://www.w3schools.com/jsref/prop_doc_url.asp
 - when click chart btn while on result circle didn't account for that case
