@@ -3,8 +3,7 @@
 - winning screen continueAfterResult() check there
 	- add gif https://giphy.com/gifs/molangofficialpage-social-distancing-stay-safe-keep-kaIJGG8lNC3u5DM3tg
 - add cool icons?
-- longer prompt on mobile, counter blocks a lil
-- clean up charting event listeners 
+- longer prompt on mobile, counter blocks a lil 
 
 ## images 
 - new background animation pic ideas? :
