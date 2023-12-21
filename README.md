@@ -1,15 +1,8 @@
-# beep boop
-## to dos
-- winning screen continueAfterResult() check there
-	- add gif https://giphy.com/gifs/molangofficialpage-social-distancing-stay-safe-keep-kaIJGG8lNC3u5DM3tg
-- add cool icons?
-- longer prompt on mobile, counter blocks a lil 
+# Cough Cough 
+<img width="564" alt="image" src="assets/readme-image">
 
-## images 
-- new background animation pic ideas? :
-	- https://image.freepik.com/free-vector/virus-infection-bacteria-flu-background_1035-18704.jpg
-	- https://www.freepik.com/collection/coronavirus-background/691268
-- https://www.vecteezy.com/vector-art/1975718-blue-virus-theme-background
-- #00bc27 #113254
-- https://www.videezy.com/backgrounds/50703-virus-cells-flowing-viral-disease-outbreak-concept
+**NOTE:** This has not been maintained so the data is of 2021 and may not be accurate.
 
+Cough Cough is an engaging interactive simulation adventure game designed to educate players about the COVID-19 pandemic. This game, which won second place in the Ctrl+Shift 2021 coding competition among over 100 teams, is unique in its approach to teaching about public health crises. Players assume the role of a health director for an imaginary country, where they are tasked with making crucial public-health decisions. These decisions directly impact various health metrics of the country, such as death rates, virus positivity rates, and hospital capacity.
+
+View the live demo at [cough-cough.netlify.app](cough-cough.netlify.app). 
