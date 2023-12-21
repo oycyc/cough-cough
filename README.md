@@ -1,5 +1,5 @@
 # Cough Cough 
-<img width="564" alt="image" src="assets/readme-image">
+<img width="564" alt="image" src="assets/readme-image.png">
 
 **NOTE:** This has not been maintained so the data is of 2021 and may not be accurate.
 
